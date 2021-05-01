@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.track.TrackFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--TODO FULL Page Error Layout if API is not working-->
+        <LinearLayout
+            android:id="@+id/api_error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:visibility="gone">
+
+            <TextView
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="We are doing some Data Crunching for you.\n\nWe will be back soon.\n#StaySafe"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <!--Total Cases in your State-->
+        <LinearLayout
+            android:id="@+id/totalCasesInUserStateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalCasesInUserStateTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Cases in Delhi" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                app:cardCornerRadius="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/total_cases_card_bg"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/defaultStateNameTv"
+                            style="@android:style/TextAppearance.DeviceDefault.Large"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            tools:text="Delhi" />
+
+                        <TextView
+                            android:id="@+id/totalConfirmedCasesTv"
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/confirmed_cases_bg"
+                            android:padding="5dp"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/white"
+                            tools:text="Confirmed\n---------\n20" />
+
+                        <TextView
+                            android:id="@+id/totalDeathCasesTv"
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/death_cases_bg"
+                            android:padding="5dp"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/white"
+                            tools:text="Death\n---------\n12" />
+
+                        <TextView
+                            android:id="@+id/totalRecoveredCasesTv"
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/recovered_cases_bg"
+                            android:padding="5dp"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/white"
+                            tools:text="Recovered\n---------\n20" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/changeLocationTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Change Location"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/dashBoardStatsLastUpdateTime"
+                            style="@android:style/TextAppearance.DeviceDefault.Small"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:textSize="12sp"
+                            tools:text="Last Updated: 8 Apr 2019 12:24 AM" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <!--Most Affected District in your State-->
+        <LinearLayout
+            android:id="@+id/mostAffectedDistrictContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mostAffectedDistrictTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Most Affected District in Delhi" />
+
+            <include
+                layout="@layout/district_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mostAffectedDistrictRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:overScrollMode="never"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/district_data_item" />
+
+            <TextView
+                android:id="@+id/complete_district_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Total Confirmed Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/totalConfirmedCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalConfirmedCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Confirmed Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/totalConfirmedCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/totalConfirmedCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Total Death Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/totalDeathCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalDeathCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Death Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/totalDeathCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/totalDeathCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Total Recovered Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/totalRecoveredCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalRecoveredCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Recovered Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/totalRecoveredCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/totalRecoveredCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Daily Confirmed Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/dailyConfirmedCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dailyConfirmedCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Daily Confirmed Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/dailyConfirmedCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/dailyConfirmedCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Daily Death Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/dailyDeathCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dailyDeathCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Daily Death Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/dailyDeathCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/dailyDeathCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Daily Recovered Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/dailyRecoveredCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dailyRecoveredCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Daily Recovered Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/dailyRecoveredCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/dailyRecoveredCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Most Affected State in India-->
+        <LinearLayout
+            android:id="@+id/mostAffectedStateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mostAffectedStateTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Most Affected States in India" />
+
+            <include
+                layout="@layout/state_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mostAffectedStateRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                tools:itemCount="5"
+                tools:listitem="@layout/state_data_item" />
+
+            <TextView
+                android:id="@+id/complete_state_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

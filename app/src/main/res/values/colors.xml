@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#014375</color>
+    <color name="colorPrimaryDark">#01365e</color>
+    <color name="colorAccent">#febc8a</color>
+
+    <color name="colorPrimaryDefault">#6200EE</color>
+    <color name="colorPrimaryDarkDefault">#3700B3</color>
+    <color name="colorAccentDefault">#03DAC5</color>
+
+    <color name="confirmedCasesColor">@color/colorPrimary</color>
+    <color name="deathCasesColor">#990000</color>
+    <color name="recoveredCasesColor">#008000</color>
+
+    <color name="colorOddItem">#F1F1F1</color>
+    <color name="colorEvenItem">#F9F9F9</color>
+</resources>

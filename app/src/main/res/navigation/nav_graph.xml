@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/trackFragment">
+
+    <fragment
+        android:id="@+id/trackFragment"
+        android:name="in.engineerakash.covid19india.ui.track.TrackFragment"
+        android:label="fragment_track"
+        tools:layout="@layout/fragment_track">
+        <action
+            android:id="@+id/action_trackFragment_to_detailGraphFragment"
+            app:destination="@id/detailGraphFragment" />
+        <action
+            android:id="@+id/action_trackFragment_to_detailListFragment"
+            app:destination="@id/detailListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailGraphFragment"
+        android:name="in.engineerakash.covid19india.ui.detailgraph.DetailGraphFragment"
+        android:label="fragment_detail_graph"
+        tools:layout="@layout/fragment_detail_graph" />
+    <fragment
+        android:id="@+id/detailListFragment"
+        android:name="in.engineerakash.covid19india.ui.detaillist.DetailListFragment"
+        android:label="fragment_detail_list"
+        tools:layout="@layout/fragment_detail_list" />
+    <fragment
+        android:id="@+id/precautionFragment"
+        android:name="in.engineerakash.covid19india.ui.precaution.PrecautionFragment"
+        android:label="fragment_precaution"
+        tools:layout="@layout/fragment_precaution" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="in.engineerakash.covid19india.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
