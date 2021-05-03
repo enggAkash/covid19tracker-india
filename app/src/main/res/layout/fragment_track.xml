@@ -13,7 +13,7 @@
 
         <!--TODO FULL Page Error Layout if API is not working-->
         <LinearLayout
-            android:id="@+id/api_error_layout"
+            android:id="@+id/apiErrorLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="200dp"
@@ -188,7 +188,7 @@
                 tools:listitem="@layout/district_data_item" />
 
             <TextView
-                android:id="@+id/complete_district_list"
+                android:id="@+id/completeDistrictList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -508,7 +508,7 @@
                 tools:listitem="@layout/state_data_item" />
 
             <TextView
-                android:id="@+id/complete_state_list"
+                android:id="@+id/completeStateList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"

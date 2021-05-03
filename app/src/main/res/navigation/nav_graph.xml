@@ -10,23 +10,58 @@
         android:name="in.engineerakash.covid19india.ui.track.TrackFragment"
         android:label="fragment_track"
         tools:layout="@layout/fragment_track">
+
         <action
             android:id="@+id/action_trackFragment_to_detailGraphFragment"
             app:destination="@id/detailGraphFragment" />
+
         <action
             android:id="@+id/action_trackFragment_to_detailListFragment"
             app:destination="@id/detailListFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/detailGraphFragment"
         android:name="in.engineerakash.covid19india.ui.detailgraph.DetailGraphFragment"
         android:label="fragment_detail_graph"
-        tools:layout="@layout/fragment_detail_graph" />
+        tools:layout="@layout/fragment_detail_graph">
+
+        <argument
+            android:name="listType"
+            android:defaultValue="DISTRICT"
+            app:argType="in.engineerakash.covid19india.enums.ListType" />
+
+        <argument
+            android:name="timeSeriesDateWiseResponse"
+            app:argType="in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse" />
+
+        <argument
+            android:name="stateDistrictWiseResponse"
+            app:argType="in.engineerakash.covid19india.pojo.StateDistrictWiseResponse[]" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/detailListFragment"
         android:name="in.engineerakash.covid19india.ui.detaillist.DetailListFragment"
         android:label="fragment_detail_list"
-        tools:layout="@layout/fragment_detail_list" />
+        tools:layout="@layout/fragment_detail_list">
+
+        <argument
+            android:name="listType"
+            app:argType="in.engineerakash.covid19india.enums.ListType" />
+
+        <argument
+            android:name="timeSeriesDateWiseResponse"
+            app:argType="in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse" />
+
+        <argument
+            android:name="stateDistrictWiseResponse"
+            app:argType="in.engineerakash.covid19india.pojo.StateDistrictWiseResponse[]" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/precautionFragment"
         android:name="in.engineerakash.covid19india.ui.precaution.PrecautionFragment"

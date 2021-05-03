@@ -1,9 +1,6 @@
 package in.engineerakash.covid19india.ui.track;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -30,6 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import in.engineerakash.covid19india.R;
 import in.engineerakash.covid19india.api.CovidClient;
 import in.engineerakash.covid19india.chartutil.IndexAxisValueFormatter;
 import in.engineerakash.covid19india.databinding.FragmentTrackBinding;
@@ -40,6 +39,7 @@ import in.engineerakash.covid19india.pojo.StateWiseData;
 import in.engineerakash.covid19india.pojo.TimeSeriesData;
 import in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse;
 import in.engineerakash.covid19india.ui.detaillist.DetailListFragment;
+import in.engineerakash.covid19india.enums.ListType;
 import in.engineerakash.covid19india.ui.home.DistrictWiseAdapter;
 import in.engineerakash.covid19india.ui.home.StateWiseAdapter;
 import in.engineerakash.covid19india.util.Constant;
@@ -106,7 +106,7 @@ public class TrackFragment extends Fragment {
         getTimeSeriesAndStateWiseData();
 
         binding.totalCasesInUserStateContainer.setOnClickListener(v -> {
-            listener.onDetailListClicked(DetailListFragment.ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);
+            listener.onDetailListClicked(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);
         });
 
 
@@ -146,7 +146,7 @@ public class TrackFragment extends Fragment {
             bundle.putParcelable("time_series_state_wise_response", timeSeriesStateWiseResponse);
             bundle.putParcelableArrayList("state_district_list", stateDistrictList);
 
-            listener.onDetailListClicked(DetailListFragment.ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList);
+            listener.onDetailListClicked(ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList);
         });
 
         binding.completeStateList.setOnClickListener(v -> {
@@ -157,7 +157,11 @@ public class TrackFragment extends Fragment {
 
 //            navController.navigate(R.id.action_trackFragment_to_detailGraphFragment, bundle);
 
-            listener.onDetailListClicked(DetailListFragment.ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);
+            listener.onDetailListClicked(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);
+
+
+            //Navigation.findNavController(binding.getRoot()).navigate(R.id.action_trackFragment_to_detailListFragment, );
+
         });
 
 
@@ -682,7 +686,7 @@ public class TrackFragment extends Fragment {
 
     public interface OnTrackFragmentListener {
 
-        void onDetailListClicked(DetailListFragment.ListType listType, TimeSeriesStateWiseResponse timeSeriesStateWiseResponse, ArrayList<StateDistrictWiseResponse> stateDistrictList);
+        void onDetailListClicked(ListType listType, TimeSeriesStateWiseResponse timeSeriesStateWiseResponse, ArrayList<StateDistrictWiseResponse> stateDistrictList);
 
         void onDetailGraphClicked(Constant.ChartType chartType, TimeSeriesStateWiseResponse timeSeriesStateWiseResponse, ArrayList<StateDistrictWiseResponse> stateDistrictList);
 

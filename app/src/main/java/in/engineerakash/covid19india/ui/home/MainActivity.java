@@ -12,11 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
 
 import in.engineerakash.covid19india.R;
 import in.engineerakash.covid19india.databinding.ActivityMainBinding;
+import in.engineerakash.covid19india.enums.ListType;
 import in.engineerakash.covid19india.pojo.StateDistrictWiseResponse;
 import in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse;
 import in.engineerakash.covid19india.ui.detailgraph.DetailGraphFragment;
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
     private PrecautionFragment precautionFragment;
     private SettingsFragment settingsFragment;
+    private NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +68,11 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
 //        setUpNavigation();
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+        navController = Navigation.findNavController(this, R.id.navHostFragment);
+
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
+
+       /* binding.bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menu_track:
                     showTrackFragment(true);
@@ -78,14 +87,14 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
                     return true;
             }
             return false;
-        });
+        });*/
 
-        showTrackFragment(false);
+        //showTrackFragment(false);
 
 
     }
 
-    private void showTrackFragment(boolean removeChildFragment) {
+    /*private void showTrackFragment(boolean removeChildFragment) {
 
         if (trackFragment == null)
             trackFragment = TrackFragment.newInstance();
@@ -114,9 +123,9 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
                         .commit();
             }
         }
-    }
+    }*/
 
-    private void showDetailListFragment(DetailListFragment.ListType listType,
+    private void showDetailListFragment(ListType listType,
                                         TimeSeriesStateWiseResponse timeSeriesStateWiseResponse,
                                         ArrayList<StateDistrictWiseResponse> stateDistrictList) {
 
@@ -129,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container, detailListFragment, DETAIL_LIST_FRAG_TAG)
+                .replace(R.id.fragmentContainer, detailListFragment, DETAIL_LIST_FRAG_TAG)
                 .addToBackStack(null)
                 .commit();
 
@@ -150,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container, detailGraphFragment, DETAIL_GRAPH_FRAG_TAG)
+                .replace(R.id.fragmentContainer, detailGraphFragment, DETAIL_GRAPH_FRAG_TAG)
                 .commit();
 
         activeFragment = detailGraphFragment;
@@ -195,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container, precautionFragment, PRECAUTION_FRAG_TAG)
+                .replace(R.id.fragmentContainer, precautionFragment, PRECAUTION_FRAG_TAG)
                 .addToBackStack(null)
                 .commit();
 
@@ -216,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
         fragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container, settingsFragment, SETTINGS_FRAG_TAG)
+                .replace(R.id.fragmentContainer, settingsFragment, SETTINGS_FRAG_TAG)
                 .addToBackStack(null)
                 .commit();
 
@@ -225,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
     }
 
     @Override
-    public void onDetailListClicked(DetailListFragment.ListType listType,
+    public void onDetailListClicked(ListType listType,
                                     TimeSeriesStateWiseResponse timeSeriesStateWiseResponse,
                                     ArrayList<StateDistrictWiseResponse> stateDistrictList) {
         showDetailListFragment(listType, timeSeriesStateWiseResponse, stateDistrictList);
@@ -260,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()) {
+        /*switch (item.getItemId()) {
             case android.R.id.home: {
 
                 if (activeFragment instanceof DetailListFragment || activeFragment instanceof DetailGraphFragment) {
@@ -271,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
 
                 return true;
             }
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -279,10 +288,10 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
     @Override
     public void onBackPressed() {
 
-        if (activeFragment instanceof DetailListFragment || activeFragment instanceof DetailGraphFragment) {
+        /*if (activeFragment instanceof DetailListFragment || activeFragment instanceof DetailGraphFragment) {
             showTrackFragment(true);
-        } else {
+        } else {*/
             super.onBackPressed();
-        }
+        /*}*/
     }
 }

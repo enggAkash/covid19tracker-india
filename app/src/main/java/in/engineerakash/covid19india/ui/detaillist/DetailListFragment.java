@@ -16,6 +16,7 @@ import java.util.Comparator;
 
 import in.engineerakash.covid19india.R;
 import in.engineerakash.covid19india.databinding.FragmentDetailListBinding;
+import in.engineerakash.covid19india.enums.ListType;
 import in.engineerakash.covid19india.pojo.District;
 import in.engineerakash.covid19india.pojo.DistrictDelta;
 import in.engineerakash.covid19india.pojo.StateDistrictWiseResponse;
@@ -346,7 +347,4 @@ public class DetailListFragment extends Fragment {
         currentListType = listType;
     }
 
-    public enum ListType {
-        DISTRICT, STATE
-    }
 }
