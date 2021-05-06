@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -56,11 +57,12 @@ public class DetailListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            currentListType = (ListType) getArguments().getSerializable(LIST_TYPE_PARAM);
-            timeSeriesStateWiseResponse = getArguments().getParcelable(TIME_SERIES_STATE_WISE_PARAM);
-            stateDistrictList = getArguments().getParcelableArrayList(STATE_DISTRICT_LIST_PARAM);
-        }
+
+        DetailListFragmentArgs detailListFragmentArgs = DetailListFragmentArgs.fromBundle(getArguments());
+
+        currentListType = detailListFragmentArgs.getListType();
+        timeSeriesStateWiseResponse = detailListFragmentArgs.getTimeSeriesDateWiseResponse();
+        stateDistrictList = new ArrayList<StateDistrictWiseResponse>(Arrays.asList(detailListFragmentArgs.getStateDistrictWiseResponse()));
     }
 
     @Override
@@ -347,4 +349,13 @@ public class DetailListFragment extends Fragment {
         currentListType = listType;
     }
 
+    /*@Override
+    public boolean onOptionsItemSelected(@NonNull @NotNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            //Navigation.findNavController(binding.getRoot()).navigateUp();
+            getActivity().onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
 }

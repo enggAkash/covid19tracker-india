@@ -28,18 +28,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import in.engineerakash.covid19india.R;
 import in.engineerakash.covid19india.api.CovidClient;
 import in.engineerakash.covid19india.chartutil.IndexAxisValueFormatter;
 import in.engineerakash.covid19india.databinding.FragmentTrackBinding;
+import in.engineerakash.covid19india.enums.ListType;
 import in.engineerakash.covid19india.pojo.District;
 import in.engineerakash.covid19india.pojo.DistrictDelta;
 import in.engineerakash.covid19india.pojo.StateDistrictWiseResponse;
 import in.engineerakash.covid19india.pojo.StateWiseData;
 import in.engineerakash.covid19india.pojo.TimeSeriesData;
 import in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse;
-import in.engineerakash.covid19india.ui.detaillist.DetailListFragment;
-import in.engineerakash.covid19india.enums.ListType;
 import in.engineerakash.covid19india.ui.home.DistrictWiseAdapter;
 import in.engineerakash.covid19india.ui.home.StateWiseAdapter;
 import in.engineerakash.covid19india.util.Constant;
@@ -142,28 +140,29 @@ public class TrackFragment extends Fragment {
 
         binding.completeDistrictList.setOnClickListener(v -> {
 
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putParcelable("time_series_state_wise_response", timeSeriesStateWiseResponse);
             bundle.putParcelableArrayList("state_district_list", stateDistrictList);
 
-            listener.onDetailListClicked(ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList);
+            listener.onDetailListClicked(ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList);*/
+
+            Navigation.findNavController(binding.getRoot()).navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailListFragment(ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
         });
 
         binding.completeStateList.setOnClickListener(v -> {
 
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putParcelable("time_series_state_wise_response", timeSeriesStateWiseResponse);
             bundle.putParcelableArrayList("state_district_list", stateDistrictList);
 
-//            navController.navigate(R.id.action_trackFragment_to_detailGraphFragment, bundle);
+            listener.onDetailListClicked(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);*/
 
-            listener.onDetailListClicked(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);
-
-
-            //Navigation.findNavController(binding.getRoot()).navigate(R.id.action_trackFragment_to_detailListFragment, );
-
+            Navigation.findNavController(binding.getRoot()).navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailListFragment(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
         });
-
 
     }
 

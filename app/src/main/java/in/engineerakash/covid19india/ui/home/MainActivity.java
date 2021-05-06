@@ -2,11 +2,9 @@ package in.engineerakash.covid19india.ui.home;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -267,31 +265,7 @@ public class MainActivity extends AppCompatActivity implements TrackFragment.OnT
     }*/
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        /*switch (item.getItemId()) {
-            case android.R.id.home: {
-
-                if (activeFragment instanceof DetailListFragment || activeFragment instanceof DetailGraphFragment) {
-                    showTrackFragment(true);
-                } else {
-                    super.onBackPressed();
-                }
-
-                return true;
-            }
-        }*/
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        /*if (activeFragment instanceof DetailListFragment || activeFragment instanceof DetailGraphFragment) {
-            showTrackFragment(true);
-        } else {*/
-            super.onBackPressed();
-        /*}*/
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp() || super.onSupportNavigateUp();
     }
 }
