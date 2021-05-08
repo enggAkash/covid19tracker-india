@@ -38,12 +38,15 @@ import okhttp3.ResponseBody
 import java.io.IOException
 import java.util.*
 
+private const val TAG = "TrackFragment"
+
 class TrackFragment : Fragment() {
 
     private lateinit var binding: FragmentTrackBinding
     private var disposables: CompositeDisposable? = null
 
-    private var timeSeriesStateWiseResponse: TimeSeriesStateWiseResponse = TimeSeriesStateWiseResponse()
+    private var timeSeriesStateWiseResponse: TimeSeriesStateWiseResponse =
+        TimeSeriesStateWiseResponse()
     private var stateDistrictList: ArrayList<StateDistrictWiseResponse> = arrayListOf()
     private lateinit var navController: NavController
 
@@ -156,8 +159,8 @@ class TrackFragment : Fragment() {
 
     private fun getTimeSeriesAndStateWiseData() {
         CovidClient
-            .getInstance()
-            .getTimeSeriesAndStateWiseData()
+            .instance
+            .timeSeriesAndStateWiseData
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<ResponseBody> {
@@ -173,10 +176,12 @@ class TrackFragment : Fragment() {
                                 response,
                                 TimeSeriesStateWiseResponse::class.java
                             )
+
                         val casesTimeSeriesList: ArrayList<TimeSeriesData> =
-                            timeSeriesStateWiseResponse?.casesTimeSeriesArrayList ?: arrayListOf()
+                            timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+
                         val stateWiseDataList: ArrayList<StateWiseData> =
-                            timeSeriesStateWiseResponse?.stateWiseDataArrayList ?: arrayListOf()
+                            timeSeriesStateWiseResponse.stateWiseDataArrayList
 
                         fillDashboard(stateWiseDataList)
                         fillMostAffectedStateSection(stateWiseDataList)
@@ -232,30 +237,18 @@ class TrackFragment : Fragment() {
         val dashboardStats: StateWiseData = getCurrentStateStats(stateWiseDataArrayList)
         binding.totalCasesInUserStateTitleTv.text = "#Total Cases in " + dashboardStats.state
         binding.defaultStateNameTv.text = dashboardStats.state
-        binding.totalConfirmedCasesTv.text = """
-            Confirmed
-            ---------
-            ${dashboardStats.confirmed}
-            """.trimIndent()
-        binding.totalDeathCasesTv.text = """
-            Death
-            ---------
-            ${dashboardStats.deaths}
-            """.trimIndent()
-        binding.totalRecoveredCasesTv.text = """
-            Recovered
-            ---------
-            ${dashboardStats.recovered}
-            """.trimIndent()
+        binding.totalConfirmedCasesTv.text = "Confirmed\n---------\n${dashboardStats.confirmed}"
+        binding.totalDeathCasesTv.text = "Death\n---------\n${dashboardStats.deaths}"
+        binding.totalRecoveredCasesTv.text = "Recovered\n---------\n${dashboardStats.recovered}"
         binding.dashBoardStatsLastUpdateTime.text =
-            "Last Updated: " + parseDate(dashboardStats.lastUpdatedTime)
+            "Last Updated: ${parseDate(dashboardStats.lastUpdatedTime)}"
     }
 
     private fun fillMostAffectedDistrictSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>?) {
         val mostAffectedDistricts: ArrayList<District> = getMostAffectedDistricts(stateDistrictList)
         mostAffectedDistricts.addAll(getObjectTotalOfAffectedDistricts(stateDistrictList))
         binding.mostAffectedDistrictTitleTv.text =
-            "#Most Affected District in " + Constant.userSelectedState.trim { it <= ' ' }
+            "#Most Affected District in ${Constant.userSelectedState.trim { it <= ' ' }}"
         val districtWiseAdapter = DistrictWiseAdapter(mostAffectedDistricts)
         binding.mostAffectedDistrictRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedDistrictRv.adapter = districtWiseAdapter
@@ -267,7 +260,7 @@ class TrackFragment : Fragment() {
         mostAffectedStateWiseList
             .add(getObjectTotalOfAffectedState(stateWiseDataArrayList))
         binding.mostAffectedStateTitleTv.text =
-            "#Most Affected States in " + Constant.userSelectedCountry.trim { it <= ' ' }
+            "#Most Affected States in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
         val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList)
         binding.mostAffectedStateRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedStateRv.adapter = stateWiseAdapter
@@ -277,7 +270,7 @@ class TrackFragment : Fragment() {
         var currentStateStats = StateWiseData()
         for (stateWiseData in stateWiseDataArrayList) {
             if (Constant.userSelectedState.trim { it <= ' ' }
-                    .equals(stateWiseData.state?.trim { it <= ' ' }, ignoreCase = true)) {
+                    .equals(stateWiseData.state.trim { it <= ' ' }, ignoreCase = true)) {
                 currentStateStats = stateWiseData
                 break
             }
@@ -288,8 +281,8 @@ class TrackFragment : Fragment() {
     private fun getStateDistrictData() {
 
         CovidClient
-            .getInstance()
-            .getStateDistrictWiseData()
+            .instance
+            .stateDistrictWiseData
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<ResponseBody> {
@@ -547,7 +540,7 @@ class TrackFragment : Fragment() {
             ChartType.TOTAL_CONFIRMED -> {
                 chart = binding.totalConfirmedCasesTimelineChart
                 binding.totalConfirmedCasesTimelineTitleTv.text =
-                    "#Total Confirmed Cases in " + Constant.userSelectedCountry + " Timeline"
+                    "#Total Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -558,7 +551,7 @@ class TrackFragment : Fragment() {
             ChartType.TOTAL_DECEASED -> {
                 chart = binding.totalDeathCasesTimelineChart
                 binding.totalDeathCasesTimelineTitleTv.text =
-                    "#Total Death Cases in " + Constant.userSelectedCountry + " Timeline"
+                    "#Total Death Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -569,7 +562,7 @@ class TrackFragment : Fragment() {
             ChartType.TOTAL_RECOVERED -> {
                 chart = binding.totalRecoveredCasesTimelineChart
                 binding.totalRecoveredCasesTimelineTitleTv.text =
-                    "#Total Recovered Cases in " + Constant.userSelectedCountry + " Timeline"
+                    "#Total Recovered Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -580,7 +573,7 @@ class TrackFragment : Fragment() {
             ChartType.DAILY_CONFIRMED -> {
                 chart = binding.dailyConfirmedCasesTimelineChart
                 binding.dailyConfirmedCasesTimelineTitleTv.text =
-                    "#Daily Confirmed Cases in " + Constant.userSelectedCountry + " Timeline"
+                    "#Daily Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -591,7 +584,7 @@ class TrackFragment : Fragment() {
             ChartType.DAILY_DECEASED -> {
                 chart = binding.dailyDeathCasesTimelineChart
                 binding.dailyDeathCasesTimelineTitleTv.text =
-                    "#Daily Death Cases in " + Constant.userSelectedCountry + " Timeline"
+                    "#Daily Death Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -602,7 +595,7 @@ class TrackFragment : Fragment() {
             ChartType.DAILY_RECOVERED -> {
                 chart = binding.dailyRecoveredCasesTimelineChart
                 binding.dailyRecoveredCasesTimelineTitleTv.text =
-                    "#Daily Recovered Cases in " + Constant.userSelectedCountry + " Timeline"
+                    "#Daily Recovered Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -653,9 +646,5 @@ class TrackFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         if (disposables != null && !disposables!!.isDisposed) disposables!!.dispose()
-    }
-
-    companion object {
-        private const val TAG = "TrackFragment"
     }
 }

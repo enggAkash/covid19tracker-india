@@ -22,7 +22,6 @@ class DetailListFragment : Fragment() {
     private lateinit var timeSeriesStateWiseResponse: TimeSeriesStateWiseResponse
     private var stateDistrictList: ArrayList<StateDistrictWiseResponse> = arrayListOf()
     private lateinit var binding: FragmentDetailListBinding
-    //private var root: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,6 @@ class DetailListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailListBinding.inflate(inflater, container, false)
-        //root = binding.root
 
         initComponent()
 
@@ -56,11 +54,8 @@ class DetailListFragment : Fragment() {
         super.onStart()
         if (currentListType === ListType.DISTRICT) {
             binding.districtHeader.root.visibility = View.VISIBLE
-            /*root!!.findViewById<View>(R.id.districtHeader).visibility =
-                View.VISIBLE*/
 
             binding.stateHeader.root.visibility = View.GONE
-            /*root!!.findViewById<View>(R.id.stateHeader).visibility = View.GONE*/
 
             val sortedAffectedDistricts: ArrayList<District> =
                 getSortedAffectedDistricts(stateDistrictList)
@@ -74,10 +69,8 @@ class DetailListFragment : Fragment() {
         } else if (currentListType === ListType.STATE) {
 
             binding.districtHeader.root.visibility = View.GONE
-            //root!!.findViewById<View>(R.id.districtHeader).visibility = View.GONE
 
             binding.stateHeader.root.visibility = View.VISIBLE
-            /*root!!.findViewById<View>(R.id.stateHeader).visibility = View.VISIBLE*/
 
             val sortedAffectedStateWiseList: ArrayList<StateWiseData> =
                 getSortedAffectedStates(timeSeriesStateWiseResponse.stateWiseDataArrayList)

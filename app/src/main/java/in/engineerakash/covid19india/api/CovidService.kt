@@ -8,10 +8,10 @@ import retrofit2.http.*
 
 interface CovidService {
     @get:GET("/data.json")
-    val timeSeriesAndStateWiseData: Single<ResponseBody?>?
+    val timeSeriesAndStateWiseData: Single<ResponseBody>
 
     @get:GET("/state_district_wise.json")
-    val stateDistrictWiseData: Single<ResponseBody?>?
+    val stateDistrictWiseData: Single<ResponseBody>
 
     @POST
     @FormUrlEncoded
