@@ -29,10 +29,6 @@ import in.engineerakash.covid19india.util.Constant;
 
 public class DetailListFragment extends Fragment {
 
-    private static final String LIST_TYPE_PARAM = "list_type";
-    private static final String TIME_SERIES_STATE_WISE_PARAM = "time_series_state_wise_param";
-    private static final String STATE_DISTRICT_LIST_PARAM = "state_district_list_param";
-
     private ListType currentListType;
     private TimeSeriesStateWiseResponse timeSeriesStateWiseResponse;
     private ArrayList<StateDistrictWiseResponse> stateDistrictList;
@@ -40,18 +36,6 @@ public class DetailListFragment extends Fragment {
     private View root;
 
     public DetailListFragment() {
-    }
-
-    public static DetailListFragment newInstance(ListType listType,
-                                                 TimeSeriesStateWiseResponse timeSeriesStateWiseResponse,
-                                                 ArrayList<StateDistrictWiseResponse> stateDistrictList) {
-        DetailListFragment fragment = new DetailListFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(LIST_TYPE_PARAM, listType);
-        args.putParcelable(TIME_SERIES_STATE_WISE_PARAM, timeSeriesStateWiseResponse);
-        args.putParcelableArrayList(STATE_DISTRICT_LIST_PARAM, stateDistrictList);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -345,17 +329,4 @@ public class DetailListFragment extends Fragment {
         return objectTotalOfMostAffectedState;
     }
 
-    public void setListType(ListType listType) {
-        currentListType = listType;
-    }
-
-    /*@Override
-    public boolean onOptionsItemSelected(@NonNull @NotNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            //Navigation.findNavController(binding.getRoot()).navigateUp();
-            getActivity().onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 }

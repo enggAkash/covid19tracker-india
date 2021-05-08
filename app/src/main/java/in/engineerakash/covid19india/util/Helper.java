@@ -34,6 +34,7 @@ import java.util.Locale;
 
 import in.engineerakash.covid19india.BuildConfig;
 import in.engineerakash.covid19india.R;
+import in.engineerakash.covid19india.enums.ChartType;
 
 import static in.engineerakash.covid19india.util.Constant.NO_EMAIL_CLIENT_MSG;
 
@@ -153,7 +154,7 @@ public class Helper {
 
     public static void showProgressDialog(Context context, String text, boolean isCancelable,
                                           final int autoCloseAfterInMilli) {
-        if (context == null)
+        /*if (context == null)
             return;
         if (progressDialog == null)
             progressDialog = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.ProgressDialogTheme)).create();
@@ -171,7 +172,7 @@ public class Helper {
                 public void run() {
                     progressDialog.dismiss();
                 }
-            }, autoCloseAfterInMilli);
+            }, autoCloseAfterInMilli);*/
     }
 
     public static void hideProgressDialog() {
@@ -400,7 +401,7 @@ public class Helper {
         return outputTimeStamp;
     }
 
-    public static int getBarChartColor(Context context, Constant.ChartType chartType) {
+    public static int getBarChartColor(Context context, ChartType chartType) {
         switch (chartType) {
             case TOTAL_CONFIRMED:
             case DAILY_CONFIRMED:

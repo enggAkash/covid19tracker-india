@@ -19,11 +19,14 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import in.engineerakash.covid19india.R;
 import in.engineerakash.covid19india.chartutil.IndexAxisValueFormatter;
 import in.engineerakash.covid19india.databinding.FragmentDetailGraphBinding;
+import in.engineerakash.covid19india.enums.ChartType;
+import in.engineerakash.covid19india.pojo.StateDistrictWiseResponse;
 import in.engineerakash.covid19india.pojo.TimeSeriesData;
 import in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse;
 import in.engineerakash.covid19india.ui.home.MainActivity;
@@ -32,34 +35,24 @@ import in.engineerakash.covid19india.util.Helper;
 
 public class DetailGraphFragment extends Fragment {
 
-    private static final String CHART_TYPE_PARAM = "chart_type_param";
-    private static final String TIME_SERIES_STATE_WISE_PARAM = "time_series_state_wise_param";
-
-    private Constant.ChartType currentChartType;
+    private ChartType currentChartType;
     private TimeSeriesStateWiseResponse timeSeriesStateWiseResponse;
+    private ArrayList<StateDistrictWiseResponse> stateDistrictList;
 
     private FragmentDetailGraphBinding binding;
 
     public DetailGraphFragment() {
-        // Required empty public constructor
-    }
-
-    public static DetailGraphFragment newInstance(Constant.ChartType chartType, TimeSeriesStateWiseResponse timeSeriesStateWiseResponse) {
-        DetailGraphFragment fragment = new DetailGraphFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(CHART_TYPE_PARAM, chartType);
-        args.putParcelable(TIME_SERIES_STATE_WISE_PARAM, timeSeriesStateWiseResponse);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            currentChartType = (Constant.ChartType) getArguments().getSerializable(CHART_TYPE_PARAM);
-            timeSeriesStateWiseResponse = getArguments().getParcelable(TIME_SERIES_STATE_WISE_PARAM);
-        }
+
+        DetailGraphFragmentArgs detailGraphFragmentArgs = DetailGraphFragmentArgs.fromBundle(getArguments());
+
+        currentChartType = detailGraphFragmentArgs.getChartType();
+        timeSeriesStateWiseResponse = detailGraphFragmentArgs.getTimeSeriesDateWiseResponse();
+        stateDistrictList = new ArrayList<StateDistrictWiseResponse>(Arrays.asList(detailGraphFragmentArgs.getStateDistrictWiseResponse()));
     }
 
     @Override
@@ -136,7 +129,7 @@ public class DetailGraphFragment extends Fragment {
 
     }
 
-    private void setTotalCasesTimelineChart(Constant.ChartType chartType,
+    private void setTotalCasesTimelineChart(ChartType chartType,
                                             List<TimeSeriesData> timeSeriesList) {
 
         BarChart chart;
@@ -151,18 +144,12 @@ public class DetailGraphFragment extends Fragment {
             case TOTAL_CONFIRMED:
                 chart = binding.timelineChart;
 
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Total Confirmed Cases");
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("in " + Constant.userSelectedCountry);
-
                 for (TimeSeriesData timeSeriesData : timeSeriesList)
                     values.add(new BarEntry(tempCount++, Float.parseFloat(timeSeriesData.getTotalConfirmed())));
 
                 break;
             case TOTAL_DECEASED:
                 chart = binding.timelineChart;
-
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Total Death Cases");
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("in " + Constant.userSelectedCountry);
 
                 for (TimeSeriesData timeSeriesData : timeSeriesList)
                     values.add(new BarEntry(tempCount++, Float.parseFloat(timeSeriesData.getTotalDeceased())));
@@ -171,18 +158,12 @@ public class DetailGraphFragment extends Fragment {
             case TOTAL_RECOVERED:
                 chart = binding.timelineChart;
 
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Total Recovered Cases");
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("in " + Constant.userSelectedCountry);
-
                 for (TimeSeriesData timeSeriesData : timeSeriesList)
                     values.add(new BarEntry(tempCount++, Float.parseFloat(timeSeriesData.getTotalRecovered())));
 
                 break;
             case DAILY_CONFIRMED:
                 chart = binding.timelineChart;
-
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Daily Confirmed Cases");
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("in " + Constant.userSelectedCountry);
 
                 for (TimeSeriesData timeSeriesData : timeSeriesList)
                     values.add(new BarEntry(tempCount++, Float.parseFloat(timeSeriesData.getDailyConfirmed())));
@@ -191,18 +172,12 @@ public class DetailGraphFragment extends Fragment {
             case DAILY_DECEASED:
                 chart = binding.timelineChart;
 
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Daily Death Cases");
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("in " + Constant.userSelectedCountry);
-
                 for (TimeSeriesData timeSeriesData : timeSeriesList)
                     values.add(new BarEntry(tempCount++, Float.parseFloat(timeSeriesData.getDailyDeceased())));
 
                 break;
             case DAILY_RECOVERED:
                 chart = binding.timelineChart;
-
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Daily Recovered Cases");
-//                ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("in " + Constant.userSelectedCountry);
 
                 for (TimeSeriesData timeSeriesData : timeSeriesList)
                     values.add(new BarEntry(tempCount++, Float.parseFloat(timeSeriesData.getDailyRecovered())));
@@ -289,8 +264,4 @@ public class DetailGraphFragment extends Fragment {
         }
     }
 
-
-    public void setChartType(Constant.ChartType chartType) {
-        currentChartType = chartType;
-    }
 }

@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_track"
+        android:id="@+id/trackFragment"
         android:icon="@drawable/ic_chart"
         android:title="Track" />
 
     <item
-        android:id="@+id/menu_precaution"
+        android:id="@+id/precautionFragment"
         android:icon="@drawable/ic_precaution"
         android:title="Precaution" />
 
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
         android:title="Settings" />
 

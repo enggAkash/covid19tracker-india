@@ -28,9 +28,8 @@
         tools:layout="@layout/fragment_detail_graph">
 
         <argument
-            android:name="listType"
-            android:defaultValue="DISTRICT"
-            app:argType="in.engineerakash.covid19india.enums.ListType" />
+            android:name="chartType"
+            app:argType="in.engineerakash.covid19india.enums.ChartType" />
 
         <argument
             android:name="timeSeriesDateWiseResponse"
@@ -67,6 +66,7 @@
         android:name="in.engineerakash.covid19india.ui.precaution.PrecautionFragment"
         android:label="fragment_precaution"
         tools:layout="@layout/fragment_precaution" />
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="in.engineerakash.covid19india.ui.settings.SettingsFragment"

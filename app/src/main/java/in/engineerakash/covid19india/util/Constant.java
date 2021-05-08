@@ -30,7 +30,4 @@ public final class Constant {
     public static String userSelectedDistrict = "Mumbai  ";//""East Delhi";
     public static boolean isUserSelected = true;
 
-    public enum ChartType {
-        TOTAL_CONFIRMED, TOTAL_RECOVERED, TOTAL_DECEASED, DAILY_CONFIRMED, DAILY_RECOVERED, DAILY_DECEASED
-    }
 }

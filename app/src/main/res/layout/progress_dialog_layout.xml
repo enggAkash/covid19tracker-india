@@ -17,7 +17,7 @@
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
         android:textColor="@android:color/black" />
 
-    <com.wang.avi.AVLoadingIndicatorView
+    <!--<com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/progress_dialog_indicator_view"
         style="@style/AVLoadingIndicatorView.Large"
         android:layout_width="wrap_content"
@@ -27,6 +27,6 @@
         android:layout_gravity="center"
         android:padding="2dp"
         app:indicatorColor="@color/colorPrimary"
-        app:indicatorName="BallClipRotateMultipleIndicator" />
+        app:indicatorName="BallClipRotateMultipleIndicator" />-->
 
 </RelativeLayout>

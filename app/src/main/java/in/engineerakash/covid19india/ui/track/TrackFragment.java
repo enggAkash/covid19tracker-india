@@ -1,6 +1,5 @@
 package in.engineerakash.covid19india.ui.track;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -31,6 +31,7 @@ import java.util.List;
 import in.engineerakash.covid19india.api.CovidClient;
 import in.engineerakash.covid19india.chartutil.IndexAxisValueFormatter;
 import in.engineerakash.covid19india.databinding.FragmentTrackBinding;
+import in.engineerakash.covid19india.enums.ChartType;
 import in.engineerakash.covid19india.enums.ListType;
 import in.engineerakash.covid19india.pojo.District;
 import in.engineerakash.covid19india.pojo.DistrictDelta;
@@ -59,26 +60,10 @@ public class TrackFragment extends Fragment {
     private CompositeDisposable disposables;
     private TimeSeriesStateWiseResponse timeSeriesStateWiseResponse;
     private ArrayList<StateDistrictWiseResponse> stateDistrictList;
-    private OnTrackFragmentListener listener;
-
+    private NavController navController;
 
     public TrackFragment() {
 
-    }
-
-    public static TrackFragment newInstance() {
-        TrackFragment fragment = new TrackFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
@@ -102,78 +87,70 @@ public class TrackFragment extends Fragment {
         getStateDistrictData();
 
         getTimeSeriesAndStateWiseData();
-
-        binding.totalCasesInUserStateContainer.setOnClickListener(v -> {
-            listener.onDetailListClicked(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
-
-        binding.totalConfirmedCasesTimelineChartMore.setOnClickListener(v -> {
-            listener.onDetailGraphClicked(Constant.ChartType.TOTAL_CONFIRMED, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
-        binding.totalDeathCasesTimelineChartMore.setOnClickListener(v -> {
-            listener.onDetailGraphClicked(Constant.ChartType.TOTAL_DECEASED, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
-        binding.totalRecoveredCasesTimelineChartMore.setOnClickListener(v -> {
-            listener.onDetailGraphClicked(Constant.ChartType.TOTAL_RECOVERED, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
-        binding.dailyConfirmedCasesTimelineChartMore.setOnClickListener(v -> {
-            listener.onDetailGraphClicked(Constant.ChartType.DAILY_CONFIRMED, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
-        binding.dailyDeathCasesTimelineChartMore.setOnClickListener(v -> {
-            listener.onDetailGraphClicked(Constant.ChartType.DAILY_DECEASED, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
-        binding.dailyRecoveredCasesTimelineChartMore.setOnClickListener(v -> {
-            listener.onDetailGraphClicked(Constant.ChartType.DAILY_RECOVERED, timeSeriesStateWiseResponse, stateDistrictList);
-        });
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        navController = Navigation.findNavController(binding.getRoot());
+
+        binding.totalCasesInUserStateContainer.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailListFragment(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+
+        binding.totalConfirmedCasesTimelineChartMore.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(ChartType.TOTAL_CONFIRMED, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+        binding.totalDeathCasesTimelineChartMore.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(ChartType.TOTAL_DECEASED, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+        binding.totalRecoveredCasesTimelineChartMore.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(ChartType.TOTAL_RECOVERED, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+        binding.dailyConfirmedCasesTimelineChartMore.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(ChartType.DAILY_CONFIRMED, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+        binding.dailyDeathCasesTimelineChartMore.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(ChartType.DAILY_DECEASED, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+        binding.dailyRecoveredCasesTimelineChartMore.setOnClickListener(v -> {
+            navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(ChartType.DAILY_RECOVERED, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
+            );
+        });
+
+
         binding.completeDistrictList.setOnClickListener(v -> {
-
-            /*Bundle bundle = new Bundle();
-            bundle.putParcelable("time_series_state_wise_response", timeSeriesStateWiseResponse);
-            bundle.putParcelableArrayList("state_district_list", stateDistrictList);
-
-            listener.onDetailListClicked(ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList);*/
-
-            Navigation.findNavController(binding.getRoot()).navigate(
+            navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailListFragment(ListType.DISTRICT, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
             );
         });
 
         binding.completeStateList.setOnClickListener(v -> {
-
-            /*Bundle bundle = new Bundle();
-            bundle.putParcelable("time_series_state_wise_response", timeSeriesStateWiseResponse);
-            bundle.putParcelableArrayList("state_district_list", stateDistrictList);
-
-            listener.onDetailListClicked(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList);*/
-
-            Navigation.findNavController(binding.getRoot()).navigate(
+            navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailListFragment(ListType.STATE, timeSeriesStateWiseResponse, stateDistrictList.toArray(new StateDistrictWiseResponse[0]))
             );
         });
 
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof OnTrackFragmentListener) {
-            listener = (OnTrackFragmentListener) context;
-        } else {
-            throw new RuntimeException("Activity must implement OnTrackFragmentListener");
-        }
     }
 
     private void getTimeSeriesAndStateWiseData() {
@@ -209,12 +186,12 @@ public class TrackFragment extends Fragment {
 
                             List<TimeSeriesData> recentTimeSeriesList = getBarChartData(casesTimeSeriesList);
 
-                            setTotalCasesTimelineChart(Constant.ChartType.TOTAL_CONFIRMED, recentTimeSeriesList);
-                            setTotalCasesTimelineChart(Constant.ChartType.TOTAL_DECEASED, recentTimeSeriesList);
-                            setTotalCasesTimelineChart(Constant.ChartType.TOTAL_RECOVERED, recentTimeSeriesList);
-                            setTotalCasesTimelineChart(Constant.ChartType.DAILY_CONFIRMED, recentTimeSeriesList);
-                            setTotalCasesTimelineChart(Constant.ChartType.DAILY_DECEASED, recentTimeSeriesList);
-                            setTotalCasesTimelineChart(Constant.ChartType.DAILY_RECOVERED, recentTimeSeriesList);
+                            setTotalCasesTimelineChart(ChartType.TOTAL_CONFIRMED, recentTimeSeriesList);
+                            setTotalCasesTimelineChart(ChartType.TOTAL_DECEASED, recentTimeSeriesList);
+                            setTotalCasesTimelineChart(ChartType.TOTAL_RECOVERED, recentTimeSeriesList);
+                            setTotalCasesTimelineChart(ChartType.DAILY_CONFIRMED, recentTimeSeriesList);
+                            setTotalCasesTimelineChart(ChartType.DAILY_DECEASED, recentTimeSeriesList);
+                            setTotalCasesTimelineChart(ChartType.DAILY_RECOVERED, recentTimeSeriesList);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -558,7 +535,7 @@ public class TrackFragment extends Fragment {
         return mostAffectedDistricts;
     }
 
-    private void setTotalCasesTimelineChart(Constant.ChartType chartType,
+    private void setTotalCasesTimelineChart(ChartType chartType,
                                             List<TimeSeriesData> timeSeriesList) {
 
         BarChart chart;
@@ -681,13 +658,5 @@ public class TrackFragment extends Fragment {
         super.onDestroyView();
         if (disposables != null && !disposables.isDisposed())
             disposables.dispose();
-    }
-
-    public interface OnTrackFragmentListener {
-
-        void onDetailListClicked(ListType listType, TimeSeriesStateWiseResponse timeSeriesStateWiseResponse, ArrayList<StateDistrictWiseResponse> stateDistrictList);
-
-        void onDetailGraphClicked(Constant.ChartType chartType, TimeSeriesStateWiseResponse timeSeriesStateWiseResponse, ArrayList<StateDistrictWiseResponse> stateDistrictList);
-
     }
 }

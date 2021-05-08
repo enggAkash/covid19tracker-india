@@ -204,138 +204,6 @@
 
         </LinearLayout>
 
-        <!--Total Confirmed Cases in India Timeline-->
-        <LinearLayout
-            android:id="@+id/totalConfirmedCasesTimelineContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/totalConfirmedCasesTimelineTitleTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
-                android:textSize="13sp"
-                tools:text="#Total Confirmed Cases in India Timeline" />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/totalConfirmedCasesTimelineChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="@dimen/main_activity_margin_start"
-                android:layout_marginEnd="@dimen/main_activity_margin_end"
-                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:padding="5dp" />
-
-            <TextView
-                android:id="@+id/totalConfirmedCasesTimelineChartMore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:gravity="end"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="5dp"
-                android:text="More"
-                android:textColor="@android:color/holo_blue_dark" />
-
-        </LinearLayout>
-
-        <!--Total Death Cases in India Timeline-->
-        <LinearLayout
-            android:id="@+id/totalDeathCasesTimelineContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/totalDeathCasesTimelineTitleTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
-                android:textSize="13sp"
-                tools:text="#Total Death Cases in India Timeline" />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/totalDeathCasesTimelineChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="@dimen/main_activity_margin_start"
-                android:layout_marginEnd="@dimen/main_activity_margin_end"
-                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:padding="5dp" />
-
-            <TextView
-                android:id="@+id/totalDeathCasesTimelineChartMore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:gravity="end"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="5dp"
-                android:text="More"
-                android:textColor="@android:color/holo_blue_dark" />
-
-        </LinearLayout>
-
-        <!--Total Recovered Cases in India Timeline-->
-        <LinearLayout
-            android:id="@+id/totalRecoveredCasesTimelineContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/totalRecoveredCasesTimelineTitleTv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
-                android:textSize="13sp"
-                tools:text="#Total Recovered Cases in India Timeline" />
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/totalRecoveredCasesTimelineChart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="@dimen/main_activity_margin_start"
-                android:layout_marginEnd="@dimen/main_activity_margin_end"
-                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:padding="5dp" />
-
-            <TextView
-                android:id="@+id/totalRecoveredCasesTimelineChartMore"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:gravity="end"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="5dp"
-                android:text="More"
-                android:textColor="@android:color/holo_blue_dark" />
-
-        </LinearLayout>
-
         <!--Daily Confirmed Cases in India Timeline-->
         <LinearLayout
             android:id="@+id/dailyConfirmedCasesTimelineContainer"
@@ -453,6 +321,138 @@
 
             <TextView
                 android:id="@+id/dailyRecoveredCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Total Confirmed Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/totalConfirmedCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalConfirmedCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Confirmed Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/totalConfirmedCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/totalConfirmedCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Total Death Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/totalDeathCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalDeathCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Death Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/totalDeathCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/totalDeathCasesTimelineChartMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:gravity="end"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="5dp"
+                android:text="More"
+                android:textColor="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+        <!--Total Recovered Cases in India Timeline-->
+        <LinearLayout
+            android:id="@+id/totalRecoveredCasesTimelineContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/totalRecoveredCasesTimelineTitleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="13sp"
+                tools:text="#Total Recovered Cases in India Timeline" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/totalRecoveredCasesTimelineChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="@dimen/main_activity_margin_start"
+                android:layout_marginEnd="@dimen/main_activity_margin_end"
+                android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/totalRecoveredCasesTimelineChartMore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
