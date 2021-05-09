@@ -7,24 +7,24 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class TimeSeriesData(
     @SerializedName("dailyconfirmed")
-    var dailyConfirmed: String,
+    var dailyConfirmed: String = "0",
 
     @SerializedName("dailydeceased")
-    var dailyDeceased: String,
+    var dailyDeceased: String = "0",
 
     @SerializedName("dailyrecovered")
-    var dailyRecovered: String,
+    var dailyRecovered: String = "0",
 
     @SerializedName("date")
-    var date: String,
+    var date: String = "0",
 
     @SerializedName("totalconfirmed")
-    var totalConfirmed: String,
+    var totalConfirmed: String = "0",
 
     @SerializedName("totaldeceased")
-    var totalDeceased: String,
+    var totalDeceased: String = "0",
 
     @SerializedName("totalrecovered")
-    var totalRecovered: String
+    var totalRecovered: String = "0",
 
-) : Parcelable
+    ) : Parcelable

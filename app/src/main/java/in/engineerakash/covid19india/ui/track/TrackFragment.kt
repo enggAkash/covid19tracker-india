@@ -1,15 +1,14 @@
 package `in`.engineerakash.covid19india.ui.track
 
 import `in`.engineerakash.covid19india.api.CovidClient
-import `in`.engineerakash.covid19india.chartutil.IndexAxisValueFormatter
 import `in`.engineerakash.covid19india.databinding.FragmentTrackBinding
 import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.enums.ListType
+import `in`.engineerakash.covid19india.enums.TotalOrDaily
 import `in`.engineerakash.covid19india.pojo.*
 import `in`.engineerakash.covid19india.ui.home.DistrictWiseAdapter
 import `in`.engineerakash.covid19india.ui.home.StateWiseAdapter
 import `in`.engineerakash.covid19india.util.Constant
-import `in`.engineerakash.covid19india.util.Helper.getBarChartColor
 import `in`.engineerakash.covid19india.util.Helper.parseDate
 import `in`.engineerakash.covid19india.util.JsonExtractor
 import android.os.Bundle
@@ -21,13 +20,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -50,6 +45,10 @@ class TrackFragment : Fragment() {
     private var stateDistrictList: ArrayList<StateDistrictWiseResponse> = arrayListOf()
     private lateinit var navController: NavController
 
+    private val totalAndDailyGraphList = arrayListOf<String>("Daily", "Total")
+    private lateinit var totalAndDailyGraphAdapter: TotalAndDailyGraphAdapter
+    private var totalAndDailyGraphFragmentList = arrayListOf<Fragment?>(null, null)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,15 +65,37 @@ class TrackFragment : Fragment() {
 
         disposables = CompositeDisposable()
 
-        getStateDistrictData()
-        getTimeSeriesAndStateWiseData()
+        fetchStateDistrictData()
+        fetchTimeSeriesAndStateWiseData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(binding.root)
 
-        binding.totalCasesInUserStateContainer.setOnClickListener { v: View? ->
+        totalAndDailyGraphAdapter = TotalAndDailyGraphAdapter(this)
+        binding.totalAndDailyViewPager.adapter = totalAndDailyGraphAdapter
+
+        TabLayoutMediator(
+            binding.totalAndDailyTab,
+            binding.totalAndDailyViewPager,
+            true, true,
+        ) { tab, position -> tab.text = totalAndDailyGraphList[position] }.attach()
+
+        binding.totalAndDailyViewPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                (totalAndDailyGraphFragmentList[position] as TotalAndDailyGraphFragment)
+                    .updateTimeSeriesDataList(timeSeriesStateWiseResponse.casesTimeSeriesArrayList)
+
+            }
+
+        })
+
+        binding.totalCasesInUserStateContainer.setOnClickListener {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
                     ListType.STATE,
@@ -83,61 +104,8 @@ class TrackFragment : Fragment() {
                 )
             )
         }
-        binding.totalConfirmedCasesTimelineChartMore.setOnClickListener { v: View? ->
-            navController.navigate(
-                TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                    ChartType.TOTAL_CONFIRMED,
-                    timeSeriesStateWiseResponse,
-                    stateDistrictList.toTypedArray()
-                )
-            )
-        }
-        binding.totalDeathCasesTimelineChartMore.setOnClickListener { v: View? ->
-            navController.navigate(
-                TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                    ChartType.TOTAL_DECEASED,
-                    timeSeriesStateWiseResponse,
-                    stateDistrictList.toTypedArray()
-                )
-            )
-        }
-        binding.totalRecoveredCasesTimelineChartMore.setOnClickListener { v: View? ->
-            navController.navigate(
-                TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                    ChartType.TOTAL_RECOVERED,
-                    timeSeriesStateWiseResponse,
-                    stateDistrictList.toTypedArray()
-                )
-            )
-        }
-        binding.dailyConfirmedCasesTimelineChartMore.setOnClickListener { v: View? ->
-            navController.navigate(
-                TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                    ChartType.DAILY_CONFIRMED,
-                    timeSeriesStateWiseResponse,
-                    stateDistrictList.toTypedArray()
-                )
-            )
-        }
-        binding.dailyDeathCasesTimelineChartMore.setOnClickListener { v: View? ->
-            navController.navigate(
-                TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                    ChartType.DAILY_DECEASED,
-                    timeSeriesStateWiseResponse,
-                    stateDistrictList.toTypedArray()
-                )
-            )
-        }
-        binding.dailyRecoveredCasesTimelineChartMore.setOnClickListener { v: View? ->
-            navController.navigate(
-                TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                    ChartType.DAILY_RECOVERED,
-                    timeSeriesStateWiseResponse,
-                    stateDistrictList.toTypedArray()
-                )
-            )
-        }
-        binding.completeDistrictList.setOnClickListener { v: View? ->
+
+        binding.completeDistrictList.setOnClickListener {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
                     ListType.DISTRICT,
@@ -146,89 +114,13 @@ class TrackFragment : Fragment() {
                 )
             )
         }
-        binding.completeStateList.setOnClickListener { v: View? ->
+        binding.completeStateList.setOnClickListener {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
                     ListType.STATE,
                     timeSeriesStateWiseResponse,
                     stateDistrictList.toTypedArray()
                 )
-            )
-        }
-    }
-
-    private fun getTimeSeriesAndStateWiseData() {
-        CovidClient
-            .instance
-            .timeSeriesAndStateWiseData
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<ResponseBody> {
-                override fun onSubscribe(d: Disposable) {
-                    disposables!!.add(d)
-                }
-
-                override fun onSuccess(responseBodyResponse: ResponseBody) {
-                    try {
-                        val response = responseBodyResponse.string()
-                        timeSeriesStateWiseResponse =
-                            Gson().fromJson<TimeSeriesStateWiseResponse>(
-                                response,
-                                TimeSeriesStateWiseResponse::class.java
-                            )
-
-                        val casesTimeSeriesList: ArrayList<TimeSeriesData> =
-                            timeSeriesStateWiseResponse.casesTimeSeriesArrayList
-
-                        val stateWiseDataList: ArrayList<StateWiseData> =
-                            timeSeriesStateWiseResponse.stateWiseDataArrayList
-
-                        fillDashboard(stateWiseDataList)
-                        fillMostAffectedStateSection(stateWiseDataList)
-                        val recentTimeSeriesList: List<TimeSeriesData> =
-                            getBarChartData(casesTimeSeriesList)
-                        setTotalCasesTimelineChart(
-                            ChartType.TOTAL_CONFIRMED,
-                            recentTimeSeriesList
-                        )
-                        setTotalCasesTimelineChart(
-                            ChartType.TOTAL_DECEASED,
-                            recentTimeSeriesList
-                        )
-                        setTotalCasesTimelineChart(
-                            ChartType.TOTAL_RECOVERED,
-                            recentTimeSeriesList
-                        )
-                        setTotalCasesTimelineChart(
-                            ChartType.DAILY_CONFIRMED,
-                            recentTimeSeriesList
-                        )
-                        setTotalCasesTimelineChart(
-                            ChartType.DAILY_DECEASED,
-                            recentTimeSeriesList
-                        )
-                        setTotalCasesTimelineChart(
-                            ChartType.DAILY_RECOVERED,
-                            recentTimeSeriesList
-                        )
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-
-                override fun onError(e: Throwable) {
-                    e.printStackTrace()
-                }
-            })
-    }
-
-    private fun getBarChartData(timeSeriesList: ArrayList<TimeSeriesData>): List<TimeSeriesData> {
-        return if (timeSeriesList.size < Constant.BAR_CHART_DATE_COUNT) {
-            timeSeriesList
-        } else {
-            timeSeriesList.subList(
-                timeSeriesList.size - Constant.BAR_CHART_DATE_COUNT,
-                timeSeriesList.size
             )
         }
     }
@@ -266,6 +158,54 @@ class TrackFragment : Fragment() {
         binding.mostAffectedStateRv.adapter = stateWiseAdapter
     }
 
+
+    private fun fetchTimeSeriesAndStateWiseData() {
+
+        CovidClient
+            .instance
+            .timeSeriesAndStateWiseData
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : SingleObserver<ResponseBody> {
+                override fun onSubscribe(d: Disposable) {
+                    disposables!!.add(d)
+                }
+
+                override fun onSuccess(responseBodyResponse: ResponseBody) {
+                    try {
+                        val response = responseBodyResponse.string()
+                        timeSeriesStateWiseResponse =
+                            Gson().fromJson<TimeSeriesStateWiseResponse>(
+                                response,
+                                TimeSeriesStateWiseResponse::class.java
+                            )
+
+                        val casesTimeSeriesList: ArrayList<TimeSeriesData> =
+                            timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+
+                        val stateWiseDataList: ArrayList<StateWiseData> =
+                            timeSeriesStateWiseResponse.stateWiseDataArrayList
+
+                        fillDashboard(stateWiseDataList)
+                        fillMostAffectedStateSection(stateWiseDataList)
+
+                        (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment)
+                            .updateTimeSeriesDataList(
+                                timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                                true
+                            )
+
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            })
+    }
+
     private fun getCurrentStateStats(stateWiseDataArrayList: ArrayList<StateWiseData>): StateWiseData {
         var currentStateStats = StateWiseData()
         for (stateWiseData in stateWiseDataArrayList) {
@@ -278,7 +218,7 @@ class TrackFragment : Fragment() {
         return currentStateStats
     }
 
-    private fun getStateDistrictData() {
+    private fun fetchStateDistrictData() {
 
         CovidClient
             .instance
@@ -525,126 +465,100 @@ class TrackFragment : Fragment() {
         return mostAffectedDistricts
     }
 
-    private fun setTotalCasesTimelineChart(
-        chartType: ChartType,
-        timeSeriesList: List<TimeSeriesData>
-    ) {
-        val chart: BarChart
-        val xAxisList = ArrayList<String>() // bar values of x axis
-        val values =
-            ArrayList<BarEntry>() // bar values of y axis; x will be in multiple of 1 harcoded
-        for (timeSeriesData in timeSeriesList) xAxisList.add(
-            timeSeriesData.date.trim { it <= ' ' })
-        var tempCount = 0 // it must start with 0
-        when (chartType) {
-            ChartType.TOTAL_CONFIRMED -> {
-                chart = binding.totalConfirmedCasesTimelineChart
-                binding.totalConfirmedCasesTimelineTitleTv.text =
-                    "#Total Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
-                for (timeSeriesData in timeSeriesList) values.add(
-                    BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.totalConfirmed.toFloat()
-                    )
-                )
-            }
-            ChartType.TOTAL_DECEASED -> {
-                chart = binding.totalDeathCasesTimelineChart
-                binding.totalDeathCasesTimelineTitleTv.text =
-                    "#Total Death Cases in ${Constant.userSelectedCountry} Timeline"
-                for (timeSeriesData in timeSeriesList) values.add(
-                    BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.totalDeceased.toFloat()
-                    )
-                )
-            }
-            ChartType.TOTAL_RECOVERED -> {
-                chart = binding.totalRecoveredCasesTimelineChart
-                binding.totalRecoveredCasesTimelineTitleTv.text =
-                    "#Total Recovered Cases in ${Constant.userSelectedCountry} Timeline"
-                for (timeSeriesData in timeSeriesList) values.add(
-                    BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.totalRecovered.toFloat()
-                    )
-                )
-            }
-            ChartType.DAILY_CONFIRMED -> {
-                chart = binding.dailyConfirmedCasesTimelineChart
-                binding.dailyConfirmedCasesTimelineTitleTv.text =
-                    "#Daily Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
-                for (timeSeriesData in timeSeriesList) values.add(
-                    BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.dailyConfirmed.toFloat()
-                    )
-                )
-            }
-            ChartType.DAILY_DECEASED -> {
-                chart = binding.dailyDeathCasesTimelineChart
-                binding.dailyDeathCasesTimelineTitleTv.text =
-                    "#Daily Death Cases in ${Constant.userSelectedCountry} Timeline"
-                for (timeSeriesData in timeSeriesList) values.add(
-                    BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.dailyDeceased.toFloat()
-                    )
-                )
-            }
-            ChartType.DAILY_RECOVERED -> {
-                chart = binding.dailyRecoveredCasesTimelineChart
-                binding.dailyRecoveredCasesTimelineTitleTv.text =
-                    "#Daily Recovered Cases in ${Constant.userSelectedCountry} Timeline"
-                for (timeSeriesData in timeSeriesList) values.add(
-                    BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.dailyRecovered.toFloat()
-                    )
-                )
-            }
-            else -> return
-        }
-        setChartConfig(chart, xAxisList)
-        val set1 = BarDataSet(values, "")
-        set1.color = getBarChartColor(context, chartType)
-        val dataSets = ArrayList<IBarDataSet>()
-        dataSets.add(set1)
-        val data = BarData(dataSets)
-        data.setValueTextSize(10f)
-        data.barWidth = 0.9f
-        chart.data = data
-    }
-
-    private fun setChartConfig(chart: BarChart, xAxisList: ArrayList<String>) {
-        chart.setDrawBarShadow(false)
-        chart.setDrawValueAboveBar(true)
-        chart.description.isEnabled = false
-        chart.setPinchZoom(false)
-        chart.isDoubleTapToZoomEnabled = false
-        chart.setScaleEnabled(false)
-        val xAxisFormatter: ValueFormatter = IndexAxisValueFormatter(xAxisList)
-        val xAxis = chart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawGridLines(false)
-        xAxis.granularity = 1f // only intervals of 1 day
-        xAxis.valueFormatter = xAxisFormatter
-
-        // Don't show Right Side Y Axis
-        chart.axisRight.isEnabled = false
-
-        // Uniform bar height
-        chart.axisLeft.axisMinimum = 0f
-
-        // Smooth Animation
-        chart.animateY(1000)
-
-        // Don't show BarDataSet Label
-        chart.legend.isEnabled = false
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         if (disposables != null && !disposables!!.isDisposed) disposables!!.dispose()
     }
+
+    val totalAndDailyGraphListener =
+        object : TotalAndDailyGraphFragment.TotalAndDailyGraphListener {
+
+            override fun showCompleteChart(chartType: ChartType) {
+
+                when (chartType) {
+                    ChartType.TOTAL_CONFIRMED -> {
+                        navController.navigate(
+                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                                chartType,
+                                timeSeriesStateWiseResponse,
+                                stateDistrictList.toTypedArray()
+                            )
+                        )
+                    }
+                    ChartType.TOTAL_DECEASED -> {
+                        navController.navigate(
+                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                                chartType,
+                                timeSeriesStateWiseResponse,
+                                stateDistrictList.toTypedArray()
+                            )
+                        )
+                    }
+                    ChartType.TOTAL_RECOVERED -> {
+                        navController.navigate(
+                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                                chartType,
+                                timeSeriesStateWiseResponse,
+                                stateDistrictList.toTypedArray()
+                            )
+                        )
+                    }
+
+                    ChartType.DAILY_CONFIRMED -> {
+                        navController.navigate(
+                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                                chartType,
+                                timeSeriesStateWiseResponse,
+                                stateDistrictList.toTypedArray()
+                            )
+                        )
+                    }
+                    ChartType.DAILY_DECEASED -> {
+                        navController.navigate(
+                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                                chartType,
+                                timeSeriesStateWiseResponse,
+                                stateDistrictList.toTypedArray()
+                            )
+                        )
+                    }
+                    ChartType.DAILY_RECOVERED -> {
+                        navController.navigate(
+                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                                chartType,
+                                timeSeriesStateWiseResponse,
+                                stateDistrictList.toTypedArray()
+                            )
+                        )
+                    }
+                }
+            }
+
+        }
+
+    inner class TotalAndDailyGraphAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+
+        override fun getItemCount(): Int = totalAndDailyGraphList.size
+
+        override fun createFragment(position: Int): Fragment {
+
+            val fragment: Fragment = if (position == 0)
+                TotalAndDailyGraphFragment.newInstance(
+                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                    TotalOrDaily.DAILY,
+                    totalAndDailyGraphListener
+                )
+            else
+                TotalAndDailyGraphFragment.newInstance(
+                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                    TotalOrDaily.TOTAL,
+                    totalAndDailyGraphListener
+                )
+
+            totalAndDailyGraphFragmentList[position] = fragment
+
+            return fragment
+        }
+    }
+
 }
