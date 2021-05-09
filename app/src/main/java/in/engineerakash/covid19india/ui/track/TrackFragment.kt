@@ -88,9 +88,9 @@ class TrackFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
-                (totalAndDailyGraphFragmentList[position] as TotalAndDailyGraphFragment)
-                    .updateTimeSeriesDataList(timeSeriesStateWiseResponse.casesTimeSeriesArrayList)
-
+                (totalAndDailyGraphFragmentList[position] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
+                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+                )
             }
 
         })
@@ -189,11 +189,10 @@ class TrackFragment : Fragment() {
                         fillDashboard(stateWiseDataList)
                         fillMostAffectedStateSection(stateWiseDataList)
 
-                        (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment)
-                            .updateTimeSeriesDataList(
-                                timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
-                                true
-                            )
+                        (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
+                            timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                            true
+                        )
 
                     } catch (e: IOException) {
                         e.printStackTrace()

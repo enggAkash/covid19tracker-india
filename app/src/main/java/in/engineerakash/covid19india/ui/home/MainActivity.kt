@@ -33,9 +33,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigation() {
         navController = Navigation.findNavController(this, R.id.navHostFragment)
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController!!)
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            NavigationUI.onNavDestinationSelected(item, navController!!)
-            true
+
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
+            NavigationUI.onNavDestinationSelected(it, navController!!)
+        }
+
+        // do not remove this, otherwise setOnNavigationItemSelectedListener will be called on reselection
+        binding.bottomNavigation.setOnNavigationItemReselectedListener {
         }
     }
 
