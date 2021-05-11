@@ -1,4 +1,4 @@
-package `in`.engineerakash.covid19india.ui.home
+package `in`.engineerakash.covid19india.ui.track
 
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.StateDataItemBinding

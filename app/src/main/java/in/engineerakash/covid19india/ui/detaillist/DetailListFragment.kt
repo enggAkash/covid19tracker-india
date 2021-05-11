@@ -5,7 +5,7 @@ import `in`.engineerakash.covid19india.databinding.FragmentDetailListBinding
 import `in`.engineerakash.covid19india.enums.ListType
 import `in`.engineerakash.covid19india.pojo.*
 import `in`.engineerakash.covid19india.ui.home.DistrictWiseAdapter
-import `in`.engineerakash.covid19india.ui.home.StateWiseAdapter
+import `in`.engineerakash.covid19india.ui.track.StateWiseAdapter
 import `in`.engineerakash.covid19india.util.Constant
 import android.os.Bundle
 import android.view.LayoutInflater

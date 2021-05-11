@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // do not remove this, otherwise setOnNavigationItemSelectedListener will be called on reselection
-        binding.bottomNavigation.setOnNavigationItemReselectedListener {
-        }
+        binding.bottomNavigation.setOnNavigationItemReselectedListener {}
     }
 
     fun changeThemeColor(defaultColor: Boolean, color: Int) {

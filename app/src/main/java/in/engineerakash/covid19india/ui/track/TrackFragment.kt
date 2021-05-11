@@ -1,36 +1,28 @@
 package `in`.engineerakash.covid19india.ui.track
 
-import `in`.engineerakash.covid19india.api.CovidClient
 import `in`.engineerakash.covid19india.databinding.FragmentTrackBinding
 import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.enums.ListType
 import `in`.engineerakash.covid19india.enums.TotalOrDaily
 import `in`.engineerakash.covid19india.pojo.*
 import `in`.engineerakash.covid19india.ui.home.DistrictWiseAdapter
-import `in`.engineerakash.covid19india.ui.home.StateWiseAdapter
+import `in`.engineerakash.covid19india.ui.home.MainViewModel
+import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper.parseDate
-import `in`.engineerakash.covid19india.util.JsonExtractor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.gson.Gson
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import okhttp3.ResponseBody
-import java.io.IOException
 import java.util.*
 
 private const val TAG = "TrackFragment"
@@ -38,7 +30,6 @@ private const val TAG = "TrackFragment"
 class TrackFragment : Fragment() {
 
     private lateinit var binding: FragmentTrackBinding
-    private var disposables: CompositeDisposable? = null
 
     private var timeSeriesStateWiseResponse: TimeSeriesStateWiseResponse =
         TimeSeriesStateWiseResponse()
@@ -62,16 +53,41 @@ class TrackFragment : Fragment() {
 
     private fun initComponent() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
-
-        disposables = CompositeDisposable()
-
-        fetchStateDistrictData()
-        fetchTimeSeriesAndStateWiseData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(binding.root)
+
+        val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(activity!!.application) }
+
+        viewModel.getStateDistrictListLiveData()
+            .observe(viewLifecycleOwner, {
+                stateDistrictList.clear()
+                stateDistrictList.addAll(it)
+                fillMostAffectedDistrictSection(stateDistrictList)
+            })
+
+        viewModel.getTimeSeriesStateWiseResponseLiveData()
+            .observe(viewLifecycleOwner, {
+
+                timeSeriesStateWiseResponse = it
+
+                val casesTimeSeriesList: ArrayList<TimeSeriesData> =
+                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+
+                val stateWiseDataList: java.util.ArrayList<StateWiseData> =
+                    timeSeriesStateWiseResponse.stateWiseDataArrayList
+
+                fillDashboard(stateWiseDataList)
+                fillMostAffectedStateSection(stateWiseDataList)
+
+                (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
+                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                    true
+                )
+
+            })
 
         totalAndDailyGraphAdapter = TotalAndDailyGraphAdapter(this)
         binding.totalAndDailyViewPager.adapter = totalAndDailyGraphAdapter
@@ -95,6 +111,10 @@ class TrackFragment : Fragment() {
 
         })
 
+        setupClickListeners()
+    }
+
+    private fun setupClickListeners() {
         binding.totalCasesInUserStateContainer.setOnClickListener {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
@@ -159,52 +179,6 @@ class TrackFragment : Fragment() {
     }
 
 
-    private fun fetchTimeSeriesAndStateWiseData() {
-
-        CovidClient
-            .instance
-            .timeSeriesAndStateWiseData
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<ResponseBody> {
-                override fun onSubscribe(d: Disposable) {
-                    disposables!!.add(d)
-                }
-
-                override fun onSuccess(responseBodyResponse: ResponseBody) {
-                    try {
-                        val response = responseBodyResponse.string()
-                        timeSeriesStateWiseResponse =
-                            Gson().fromJson<TimeSeriesStateWiseResponse>(
-                                response,
-                                TimeSeriesStateWiseResponse::class.java
-                            )
-
-                        val casesTimeSeriesList: ArrayList<TimeSeriesData> =
-                            timeSeriesStateWiseResponse.casesTimeSeriesArrayList
-
-                        val stateWiseDataList: ArrayList<StateWiseData> =
-                            timeSeriesStateWiseResponse.stateWiseDataArrayList
-
-                        fillDashboard(stateWiseDataList)
-                        fillMostAffectedStateSection(stateWiseDataList)
-
-                        (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
-                            timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
-                            true
-                        )
-
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-
-                override fun onError(e: Throwable) {
-                    e.printStackTrace()
-                }
-            })
-    }
-
     private fun getCurrentStateStats(stateWiseDataArrayList: ArrayList<StateWiseData>): StateWiseData {
         var currentStateStats = StateWiseData()
         for (stateWiseData in stateWiseDataArrayList) {
@@ -217,34 +191,6 @@ class TrackFragment : Fragment() {
         return currentStateStats
     }
 
-    private fun fetchStateDistrictData() {
-
-        CovidClient
-            .instance
-            .stateDistrictWiseData
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<ResponseBody> {
-                override fun onSubscribe(d: Disposable) {
-                    disposables!!.add(d)
-                }
-
-                override fun onSuccess(responseBodyResponse: ResponseBody) {
-                    try {
-                        val response = responseBodyResponse.string()
-                        stateDistrictList =
-                            JsonExtractor.parseStateDistrictWiseResponseJson(response)
-                        fillMostAffectedDistrictSection(stateDistrictList)
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-
-                override fun onError(e: Throwable) {
-                    e.printStackTrace()
-                }
-            })
-    }
 
     private fun getObjectTotalOfAffectedState(stateWiseDataArrayList: ArrayList<StateWiseData>): StateWiseData {
         var objectTotalOfMostAffectedState: StateWiseData? = null
@@ -462,11 +408,6 @@ class TrackFragment : Fragment() {
             }
         }
         return mostAffectedDistricts
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        if (disposables != null && !disposables!!.isDisposed) disposables!!.dispose()
     }
 
     val totalAndDailyGraphListener =
