@@ -89,6 +89,14 @@ class TrackFragment : Fragment() {
 
             })
 
+        viewModel.getGraphChartMoreClickLiveData().observe(viewLifecycleOwner, {
+            if (it != null) {
+                showCompleteChart(it)
+
+                viewModel.setGraphChartMoreClickLiveData(null)
+            }
+        })
+
         totalAndDailyGraphAdapter = TotalAndDailyGraphAdapter(this)
         binding.totalAndDailyViewPager.adapter = totalAndDailyGraphAdapter
 
@@ -410,71 +418,66 @@ class TrackFragment : Fragment() {
         return mostAffectedDistricts
     }
 
-    val totalAndDailyGraphListener =
-        object : TotalAndDailyGraphFragment.TotalAndDailyGraphListener {
+    private fun showCompleteChart(chartType: ChartType) {
 
-            override fun showCompleteChart(chartType: ChartType) {
-
-                when (chartType) {
-                    ChartType.TOTAL_CONFIRMED -> {
-                        navController.navigate(
-                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                                chartType,
-                                timeSeriesStateWiseResponse,
-                                stateDistrictList.toTypedArray()
-                            )
-                        )
-                    }
-                    ChartType.TOTAL_DECEASED -> {
-                        navController.navigate(
-                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                                chartType,
-                                timeSeriesStateWiseResponse,
-                                stateDistrictList.toTypedArray()
-                            )
-                        )
-                    }
-                    ChartType.TOTAL_RECOVERED -> {
-                        navController.navigate(
-                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                                chartType,
-                                timeSeriesStateWiseResponse,
-                                stateDistrictList.toTypedArray()
-                            )
-                        )
-                    }
-
-                    ChartType.DAILY_CONFIRMED -> {
-                        navController.navigate(
-                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                                chartType,
-                                timeSeriesStateWiseResponse,
-                                stateDistrictList.toTypedArray()
-                            )
-                        )
-                    }
-                    ChartType.DAILY_DECEASED -> {
-                        navController.navigate(
-                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                                chartType,
-                                timeSeriesStateWiseResponse,
-                                stateDistrictList.toTypedArray()
-                            )
-                        )
-                    }
-                    ChartType.DAILY_RECOVERED -> {
-                        navController.navigate(
-                            TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
-                                chartType,
-                                timeSeriesStateWiseResponse,
-                                stateDistrictList.toTypedArray()
-                            )
-                        )
-                    }
-                }
+        when (chartType) {
+            ChartType.TOTAL_CONFIRMED -> {
+                navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                        chartType,
+                        timeSeriesStateWiseResponse,
+                        stateDistrictList.toTypedArray()
+                    )
+                )
+            }
+            ChartType.TOTAL_DECEASED -> {
+                navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                        chartType,
+                        timeSeriesStateWiseResponse,
+                        stateDistrictList.toTypedArray()
+                    )
+                )
+            }
+            ChartType.TOTAL_RECOVERED -> {
+                navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                        chartType,
+                        timeSeriesStateWiseResponse,
+                        stateDistrictList.toTypedArray()
+                    )
+                )
             }
 
+            ChartType.DAILY_CONFIRMED -> {
+                navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                        chartType,
+                        timeSeriesStateWiseResponse,
+                        stateDistrictList.toTypedArray()
+                    )
+                )
+            }
+            ChartType.DAILY_DECEASED -> {
+                navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                        chartType,
+                        timeSeriesStateWiseResponse,
+                        stateDistrictList.toTypedArray()
+                    )
+                )
+            }
+            ChartType.DAILY_RECOVERED -> {
+                navController.navigate(
+                    TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
+                        chartType,
+                        timeSeriesStateWiseResponse,
+                        stateDistrictList.toTypedArray()
+                    )
+                )
+            }
         }
+    }
 
     inner class TotalAndDailyGraphAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -485,14 +488,12 @@ class TrackFragment : Fragment() {
             val fragment: Fragment = if (position == 0)
                 TotalAndDailyGraphFragment.newInstance(
                     timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
-                    TotalOrDaily.DAILY,
-                    totalAndDailyGraphListener
+                    TotalOrDaily.DAILY
                 )
             else
                 TotalAndDailyGraphFragment.newInstance(
                     timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
-                    TotalOrDaily.TOTAL,
-                    totalAndDailyGraphListener
+                    TotalOrDaily.TOTAL
                 )
 
             totalAndDailyGraphFragmentList[position] = fragment

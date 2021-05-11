@@ -5,6 +5,8 @@ import `in`.engineerakash.covid19india.databinding.FragmentTotalAndDailyGraphBin
 import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.enums.TotalOrDaily
 import `in`.engineerakash.covid19india.pojo.TimeSeriesData
+import `in`.engineerakash.covid19india.ui.home.MainViewModel
+import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -28,9 +31,9 @@ class TotalAndDailyGraphFragment : Fragment() {
     private var timeSeriesDataList: ArrayList<TimeSeriesData> = arrayListOf()
     private var totalOrDaily: TotalOrDaily = TotalOrDaily.DAILY
 
-    private lateinit var listener: TotalAndDailyGraphListener
-
     private lateinit var binding: FragmentTotalAndDailyGraphBinding
+
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,31 +68,40 @@ class TotalAndDailyGraphFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            MainViewModelFactory(requireActivity().application)
+        ).get(MainViewModel::class.java)
+
+        setupClickListeners()
+
+        updateGraph()
+    }
+
+    private fun setupClickListeners() {
         binding.totalConfirmedCasesTimelineChartMore.setOnClickListener {
-            listener.showCompleteChart(ChartType.TOTAL_CONFIRMED)
+            viewModel.setGraphChartMoreClickLiveData(ChartType.TOTAL_CONFIRMED)
         }
 
         binding.totalDeathCasesTimelineChartMore.setOnClickListener {
-            listener.showCompleteChart(ChartType.TOTAL_DECEASED)
+            viewModel.setGraphChartMoreClickLiveData(ChartType.TOTAL_DECEASED)
         }
 
         binding.totalRecoveredCasesTimelineChartMore.setOnClickListener {
-            listener.showCompleteChart(ChartType.TOTAL_RECOVERED)
+            viewModel.setGraphChartMoreClickLiveData(ChartType.TOTAL_RECOVERED)
         }
 
         binding.dailyConfirmedCasesTimelineChartMore.setOnClickListener {
-            listener.showCompleteChart(ChartType.DAILY_CONFIRMED)
+            viewModel.setGraphChartMoreClickLiveData(ChartType.DAILY_CONFIRMED)
         }
 
         binding.dailyDeathCasesTimelineChartMore.setOnClickListener {
-            listener.showCompleteChart(ChartType.DAILY_DECEASED)
+            viewModel.setGraphChartMoreClickLiveData(ChartType.DAILY_DECEASED)
         }
 
         binding.dailyRecoveredCasesTimelineChartMore.setOnClickListener {
-            listener.showCompleteChart(ChartType.DAILY_RECOVERED)
+            viewModel.setGraphChartMoreClickLiveData(ChartType.DAILY_RECOVERED)
         }
-
-        updateGraph()
     }
 
     fun updateTimeSeriesDataList(
@@ -308,15 +320,13 @@ class TotalAndDailyGraphFragment : Fragment() {
         @JvmStatic
         fun newInstance(
             timeSeriesData: ArrayList<TimeSeriesData>,
-            totalOrDaily: TotalOrDaily,
-            listener: TotalAndDailyGraphListener
+            totalOrDaily: TotalOrDaily
         ) =
             TotalAndDailyGraphFragment().apply {
                 arguments = Bundle().apply {
                     putParcelableArrayList(TIME_SERIES_DATA_LIST, timeSeriesData)
                     putSerializable(TOTAL_OR_DAILY, totalOrDaily)
                 }
-                this.listener = listener
             }
     }
 

@@ -1,6 +1,7 @@
 package `in`.engineerakash.covid19india.ui.home
 
 import `in`.engineerakash.covid19india.api.CovidClient
+import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.pojo.StateDistrictWiseResponse
 import `in`.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse
 import `in`.engineerakash.covid19india.util.JsonExtractor
@@ -36,6 +37,9 @@ class MainViewModel(
         }
     }
 
+    private val graphChartMoreClickLiveData = MutableLiveData<ChartType>()
+
+
     fun getStateDistrictListLiveData(): LiveData<ArrayList<StateDistrictWiseResponse>> {
         return stateDistrictListLiveData
     }
@@ -43,6 +47,11 @@ class MainViewModel(
     fun getTimeSeriesStateWiseResponseLiveData(): LiveData<TimeSeriesStateWiseResponse> {
         return timeSeriesStateWiseResponseLiveData
     }
+
+    fun getGraphChartMoreClickLiveData(): LiveData<ChartType> {
+        return graphChartMoreClickLiveData
+    }
+
 
     private fun fetchStateDistrictData() {
 
@@ -107,6 +116,10 @@ class MainViewModel(
                     e.printStackTrace()
                 }
             })
+    }
+
+    fun setGraphChartMoreClickLiveData(chartType: ChartType?) {
+        graphChartMoreClickLiveData.postValue(chartType)
     }
 
     override fun onCleared() {
