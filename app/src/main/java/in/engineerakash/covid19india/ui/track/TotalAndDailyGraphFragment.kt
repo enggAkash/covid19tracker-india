@@ -7,7 +7,6 @@ import `in`.engineerakash.covid19india.enums.TotalOrDaily
 import `in`.engineerakash.covid19india.pojo.TimeSeriesData
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,11 +34,23 @@ class TotalAndDailyGraphFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            timeSeriesDataList =
-                it.getParcelableArrayList(TIME_SERIES_DATA_LIST)!!
-            totalOrDaily = it.getSerializable(TOTAL_OR_DAILY) as TotalOrDaily
+
+        if (savedInstanceState != null && !savedInstanceState.isEmpty) {
+            // config changed - device rotated etc
+            savedInstanceState.let {
+                timeSeriesDataList =
+                    it.getParcelableArrayList(TIME_SERIES_DATA_LIST)!!
+                totalOrDaily = it.getSerializable(TOTAL_OR_DAILY) as TotalOrDaily
+            }
+
+        } else {
+            arguments?.let {
+                timeSeriesDataList =
+                    it.getParcelableArrayList(TIME_SERIES_DATA_LIST)!!
+                totalOrDaily = it.getSerializable(TOTAL_OR_DAILY) as TotalOrDaily
+            }
         }
+
     }
 
     override fun onCreateView(
@@ -307,6 +318,12 @@ class TotalAndDailyGraphFragment : Fragment() {
                 }
                 this.listener = listener
             }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(TIME_SERIES_DATA_LIST, timeSeriesDataList)
+        outState.putSerializable(TOTAL_OR_DAILY, totalOrDaily)
     }
 
     interface TotalAndDailyGraphListener {
