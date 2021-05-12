@@ -279,7 +279,7 @@ class TrackFragment : Fragment() {
         }
 
         // Check if user has selected their state and district then only perform this action
-        if (Constant.isUserSelected) {
+        if (Constant.locationIsSelectedByUser) {
             var userStateIsInMostAffectedState = false
             var userStateIsInMostAffectedStateIndex = -1
             // check if user selected state is in list, if not add them
@@ -383,7 +383,7 @@ class TrackFragment : Fragment() {
         }
 
         // Check if user has selected their state and district then only perform this action
-        if (Constant.isUserSelected) {
+        if (Constant.locationIsSelectedByUser) {
             var userDistrictIsInMostAffectedState = false
             var userDistrictIsInMostAffectedStateIndex = -1
 

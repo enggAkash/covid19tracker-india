@@ -6,6 +6,7 @@ import `in`.engineerakash.covid19india.pojo.StateDistrictWiseResponse
 import `in`.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse
 import `in`.engineerakash.covid19india.util.JsonExtractor
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,6 +19,7 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import java.io.IOException
 
+private const val TAG = "MainViewModel"
 class MainViewModel(
     application: Application,
     var disposables: CompositeDisposable = CompositeDisposable()
@@ -37,7 +39,7 @@ class MainViewModel(
         }
     }
 
-    private val graphChartMoreClickLiveData = MutableLiveData<ChartType>()
+    private val graphChartMoreClickLiveData = MutableLiveData<ChartType?>()
 
 
     fun getStateDistrictListLiveData(): LiveData<ArrayList<StateDistrictWiseResponse>> {
@@ -48,13 +50,13 @@ class MainViewModel(
         return timeSeriesStateWiseResponseLiveData
     }
 
-    fun getGraphChartMoreClickLiveData(): LiveData<ChartType> {
+    fun getGraphChartMoreClickLiveData(): LiveData<ChartType?> {
         return graphChartMoreClickLiveData
     }
 
 
     private fun fetchStateDistrictData() {
-
+        //todo save last fetched json, and show them if internet is not connected
         CovidClient
             .instance
             .stateDistrictWiseData
@@ -85,7 +87,7 @@ class MainViewModel(
     }
 
     private fun fetchTimeSeriesAndStateWiseData() {
-
+        //todo save last fetched json, and show them if internet is not connected
         CovidClient
             .instance
             .timeSeriesAndStateWiseData
@@ -99,6 +101,8 @@ class MainViewModel(
                 override fun onSuccess(responseBodyResponse: ResponseBody) {
                     try {
                         val response = responseBodyResponse.string()
+                        Log.d(TAG, "onSuccess: TimeSeriesAndStateWiseData Response: $response")
+
                         val timeSeriesStateWiseResponse =
                             Gson().fromJson<TimeSeriesStateWiseResponse>(
                                 response,

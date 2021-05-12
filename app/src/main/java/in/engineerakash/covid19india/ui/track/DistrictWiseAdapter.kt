@@ -60,7 +60,7 @@ class DistrictWiseAdapter(var list: ArrayList<District>) :
                 if (data.lastUpdateTime.isEmpty()) "-" else data.lastUpdateTime
             if (Constant.userSelectedDistrict.trim { it <= ' ' }
                     .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
-                Constant.isUserSelected
+                Constant.locationIsSelectedByUser
             ) holder.binding.userDistrictTv.visibility =
                 View.VISIBLE else holder.binding.userDistrictTv.visibility = View.GONE
             holder.binding.dataContainer.visibility = View.VISIBLE

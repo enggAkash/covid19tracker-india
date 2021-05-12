@@ -31,5 +31,5 @@ object Constant {
     var userSelectedDistrict = "Mumbai  " //""East Delhi";
 
     @JvmField
-    var isUserSelected = true
+    var locationIsSelectedByUser = true
 }

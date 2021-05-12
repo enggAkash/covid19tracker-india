@@ -23,6 +23,10 @@
             android:id="@+id/action_trackFragment_to_detailListFragment"
             app:destination="@id/detailListFragment" />
 
+        <action
+            android:id="@+id/action_trackFragment_to_chooseLocationFragment"
+            app:destination="@id/chooseLocationFragment" />
+
     </fragment>
 
     <fragment
@@ -92,5 +96,11 @@
         app:popEnterAnim="@anim/enter_from_left"
         app:popExitAnim="@anim/exit_to_right"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/chooseLocationFragment"
+        android:name="in.engineerakash.covid19india.ui.location.ChooseLocationFragment"
+        android:label="fragment_choose_location"
+        tools:layout="@layout/fragment_choose_location" />
 
 </navigation>

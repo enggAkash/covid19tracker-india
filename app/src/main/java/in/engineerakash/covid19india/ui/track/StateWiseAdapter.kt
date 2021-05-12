@@ -63,7 +63,7 @@ class StateWiseAdapter(var list: ArrayList<StateWiseData>) :
             holder.binding.stateDeathTv.setText(data.deaths)
             if (Constant.userSelectedState.trim { it <= ' ' }
                     .equals(data.state.trim { it <= ' ' }, ignoreCase = true) &&
-                Constant.isUserSelected
+                Constant.locationIsSelectedByUser
             ) holder.binding.userStateTv.visibility =
                 View.VISIBLE else holder.binding.userStateTv.visibility = View.GONE
             holder.binding.dataContainer.visibility = View.VISIBLE

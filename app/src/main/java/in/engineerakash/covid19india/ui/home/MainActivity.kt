@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 
         // do not remove this, otherwise setOnNavigationItemSelectedListener will be called on reselection
         binding.bottomNavigation.setOnNavigationItemReselectedListener {}
+
+        //todo check if location is selected(Constant.locationIsSelectedByUser), if not redirect them to choose location screen
     }
 
     fun changeThemeColor(defaultColor: Boolean, color: Int) {

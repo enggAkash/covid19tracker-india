@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.location.ChooseLocationFragment">
+
+    <!--Country-->
+    <TextView
+        android:id="@+id/countryTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/countryAutoCompleteTv"
+        android:text="Select Country:"
+        app:layout_constraintBottom_toBottomOf="@id/countryAutoCompleteTv"
+        app:layout_constraintEnd_toStartOf="@id/countryAutoCompleteTv"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toTopOf="@id/countryAutoCompleteTv" />
+
+    <AutoCompleteTextView
+        android:id="@+id/countryAutoCompleteTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:hint="Type to Choose Country"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toEndOf="@id/countryTitleTv"
+        app:layout_constraintTop_toTopOf="@id/topGuide" />
+
+    <!--State-->
+    <TextView
+        android:id="@+id/stateTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/stateAutoCompleteTv"
+        android:text="Select State:"
+        app:layout_constraintBottom_toBottomOf="@id/stateAutoCompleteTv"
+        app:layout_constraintEnd_toStartOf="@id/stateAutoCompleteTv"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toTopOf="@id/stateAutoCompleteTv" />
+
+    <AutoCompleteTextView
+        android:id="@+id/stateAutoCompleteTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="Type to Choose State"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toEndOf="@id/stateTitleTv"
+        app:layout_constraintTop_toBottomOf="@id/countryAutoCompleteTv" />
+
+    <!--District-->
+    <TextView
+        android:id="@+id/districtTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/districtAutoCompleteTv"
+        android:text="District with cases:"
+        app:layout_constraintBottom_toBottomOf="@id/districtAutoCompleteTv"
+        app:layout_constraintEnd_toStartOf="@id/districtAutoCompleteTv"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toTopOf="@id/districtAutoCompleteTv" />
+
+    <AutoCompleteTextView
+        android:id="@+id/districtAutoCompleteTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="Type to Choose District"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toEndOf="@id/districtTitleTv"
+        app:layout_constraintTop_toBottomOf="@id/stateAutoCompleteTv" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="10dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
