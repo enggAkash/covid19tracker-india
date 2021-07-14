@@ -19,6 +19,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import java.io.InputStream
 import java.io.UnsupportedEncodingException
 import java.net.URISyntaxException
 import java.net.URLDecoder
@@ -403,5 +404,16 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
             )
             else -> ContextCompat.getColor(context!!, R.color.colorAccent)
         }
+    }
+
+    @JvmStatic
+    fun readAssetFile(context: Context?, assetName: String): String {
+        val stateJsonIs: InputStream? = context?.assets?.open(assetName)
+
+        val buffer = ByteArray(stateJsonIs?.available() ?: 0)
+        stateJsonIs?.read(buffer)
+        stateJsonIs?.close()
+
+        return String(buffer)
     }
 }

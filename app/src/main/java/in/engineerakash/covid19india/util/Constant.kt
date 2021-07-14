@@ -32,4 +32,7 @@ object Constant {
 
     @JvmField
     var locationIsSelectedByUser = true
+
+    @JvmField
+    var stateJsonAssetName = "state_json.json"
 }
