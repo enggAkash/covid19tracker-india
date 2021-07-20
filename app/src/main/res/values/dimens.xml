@@ -4,4 +4,39 @@
     <dimen name="main_activity_margin_top">5dp</dimen>
     <dimen name="main_activity_margin_end">5dp</dimen>
     <dimen name="main_activity_margin_bottom">0dp</dimen>
+
+    <dimen name="margin_large">30dp</dimen>
+    <dimen name="margin_larger">35dp</dimen>
+    <dimen name="margin_larger_plus">40dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_medium_plus">25dp</dimen>
+    <dimen name="margin_medium_minus">15dp</dimen>
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_smallest">5dp</dimen>
+
+    <dimen name="dp_7">7dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_14">14dp</dimen>
+    <dimen name="dp_16">16dp</dimen>
+    <dimen name="dp_18">18dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_1point5">1.5dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+    <dimen name="dp_0point5">0.5dp</dimen>
+
+    <dimen name="card_elevation_small">1dp</dimen>
+    <dimen name="card_elevation_medium">5dp</dimen>
+    <dimen name="card_elevation_large">10dp</dimen>
+    <dimen name="card_elevation_large_plus">15dp</dimen>
+    <dimen name="card_elevation_larger">20dp</dimen>
 </resources>

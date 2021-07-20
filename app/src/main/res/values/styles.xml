@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -39,5 +39,175 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- large text size -->
+    <style name="HeadingTextLargeSizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextLargeSizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextLargeSizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextLargeSizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="ActionText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/action_title</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <!-- medium heading -->
+
+    <style name="HeadingTextMediumSizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/action_title</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextMediumSizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextMediumSizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextMediumSizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_17dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <!-- medium non heading text : which is not a heading -->
+
+    <style name="NonHeadingTextMediumSizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_16dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextMediumSizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_16dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextMediumSizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_16dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextMediumSizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_16dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <!-- small heading text-->
+
+    <style name="HeadingTextSmallSizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_14dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextSmallSizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_14dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextSmallSizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_14dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="HeadingTextSmallSizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_14dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <!-- small non heading text-->
+
+    <style name="NonHeadingTextSmallSizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_12dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextSmallSizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_12dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextSmallSizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_12dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextSmallSizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_12dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <!-- very small non heading text-->
+
+    <style name="NonHeadingTextVerySmallSizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_11dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextVerySmallSizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_11dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextVerySmallSizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_11dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="NonHeadingTextVerySmallSizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_11dp</item>
+        <item name="android:textColor">@color/black_opacity_90</item>
+    </style>
+
+    <style name="DefaultCardTheme" parent="Base.CardView">
+        <item name="cardCornerRadius">@dimen/margin_smallest</item>
+        <item name="contentPadding">@dimen/margin_smallest</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cardElevation">@dimen/card_elevation_medium</item>
+        <!--<item name="android:outlineSpotShadowColor" tools:targetApi="p">@color/colorAccent</item>-->
+    </style>
 
 </resources>

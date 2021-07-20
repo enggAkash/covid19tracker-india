@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--Wash your hands-->
+    <androidx.cardview.widget.CardView
+        style="@style/DefaultCardTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/handWashIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:src="@drawable/hand_washing"
+                app:layout_constraintBottom_toBottomOf="@id/handWashTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/handWashTitleTv" />
+
+            <TextView
+                android:id="@+id/handWashTitleTv"
+                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Wash your hands often with Soap and Water"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/handWashIconIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/handWashDescTv"
+                style="@style/NonHeadingTextMediumSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Scrub for at least 20 seconds. If Soap and Water are not available, use an Alcohol-Based Sanitizer."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/handWashTitleTv" />
+
+            <TextView
+                android:id="@+id/buySoapTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Buy Soap"
+                app:layout_constraintEnd_toStartOf="@id/buySanitizerTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/handWashDescTv" />
+
+            <TextView
+                android:id="@+id/buySanitizerTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Buy Sanitizer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buySoapTv"
+                app:layout_constraintTop_toBottomOf="@id/handWashDescTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Wash your hands-->
+    <androidx.cardview.widget.CardView
+        style="@style/DefaultCardTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/closeContactIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:src="@drawable/avoid_close_contact"
+                app:layout_constraintBottom_toBottomOf="@id/closeContactTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/closeContactTitleTv" />
+
+            <TextView
+                android:id="@+id/closeContactTitleTv"
+                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Avoid Close Contact with people who are sick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/closeContactIconIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/closeContactDescTv"
+                style="@style/NonHeadingTextMediumSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="A person with Coronavirus can spread it to others who are up to about 6 feet away."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/closeContactTitleTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Clean and Disinfect-->
+    <androidx.cardview.widget.CardView
+        style="@style/DefaultCardTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/cleanAndDisinfectIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:src="@drawable/wiping"
+                app:layout_constraintBottom_toBottomOf="@id/cleanAndDisinfectTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cleanAndDisinfectTitleTv" />
+
+            <TextView
+                android:id="@+id/cleanAndDisinfectTitleTv"
+                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Clean and Disinfect commonly used surfaces"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cleanAndDisinfectIconIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/cleanAndDisinfectDescTv"
+                style="@style/NonHeadingTextMediumSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Wipe Down door knobs, tables, light switches, keyboards, and remote controls."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cleanAndDisinfectTitleTv" />
+
+            <TextView
+                android:id="@+id/buySurfaceCleanerTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Buy Surface Cleaner"
+                app:layout_constraintEnd_toStartOf="@id/buyKeyboardCleanerTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cleanAndDisinfectDescTv" />
+
+            <TextView
+                android:id="@+id/buyKeyboardCleanerTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Buy Keyboard Cleaner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buySurfaceCleanerTv"
+                app:layout_constraintTop_toBottomOf="@id/cleanAndDisinfectDescTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Don’t touch your eyes, nose or mouth-->
+    <androidx.cardview.widget.CardView
+        style="@style/DefaultCardTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/dontTouchNoseIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:src="@drawable/nose_touching"
+                app:layout_constraintBottom_toBottomOf="@id/dontTouchNoseTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dontTouchNoseTitleTv" />
+
+            <TextView
+                android:id="@+id/dontTouchNoseTitleTv"
+                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Don’t touch your eyes, nose or mouth"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dontTouchNoseIconIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dontTouchNoseDescTv"
+                style="@style/NonHeadingTextMediumSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="A virus can enter your body this way."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dontTouchNoseTitleTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Cover your nose-->
+    <androidx.cardview.widget.CardView
+        style="@style/DefaultCardTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/coverYourNoseIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:src="@drawable/face_mask"
+                app:layout_constraintBottom_toBottomOf="@id/coverYourNoseTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/coverYourNoseTitleTv" />
+
+            <TextView
+                android:id="@+id/coverYourNoseTitleTv"
+                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Cover your nose and mouth with a mask when around others"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/coverYourNoseIconIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/coverYourNoseDescTv"
+                style="@style/NonHeadingTextMediumSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="This helps reduce the risk of spread both by close contact and by airborne transmission."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coverYourNoseTitleTv" />
+
+            <TextView
+                android:id="@+id/buySafestTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Buy Safest Mask"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/coverYourNoseDescTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Cover your nose-->
+    <androidx.cardview.widget.CardView
+        style="@style/DefaultCardTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/stayHomeIconIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_5"
+                android:src="@drawable/quarantine"
+                app:layout_constraintBottom_toBottomOf="@id/stayHomeTitleTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/stayHomeTitleTv" />
+
+            <TextView
+                android:id="@+id/stayHomeTitleTv"
+                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Stay home if you are sick"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/stayHomeIconIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/stayHomeDescTv"
+                style="@style/NonHeadingTextMediumSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="If you have coronavirus symptoms, stay home except to get medical care."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stayHomeTitleTv" />
+
+            <TextView
+                android:id="@+id/callAmbulanceTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_smallest"
+                android:text="Call Ambulance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/stayHomeDescTv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
