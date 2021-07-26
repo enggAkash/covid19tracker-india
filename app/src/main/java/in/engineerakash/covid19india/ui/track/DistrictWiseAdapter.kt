@@ -1,26 +1,33 @@
-package `in`.engineerakash.covid19india.ui.home
+package `in`.engineerakash.covid19india.ui.track
 
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.DistrictDataItemBinding
 import `in`.engineerakash.covid19india.pojo.District
 import `in`.engineerakash.covid19india.util.Constant
+import android.content.Context
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class DistrictWiseAdapter(var list: ArrayList<District>) :
+class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimation: Boolean = true) :
     RecyclerView.Adapter<DistrictWiseAdapter.DistrictWiseVH>() {
 
     private val TYPE_ITEM = 1
     private val TYPE_EMPTY_VIEW = 2
 
+    private var context: Context? = null
+    private var lastPosition = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DistrictWiseVH {
+        context = parent.context
         val binding = DistrictDataItemBinding.inflate(
-            LayoutInflater.from(parent.context),
+            LayoutInflater.from(context),
             parent, false
         )
         return DistrictWiseVH(binding)
@@ -110,7 +117,23 @@ class DistrictWiseAdapter(var list: ArrayList<District>) :
                 )
             }
         }
+
+        if (allowScrollAnimation) {
+            val animation: Animation = AnimationUtils.loadAnimation(
+                context,
+                if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
+            )
+            holder.itemView.startAnimation(animation)
+            lastPosition = position
+        }
     }
+
+    override fun onViewDetachedFromWindow(holder: DistrictWiseVH) {
+        super.onViewDetachedFromWindow(holder)
+        if (allowScrollAnimation)
+            holder.itemView.clearAnimation()
+    }
+
 
     override fun getItemCount(): Int {
         return if (list.isEmpty()) 1 // empty view

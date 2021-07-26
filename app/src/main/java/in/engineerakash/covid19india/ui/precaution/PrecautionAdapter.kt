@@ -1,14 +1,21 @@
 package `in`.engineerakash.covid19india.ui.precaution
 
+import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ItemPrecautionBinding
 import `in`.engineerakash.covid19india.databinding.ItemPrecautionGroupSubTitleBinding
 import `in`.engineerakash.covid19india.databinding.ItemPrecautionGroupTitleBinding
 import `in`.engineerakash.covid19india.pojo.Precaution
 import `in`.engineerakash.covid19india.util.Helper
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+
 
 class PrecautionAdapter(val list: ArrayList<Precaution>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -17,8 +24,12 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
     private var ITEM_TYPE_SUB_GROUP_TITLE = 2
     private var ITEM_TYPE_PRECAUTION_TITLE = 3
 
+    private var lastPosition = 0
+    private var context: Context? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        context = parent.context
+        val inflater = LayoutInflater.from(context)
 
         return when (viewType) {
             ITEM_TYPE_GROUP_TITLE -> GroupTitleVh(
@@ -45,6 +56,18 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
             ITEM_TYPE_SUB_GROUP_TITLE -> (holder as GroupSubTitleVh).bind(position)
             else -> (holder as PrecautionVh).bind(position)
         }
+
+        val animation: Animation = AnimationUtils.loadAnimation(
+            context,
+            if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
+        )
+        holder.itemView.startAnimation(animation)
+        lastPosition = position
+    }
+
+    override fun onViewDetachedFromWindow(@NonNull holder: ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.clearAnimation()
     }
 
     override fun getItemCount() = list.size

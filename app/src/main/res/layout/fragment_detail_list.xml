@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+        android:layoutAnimation="@anim/data_list_recycler_layout_anim"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         android:paddingBottom="5dp"

@@ -5,7 +5,6 @@ import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.enums.ListType
 import `in`.engineerakash.covid19india.enums.TotalOrDaily
 import `in`.engineerakash.covid19india.pojo.*
-import `in`.engineerakash.covid19india.ui.home.DistrictWiseAdapter
 import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.Constant
@@ -169,7 +168,7 @@ class TrackFragment : Fragment() {
         mostAffectedDistricts.addAll(getObjectTotalOfAffectedDistricts(stateDistrictList))
         binding.mostAffectedDistrictTitleTv.text =
             "#Most Affected District in ${Constant.userSelectedState.trim { it <= ' ' }}"
-        val districtWiseAdapter = DistrictWiseAdapter(mostAffectedDistricts)
+        val districtWiseAdapter = DistrictWiseAdapter(mostAffectedDistricts, false)
         binding.mostAffectedDistrictRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedDistrictRv.adapter = districtWiseAdapter
     }
@@ -181,7 +180,7 @@ class TrackFragment : Fragment() {
             .add(getObjectTotalOfAffectedState(stateWiseDataArrayList))
         binding.mostAffectedStateTitleTv.text =
             "#Most Affected States in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
-        val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList)
+        val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList, false)
         binding.mostAffectedStateRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedStateRv.adapter = stateWiseAdapter
     }

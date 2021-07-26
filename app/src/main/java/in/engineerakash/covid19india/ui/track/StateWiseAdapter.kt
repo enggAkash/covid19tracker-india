@@ -4,23 +4,31 @@ import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.StateDataItemBinding
 import `in`.engineerakash.covid19india.pojo.StateWiseData
 import `in`.engineerakash.covid19india.util.Constant
+import android.content.Context
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class StateWiseAdapter(var list: ArrayList<StateWiseData>) :
+class StateWiseAdapter(var list: ArrayList<StateWiseData>, var allowScrollAnimation: Boolean = true) :
     RecyclerView.Adapter<StateWiseAdapter.StateWiseVH>() {
 
     private val TYPE_ITEM = 1
     private val TYPE_EMPTY_VIEW = 2
 
+    private var lastPosition = 0
+    private var context: Context? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StateWiseVH {
+        context = parent.context
+
         val binding = StateDataItemBinding.inflate(
-            LayoutInflater.from(parent.context),
+            LayoutInflater.from(context),
             parent, false
         )
         return StateWiseVH(binding)
@@ -129,6 +137,22 @@ class StateWiseAdapter(var list: ArrayList<StateWiseData>) :
                 )
             }
         }
+
+        if (allowScrollAnimation) {
+            val animation: Animation = AnimationUtils.loadAnimation(
+                context,
+                if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
+            )
+            holder.itemView.startAnimation(animation)
+            lastPosition = position
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: StateWiseVH) {
+        super.onViewDetachedFromWindow(holder)
+
+        if (allowScrollAnimation)
+            holder.itemView.clearAnimation()
     }
 
     override fun getItemCount(): Int {
