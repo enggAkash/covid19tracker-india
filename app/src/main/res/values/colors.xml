@@ -15,6 +15,6 @@
     <color name="colorOddItem">#F1F1F1</color>
     <color name="colorEvenItem">#F9F9F9</color>
 
-    <color name="black_opacity_90">#E6333A45</color>
-
+    <color name="blackOpacity90">#E6333A45</color>
+    <color name="colorLightGrey">#D3D3D3</color>
 </resources>

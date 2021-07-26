@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/DefaultCardTheme"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_smallest"
+    android:layout_marginBottom="@dimen/margin_smallest">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iconIv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_5"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titleTv"
+            app:layout_constraintWidth_percent="0.5"
+            tools:src="@drawable/avoid_close_contact" />
+
+        <TextView
+            android:id="@+id/titleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_smallest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iconIv"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Wash your hands often with Soap and Water" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/titleIconBottomBarrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="iconIv,titleTv" />
+
+        <TextView
+            android:id="@+id/descTv"
+            style="@style/NonHeadingTextMediumSizeRegularFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_smallest"
+            android:padding="@dimen/margin_smallest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleIconBottomBarrier"
+            tools:text="Scrub for at least 20 seconds. If Soap and Water are not available, use an Alcohol-Based Sanitizer." />
+
+        <TextView
+            android:id="@+id/affiliateLink1Tv"
+            style="@style/HeadingTextSmallSizeRegularFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:foreground="?android:selectableItemBackground"
+            android:padding="@dimen/margin_smallest"
+            app:layout_constraintEnd_toStartOf="@id/affiliateLink2Tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descTv"
+            tools:text="Buy Soap" />
+
+        <TextView
+            android:id="@+id/affiliateLink2Tv"
+            style="@style/HeadingTextSmallSizeRegularFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:foreground="?android:selectableItemBackground"
+            android:padding="@dimen/margin_smallest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/affiliateLink1Tv"
+            app:layout_constraintTop_toBottomOf="@id/descTv"
+            tools:text="Buy Sanitizer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -416,4 +416,15 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
 
         return String(buffer)
     }
+
+    fun openUrl(context: Context?, url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+
+        try {
+            context?.startActivity(intent)
+        } catch (ex: ActivityNotFoundException) {
+            Toast.makeText(context, "No App is available to Handle this request", Toast.LENGTH_LONG)
+                .show()
+        }
+    }
 }

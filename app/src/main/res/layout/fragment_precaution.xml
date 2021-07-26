@@ -1,93 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     tools:context=".ui.precaution.PrecautionFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/precautionRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/bottomSeparator"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toTopOf="@id/topGuide"
+        tools:listitem="@layout/item_precaution" />
+
+    <View
+        android:id="@+id/bottomSeparator"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/colorLightGrey"
+        app:layout_constraintBottom_toTopOf="@id/goiGuidelinesTv"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide" />
+
+    <TextView
+        android:id="@+id/goiGuidelinesTv"
+        style="@style/NonHeadingTextSmallSizeSemiBoldFont"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:autoLink="web"
+        android:background="@android:color/white"
+        android:padding="@dimen/margin_smallest"
+        android:text="See Health Ministry, Government of Indian Guidelines ( https://www.mohfw.gov.in/pdf/RevisedguidelinesforHomeIsolationofmildasymptomaticCOVID19cases.pdf )"
+        android:textColorLink="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false">
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="10dp" />
 
-        <TextView
-            android:id="@+id/preventionTitleTv"
-            style="@style/HeadingTextLargeSizeBoldFont"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="PREVENTION"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/endGuide"
-            app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toTopOf="@id/topGuide" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="10dp" />
 
-        <include
-            android:id="@+id/preventionLayout"
-            layout="@layout/prevention_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@id/endGuide"
-            app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/preventionTitleTv" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="10dp" />
 
-        <TextView
-            android:id="@+id/cureTitleTv"
-            style="@style/HeadingTextLargeSizeBoldFont"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:gravity="center"
-            android:text="CURE"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/endGuide"
-            app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/preventionLayout" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="10dp" />
 
-        <include
-            android:id="@+id/cureLayout"
-            layout="@layout/cure_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/endGuide"
-            app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/cureTitleTv" />
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/topGuide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="10dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/bottomGuide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_end="10dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/startGuide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="10dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/endGuide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="10dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
