@@ -67,7 +67,7 @@ class PrecautionFragment : Fragment() {
                 "", "", R.drawable.quarantine,
                 "Stay home if you are sick",
                 "If you have coronavirus symptoms, stay home except to get medical care.",
-                "Call Ambulance"
+                "Call Ambulance", "tel:102"
             )
         )
 
