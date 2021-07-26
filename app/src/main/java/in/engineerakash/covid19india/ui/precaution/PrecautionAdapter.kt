@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 
 class PrecautionAdapter(val list: ArrayList<Precaution>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<ViewHolder>() {
 
     private var ITEM_TYPE_GROUP_TITLE = 1
     private var ITEM_TYPE_SUB_GROUP_TITLE = 2
@@ -27,7 +27,7 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
     private var lastPosition = 0
     private var context: Context? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
         val inflater = LayoutInflater.from(context)
 
@@ -50,7 +50,7 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ITEM_TYPE_GROUP_TITLE -> (holder as GroupTitleVh).bind(position)
             ITEM_TYPE_SUB_GROUP_TITLE -> (holder as GroupSubTitleVh).bind(position)
@@ -82,7 +82,7 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
 
 
     inner class PrecautionVh(var itemBinding: ItemPrecautionBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
+        ViewHolder(itemBinding.root) {
 
         init {
             itemBinding.affiliateLink1Tv.setOnClickListener {
@@ -121,7 +121,7 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
     }
 
     inner class GroupTitleVh(var itemBinding: ItemPrecautionGroupTitleBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
+        ViewHolder(itemBinding.root) {
 
         fun bind(position: Int) {
             itemBinding.groupTitleTv.text = list[position].groupTitle
@@ -129,7 +129,7 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
     }
 
     inner class GroupSubTitleVh(var itemBinding: ItemPrecautionGroupSubTitleBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
+        ViewHolder(itemBinding.root) {
 
         fun bind(position: Int) {
             itemBinding.groupSubTitleTv.text = list[position].groupSubTitle
