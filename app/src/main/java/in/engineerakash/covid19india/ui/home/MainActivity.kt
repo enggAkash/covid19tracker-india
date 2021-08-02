@@ -2,6 +2,7 @@ package `in`.engineerakash.covid19india.ui.home
 
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ActivityMainBinding
+import `in`.engineerakash.covid19india.util.Constant
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
@@ -42,6 +43,12 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnNavigationItemReselectedListener {}
 
         //todo check if location is selected(Constant.locationIsSelectedByUser), if not redirect them to choose location screen
+        if (Constant.userSelectedState.isEmpty() || Constant.userSelectedDistrict.isEmpty()) {
+            navController!!.navigate(R.id.chooseLocationFragment)
+
+        } else {
+
+        }
     }
 
     fun changeThemeColor(defaultColor: Boolean, color: Int) {

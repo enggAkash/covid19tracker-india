@@ -3,84 +3,90 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     tools:context=".ui.location.ChooseLocationFragment">
-
-    <!--Country-->
-    <TextView
-        android:id="@+id/countryTitleTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/countryAutoCompleteTv"
-        android:text="Select Country:"
-        app:layout_constraintBottom_toBottomOf="@id/countryAutoCompleteTv"
-        app:layout_constraintEnd_toStartOf="@id/countryAutoCompleteTv"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toTopOf="@id/countryAutoCompleteTv" />
-
-    <AutoCompleteTextView
-        android:id="@+id/countryAutoCompleteTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:completionThreshold="0"
-        android:layout_marginTop="20dp"
-        android:hint="Type to Choose Country"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toEndOf="@id/countryTitleTv"
-        app:layout_constraintTop_toTopOf="@id/topGuide" />
 
     <!--State-->
     <TextView
         android:id="@+id/stateTitleTv"
+        style="@style/NonHeadingTextMediumSizeMediumFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:labelFor="@id/stateAutoCompleteTv"
-        android:text="Select State:"
+        android:text="Select State/UT:"
         app:layout_constraintBottom_toBottomOf="@id/stateAutoCompleteTv"
-        app:layout_constraintEnd_toStartOf="@id/stateAutoCompleteTv"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@id/startGuide"
         app:layout_constraintTop_toTopOf="@id/stateAutoCompleteTv" />
 
     <AutoCompleteTextView
         android:id="@+id/stateAutoCompleteTv"
-        android:layout_width="wrap_content"
+        style="@style/NonHeadingTextMediumSizeMediumFont"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
+        android:completionThreshold="0"
         android:hint="Type to Choose State"
         app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toEndOf="@id/stateTitleTv"
-        app:layout_constraintTop_toBottomOf="@id/countryAutoCompleteTv" />
+        app:layout_constraintStart_toEndOf="@id/titleEndBarrier"
+        app:layout_constraintTop_toBottomOf="@id/topGuide" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/titleEndBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="stateTitleTv,districtTitleTv" />
 
     <!--District-->
     <TextView
         android:id="@+id/districtTitleTv"
+        style="@style/NonHeadingTextMediumSizeMediumFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:labelFor="@id/districtAutoCompleteTv"
-        android:text="District with cases:"
+        android:text="Places with case:"
         app:layout_constraintBottom_toBottomOf="@id/districtAutoCompleteTv"
-        app:layout_constraintEnd_toStartOf="@id/districtAutoCompleteTv"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="@id/startGuide"
         app:layout_constraintTop_toTopOf="@id/districtAutoCompleteTv" />
 
     <AutoCompleteTextView
         android:id="@+id/districtAutoCompleteTv"
-        android:layout_width="wrap_content"
+        style="@style/NonHeadingTextMediumSizeMediumFont"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:hint="Type to Choose District"
+        android:completionThreshold="0"
+        android:hint="Type to Choose Place"
         app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toEndOf="@id/districtTitleTv"
+        app:layout_constraintStart_toEndOf="@id/titleEndBarrier"
         app:layout_constraintTop_toBottomOf="@id/stateAutoCompleteTv" />
 
     <TextView
+        android:id="@+id/skipBtn"
+        style="@style/NonHeadingTextMediumSizeMediumFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:foreground="?android:selectableItemBackground"
+        android:paddingStart="45dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="45dp"
+        android:paddingBottom="15dp"
+        android:text="Skip"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/saveBtn"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv"
+        tools:visibility="visible" />
+
+    <TextView
         android:id="@+id/saveBtn"
+        style="@style/NonHeadingTextMediumSizeMediumFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -94,7 +100,7 @@
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintStart_toEndOf="@id/skipBtn"
         app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv" />
 
     <androidx.constraintlayout.widget.Guideline

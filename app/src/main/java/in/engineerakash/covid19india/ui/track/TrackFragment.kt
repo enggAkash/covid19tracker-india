@@ -17,7 +17,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -39,6 +40,8 @@ class TrackFragment : Fragment() {
     private lateinit var totalAndDailyGraphAdapter: TotalAndDailyGraphAdapter
     private var totalAndDailyGraphFragmentList = arrayListOf<Fragment?>(null, null)
 
+    private val args: TrackFragmentArgs by navArgs<TrackFragmentArgs>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +59,7 @@ class TrackFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(binding.root)
+        navController = this.findNavController()
 
         val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(activity!!.application) }
 
@@ -119,6 +122,11 @@ class TrackFragment : Fragment() {
         })
 
         setupClickListeners()
+
+        if (args.refreshData) {
+            viewModel.fetchTimeSeriesAndStateWiseData()
+            viewModel.fetchStateDistrictData()
+        }
     }
 
     private fun setupClickListeners() {
@@ -149,6 +157,10 @@ class TrackFragment : Fragment() {
                     stateDistrictList.toTypedArray()
                 )
             )
+        }
+
+        binding.changeLocationTv.setOnClickListener {
+            navController.navigate(TrackFragmentDirections.actionTrackFragmentToChooseLocationFragment())
         }
     }
 

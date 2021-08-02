@@ -27,6 +27,11 @@
             android:id="@+id/action_trackFragment_to_chooseLocationFragment"
             app:destination="@id/chooseLocationFragment" />
 
+        <argument
+            android:name="refresh_data"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
     </fragment>
 
     <fragment
@@ -101,6 +106,12 @@
         android:id="@+id/chooseLocationFragment"
         android:name="in.engineerakash.covid19india.ui.location.ChooseLocationFragment"
         android:label="fragment_choose_location"
-        tools:layout="@layout/fragment_choose_location" />
+        tools:layout="@layout/fragment_choose_location">
+        <action
+            android:id="@+id/action_chooseLocationFragment_to_trackFragment"
+            app:destination="@id/trackFragment"
+            app:popUpTo="@id/trackFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

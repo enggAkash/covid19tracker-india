@@ -7,6 +7,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -426,5 +427,37 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
             Toast.makeText(context, "No App is available to Handle this request", Toast.LENGTH_LONG)
                 .show()
         }
+    }
+
+    fun setSelectedState(context: Context?, state: String) {
+        context
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.edit()
+            ?.putString(Constant.SELECTED_STATE_SP_KEY, state)
+            ?.apply()
+
+        Constant.userSelectedState = state
+    }
+
+    fun setSelectedDistrict(context: Context?, district: String) {
+        context
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.edit()
+            ?.putString(Constant.SELECTED_DISTRICT_SP_KEY, district)
+            ?.apply()
+
+        Constant.userSelectedDistrict = district
+    }
+
+    fun getSelectedState(context: Context): String {
+        return context
+            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            .getString(Constant.SELECTED_STATE_SP_KEY, "") ?: ""
+    }
+
+    fun getSelectedDistrict(context: Context): String {
+        return context
+            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            .getString(Constant.SELECTED_DISTRICT_SP_KEY, "") ?: ""
     }
 }

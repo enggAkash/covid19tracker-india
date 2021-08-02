@@ -25,14 +25,23 @@ object Constant {
     var userSelectedCountry = "India"
 
     @JvmField
-    var userSelectedState = "Maharashtra" //""Delhi";
+    var userSelectedState = "" //""Maharashtra" //""Delhi";
 
     @JvmField
-    var userSelectedDistrict = "Mumbai  " //""East Delhi";
+    var userSelectedDistrict = "" //""Mumbai  " //""East Delhi";
 
     @JvmField
     var locationIsSelectedByUser = true
 
     @JvmField
     var stateJsonAssetName = "state_json.json"
+
+    @JvmField
+    var DEFAULT_SP_NAME = "covid_sp"
+
+    @JvmField
+    var SELECTED_STATE_SP_KEY = "selected_state_key"
+
+    @JvmField
+    var SELECTED_DISTRICT_SP_KEY = "selected_district_key"
 }

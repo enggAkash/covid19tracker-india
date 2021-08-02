@@ -55,7 +55,7 @@ class MainViewModel(
     }
 
 
-    private fun fetchStateDistrictData() {
+    fun fetchStateDistrictData() {
         //todo save last fetched json, and show them if internet is not connected
         CovidClient
             .instance
@@ -86,7 +86,7 @@ class MainViewModel(
             })
     }
 
-    private fun fetchTimeSeriesAndStateWiseData() {
+    fun fetchTimeSeriesAndStateWiseData() {
         //todo save last fetched json, and show them if internet is not connected
         CovidClient
             .instance
