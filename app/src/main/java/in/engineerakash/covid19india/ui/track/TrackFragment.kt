@@ -191,7 +191,7 @@ class TrackFragment : Fragment() {
         mostAffectedStateWiseList
             .add(getObjectTotalOfAffectedState(stateWiseDataArrayList))
         binding.mostAffectedStateTitleTv.text =
-            "#Most Affected States in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
+            "#Most Affected States & UT in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
         val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList, false)
         binding.mostAffectedStateRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedStateRv.adapter = stateWiseAdapter
@@ -380,7 +380,7 @@ class TrackFragment : Fragment() {
         districtList.sortWith { o1, o2 -> // descending
             o2.confirmed - o1.confirmed
         }
-        if (stateWiseDataArrayList.size >= Constant.MOST_AFFECTED_DISTRICT_COUNT) {
+        if (districtList.size >= Constant.MOST_AFFECTED_DISTRICT_COUNT) {
             // if district list is greater than the data count to show, then its perfect, add the required subset
             mostAffectedDistricts.addAll(
                 districtList.subList(

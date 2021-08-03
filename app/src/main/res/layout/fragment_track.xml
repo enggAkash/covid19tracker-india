@@ -240,7 +240,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:textSize="13sp"
-                tools:text="#Most Affected States in India" />
+                tools:text="#Most Affected States &amp; UT in India" />
 
             <include
                 layout="@layout/state_header"
