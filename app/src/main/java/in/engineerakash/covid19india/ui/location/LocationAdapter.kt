@@ -12,8 +12,9 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.TextView
 import java.util.*
+import kotlin.collections.ArrayList
 
-class LocationAdapter(context: Context, private var receivedList: ArrayList<String>) :
+class LocationAdapter(context: Context, var receivedList: ArrayList<String>) :
     ArrayAdapter<String>(context, R.layout.item_location_name, receivedList) {
 
     private var originalList = ArrayList(receivedList)
@@ -47,6 +48,7 @@ class LocationAdapter(context: Context, private var receivedList: ArrayList<Stri
 
     override fun getCount() = filteredList.size
 
+
     fun setList(newList: ArrayList<String>) {
         receivedList.clear()
         receivedList.addAll(newList)
@@ -71,9 +73,9 @@ class LocationAdapter(context: Context, private var receivedList: ArrayList<Stri
         override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults) {
             filteredList = filterResults.values as ArrayList<String>
             if (filterResults.count > 0) {
-                notifyDataSetChanged();
+                notifyDataSetChanged()
             } else {
-                notifyDataSetInvalidated();
+                notifyDataSetInvalidated()
             }
         }
 
@@ -103,6 +105,10 @@ class LocationAdapter(context: Context, private var receivedList: ArrayList<Stri
         return if (position >= 0 && position < filteredList.size)
             filteredList[position]
         else ""
+    }
+
+    override fun getPosition(item: String?): Int {
+        return filteredList.indexOf(item)
     }
 
 }

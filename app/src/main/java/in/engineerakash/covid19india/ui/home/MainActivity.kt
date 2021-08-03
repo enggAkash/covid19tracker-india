@@ -3,12 +3,16 @@ package `in`.engineerakash.covid19india.ui.home
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ActivityMainBinding
 import `in`.engineerakash.covid19india.util.Constant
+import `in`.engineerakash.covid19india.util.ViewUtil.fadeIn
+import `in`.engineerakash.covid19india.util.ViewUtil.fadeout
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 
@@ -38,6 +42,22 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             NavigationUI.onNavDestinationSelected(it, navController!!)
         }
+
+        navController?.addOnDestinationChangedListener(object :
+            NavController.OnDestinationChangedListener {
+            override fun onDestinationChanged(
+                controller: NavController,
+                destination: NavDestination,
+                arguments: Bundle?
+            ) {
+
+                if (destination.id == R.id.chooseLocationFragment) {
+                    binding.bottomNavigation.fadeout()
+                } else {
+                    binding.bottomNavigation.fadeIn()
+                }
+            }
+        })
 
         // do not remove this, otherwise setOnNavigationItemSelectedListener will be called on reselection
         binding.bottomNavigation.setOnNavigationItemReselectedListener {}

@@ -7,7 +7,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Uri
@@ -459,5 +458,48 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
         return context
             .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
             .getString(Constant.SELECTED_DISTRICT_SP_KEY, "") ?: ""
+    }
+
+    fun getMapImageResource(stateName: String?): Int {
+        return when (stateName) {
+            "Andaman and Nicobar Islands" -> R.drawable.andman
+            "Andhra Pradesh" -> R.drawable.andhra
+            "Arunachal Pradesh" -> R.drawable.arunachal
+            "Assam" -> R.drawable.assam
+            "Bihar" -> R.drawable.bihar
+            "Chandigarh" -> R.drawable.chandigarh
+            "Chhattisgarh" -> R.drawable.chhatisgarh
+            "Dadra and Nagar Haveli" -> R.drawable.dadra_nagar_haveli
+            "Daman and Diu" -> R.drawable.daman_and_diu
+            "Delhi" -> R.drawable.delhi
+            "Goa" -> R.drawable.goa
+            "Gujarat" -> R.drawable.gujarat
+            "Haryana" -> R.drawable.haryana
+            "Himachal Pradesh" -> R.drawable.himachal
+            "Jammu and Kashmir" -> R.drawable.jammu_kashmir
+            "Jharkhand" -> R.drawable.jharkhand
+            "Karnataka" -> R.drawable.karnataka
+            "Kerala" -> R.drawable.kerala
+            "Lakshadweep" -> R.drawable.lakshadweep
+            "Madhya Pradesh" -> R.drawable.mp
+            "Maharashtra" -> R.drawable.maharashtra
+            "Manipur" -> R.drawable.manipur
+            "Meghalaya" -> R.drawable.meghalaya
+            "Mizoram" -> R.drawable.mizoram
+            "Nagaland" -> R.drawable.nagaland
+            "Odisha" -> R.drawable.odisha
+            "Puducherry" -> R.drawable.puducherry
+            "Punjab" -> R.drawable.punjab
+            "Rajasthan" -> R.drawable.rajasthan
+            "Sikkim" -> R.drawable.sikkim
+            "Tamil Nadu" -> R.drawable.tamil
+            "Telangana" -> R.drawable.telangana
+            "Tripura" -> R.drawable.tripura
+            "Uttarakhand" -> R.drawable.uttarakhand
+            "Uttar Pradesh" -> R.drawable.up
+            "West Bengal" -> R.drawable.wb
+            "Ladakh" -> R.drawable.ladakh
+            else -> R.drawable.india
+        }
     }
 }

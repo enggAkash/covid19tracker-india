@@ -1,134 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:background="@android:color/white"
     tools:context=".ui.location.ChooseLocationFragment">
 
-    <!--State-->
-    <TextView
-        android:id="@+id/stateTitleTv"
-        style="@style/NonHeadingTextMediumSizeMediumFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select State/UT:"
-        app:layout_constraintBottom_toBottomOf="@id/stateAutoCompleteTv"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toTopOf="@id/stateAutoCompleteTv" />
-
-    <AutoCompleteTextView
-        android:id="@+id/stateAutoCompleteTv"
-        style="@style/NonHeadingTextMediumSizeMediumFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:completionThreshold="0"
-        android:hint="Type to Choose State"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toEndOf="@id/titleEndBarrier"
-        app:layout_constraintTop_toBottomOf="@id/topGuide" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/titleEndBarrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="end"
-        app:constraint_referenced_ids="stateTitleTv,districtTitleTv" />
-
-    <!--District-->
-    <TextView
-        android:id="@+id/districtTitleTv"
-        style="@style/NonHeadingTextMediumSizeMediumFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Places with case:"
-        app:layout_constraintBottom_toBottomOf="@id/districtAutoCompleteTv"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toTopOf="@id/districtAutoCompleteTv" />
-
-    <AutoCompleteTextView
-        android:id="@+id/districtAutoCompleteTv"
-        style="@style/NonHeadingTextMediumSizeMediumFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:completionThreshold="0"
-        android:hint="Type to Choose Place"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toEndOf="@id/titleEndBarrier"
-        app:layout_constraintTop_toBottomOf="@id/stateAutoCompleteTv" />
-
-    <TextView
-        android:id="@+id/skipBtn"
-        style="@style/NonHeadingTextMediumSizeMediumFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingStart="45dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="45dp"
-        android:paddingBottom="15dp"
-        android:text="Skip"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@id/saveBtn"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/saveBtn"
-        style="@style/NonHeadingTextMediumSizeMediumFont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/default_btn_bg"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingStart="45dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="45dp"
-        android:paddingBottom="15dp"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toEndOf="@id/skipBtn"
-        app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/topGuide"
+    <ImageView
+        android:id="@+id/mapIv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="10dp" />
+        android:layout_height="match_parent"
+        android:src="@drawable/india" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bottomGuide"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="10dp" />
+        android:layout_height="match_parent"
+        android:background="#801A1919">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/startGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="10dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/endGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="10dp" />
+            <!--State-->
+            <TextView
+                android:id="@+id/stateTitleTv"
+                style="@style/NonHeadingTextMediumSizeBoldFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_state_ut"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@id/stateAutoCompleteTv"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/startGuide"
+                app:layout_constraintTop_toTopOf="@id/stateAutoCompleteTv" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <AutoCompleteTextView
+                android:id="@+id/stateAutoCompleteTv"
+                style="@style/NonHeadingTextMediumSizeBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:completionThreshold="0"
+                android:hint="@string/type_to_choose_state"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:nextFocusRight="@id/districtAutoCompleteTv"
+                android:nextFocusDown="@id/districtAutoCompleteTv"
+                android:nextFocusForward="@id/districtAutoCompleteTv"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toEndOf="@id/titleEndBarrier"
+                app:layout_constraintTop_toBottomOf="@id/topGuide" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/titleEndBarrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="stateTitleTv,districtTitleTv" />
+
+            <!--District-->
+            <TextView
+                android:id="@+id/districtTitleTv"
+                style="@style/NonHeadingTextMediumSizeBoldFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/places_with_case"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@id/districtAutoCompleteTv"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/startGuide"
+                app:layout_constraintTop_toTopOf="@id/districtAutoCompleteTv" />
+
+            <AutoCompleteTextView
+                android:id="@+id/districtAutoCompleteTv"
+                style="@style/NonHeadingTextMediumSizeBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:completionThreshold="0"
+                android:hint="@string/type_to_choose_place"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toEndOf="@id/titleEndBarrier"
+                app:layout_constraintTop_toBottomOf="@id/stateAutoCompleteTv" />
+
+            <TextView
+                android:id="@+id/skipBtn"
+                style="@style/NonHeadingTextMediumSizeBoldFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:foreground="?android:selectableItemBackground"
+                android:paddingStart="45dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="45dp"
+                android:paddingBottom="15dp"
+                android:text="@string/skip"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/saveBtn"
+                app:layout_constraintStart_toStartOf="@id/startGuide"
+                app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/saveBtn"
+                style="@style/NonHeadingTextMediumSizeBoldFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/location_screen_save_btn_bg"
+                android:foreground="?android:selectableItemBackground"
+                android:paddingStart="45dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="45dp"
+                android:paddingBottom="15dp"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@id/endGuide"
+                app:layout_constraintStart_toEndOf="@id/skipBtn"
+                app:layout_constraintTop_toBottomOf="@id/districtAutoCompleteTv" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/topGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="10dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/bottomGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_end="10dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/startGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="10dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/endGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="10dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

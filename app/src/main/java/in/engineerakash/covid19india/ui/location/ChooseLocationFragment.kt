@@ -6,13 +6,18 @@ import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper
+import `in`.engineerakash.covid19india.util.ViewUtil.hideKeyboard
 import `in`.engineerakash.covid19india.util.ViewUtil.isViewIsChangingProgrammatically
+import `in`.engineerakash.covid19india.util.ViewUtil.removeViewIsChangingProgrammatically
+import `in`.engineerakash.covid19india.util.ViewUtil.setViewIsChangingProgrammatically
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -21,16 +26,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.gson.JsonParseException
 import org.json.JSONArray
 
-private const val TAG = "ChooseLocationFragment"
-
 class ChooseLocationFragment : Fragment() {
 
     private lateinit var binding: FragmentChooseLocationBinding
 
     private var stateDistrictWiseResponse: ArrayList<StateDistrictWiseResponse> = arrayListOf()
-
-    //private var stateList = arrayListOf<String>()
-    //private var districtList = arrayListOf<String>()
 
     private var stateAdapter: LocationAdapter? = null
     private var districtAdapter: LocationAdapter? = null
@@ -63,12 +63,17 @@ class ChooseLocationFragment : Fragment() {
                     val stateIndexToSelect =
                         stateAdapter?.getPosition(Constant.userSelectedState) ?: -1
                     if (stateIndexToSelect >= 0) {
+
+                        binding.stateAutoCompleteTv.setViewIsChangingProgrammatically()
                         selectedState = Constant.userSelectedState
                         binding.stateAutoCompleteTv.setText(Constant.userSelectedState, true)
+                        binding.stateAutoCompleteTv.removeViewIsChangingProgrammatically()
 
                         Helper.setSelectedState(context, Constant.userSelectedState)
 
                         setDistrict()
+
+                        binding.mapIv.setImageResource(Helper.getMapImageResource(selectedState))
                     }
                 }
             })
@@ -81,22 +86,22 @@ class ChooseLocationFragment : Fragment() {
             binding.districtAutoCompleteTv.setAdapter(districtAdapter)
         }
 
-        binding.stateAutoCompleteTv.onItemClickListener = object : AdapterView.OnItemClickListener {
-            override fun onItemClick(
-                parent: AdapterView<*>?, view: View?, position: Int, id: Long
-            ) {
+        binding.stateAutoCompleteTv.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
                 selectedState = (view as TextView?)?.text.toString()
                 setDistrict()
+
+                binding.districtAutoCompleteTv.post {
+                    binding.districtAutoCompleteTv.requestFocus()
+                }
+
+                binding.mapIv.setImageResource(Helper.getMapImageResource(selectedState))
             }
-        }
 
         binding.districtAutoCompleteTv.onItemClickListener =
-            object : AdapterView.OnItemClickListener {
-                override fun onItemClick(
-                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
-                ) {
-                    selectedDistrict = (view as TextView?)?.text.toString()
-                }
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                selectedDistrict = (view as TextView?)?.text.toString()
+                activity?.hideKeyboard()
             }
 
         if (Constant.userSelectedState.isEmpty() || Constant.userSelectedDistrict.isEmpty())
@@ -114,7 +119,6 @@ class ChooseLocationFragment : Fragment() {
 
         districtAdapter?.setList(getDistrictList(selectedState, stateDistrictWiseResponse))
         binding.districtAutoCompleteTv.setText("")
-        //binding.districtAutoCompleteTv.clearComposingText()
 
         if (Constant.userSelectedDistrict.isNotEmpty()) {
             val districtIndexToSelect =
@@ -172,6 +176,36 @@ class ChooseLocationFragment : Fragment() {
 
             }
         })
+
+        binding.districtAutoCompleteTv.setOnEditorActionListener(object :
+            TextView.OnEditorActionListener {
+            override fun onEditorAction(
+                textView: TextView?, actionId: Int, event: KeyEvent?
+            ): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_DONE || event?.action == KeyEvent.ACTION_DOWN
+                    || event?.keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                    activity.hideKeyboard()
+                    return true
+                }
+                return false
+            }
+        })
+
+        binding.stateAutoCompleteTv.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus && stateAdapter?.isEmpty == false && selectedState.isEmpty())
+                binding.stateAutoCompleteTv.showDropDown()
+            else
+                binding.stateAutoCompleteTv.dismissDropDown()
+        }
+
+        binding.districtAutoCompleteTv.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus && districtAdapter?.isEmpty == false && selectedDistrict.isEmpty())
+                binding.districtAutoCompleteTv.showDropDown()
+            else
+                binding.districtAutoCompleteTv.dismissDropDown()
+        }
+
     }
 
     private fun initComponent() {
