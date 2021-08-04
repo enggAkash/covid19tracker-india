@@ -42,11 +42,13 @@
 
             <TextView
                 android:id="@+id/totalCasesInUserStateTitleTv"
+                style="@style/HeadingTextSmallSizeSemiBoldFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
+                android:textColor="@color/heading_text_color"
                 android:textSize="13sp"
                 tools:text="#Total Cases in Delhi" />
 
@@ -56,7 +58,7 @@
                 android:layout_marginStart="@dimen/main_activity_margin_start"
                 android:layout_marginEnd="@dimen/main_activity_margin_end"
                 android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="@dimen/margin_medium_minus">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -65,21 +67,23 @@
                     android:orientation="vertical"
                     android:padding="5dp">
 
+                    <TextView
+                        android:id="@+id/defaultStateNameTv"
+                        style="@android:style/TextAppearance.DeviceDefault.Large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/dp_2"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        tools:text="Delhi" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/defaultStateNameTv"
-                            style="@android:style/TextAppearance.DeviceDefault.Large"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold"
-                            tools:text="Delhi" />
 
                         <TextView
                             android:id="@+id/totalConfirmedCasesTv"
@@ -131,7 +135,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:foreground="?android:selectableItemBackground"
-                            android:padding="@dimen/dp_2"
+                            android:padding="@dimen/margin_smallest"
                             android:text="Change Location"
                             android:textSize="12sp" />
 
@@ -142,7 +146,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="end"
-                            android:padding="@dimen/dp_2"
+                            android:padding="@dimen/margin_smallest"
                             android:textSize="12sp"
                             tools:text="Last Updated: 8 Apr 2019 12:24 AM" />
 
@@ -164,11 +168,13 @@
 
             <TextView
                 android:id="@+id/mostAffectedDistrictTitleTv"
+                style="@style/HeadingTextSmallSizeSemiBoldFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
+                android:textColor="@color/heading_text_color"
                 android:textSize="13sp"
                 tools:text="#Most Affected District in Delhi" />
 
@@ -234,11 +240,13 @@
 
             <TextView
                 android:id="@+id/mostAffectedStateTitleTv"
+                style="@style/HeadingTextSmallSizeSemiBoldFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
+                android:textColor="@color/heading_text_color"
                 android:textSize="13sp"
                 tools:text="#Most Affected States &amp; UT in India" />
 
