@@ -44,4 +44,18 @@ object Constant {
 
     @JvmField
     var SELECTED_DISTRICT_SP_KEY = "selected_district_key"
+
+    @JvmField
+    var NOTIFICATION_ID_SP_KEY = "notification_id_key"
+
+    @JvmField
+    var PERIODIC_TASK_ID_SP_KEY = "periodic_task_id_key"
+}
+
+object NotificationChannelName {
+    const val DEFAULT = "default"
+    const val COVID_REPORT = "covid_report"
+    const val COVID_RISING_NEARBY = "covid_rising_nearby"
+    const val BUY_FROM_HOME = "buy_from_home"
+    const val PROMOTIONAL = "promotional"
 }

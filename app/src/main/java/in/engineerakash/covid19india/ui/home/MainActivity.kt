@@ -3,11 +3,11 @@ package `in`.engineerakash.covid19india.ui.home
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ActivityMainBinding
 import `in`.engineerakash.covid19india.util.Constant
+import `in`.engineerakash.covid19india.util.NotificationHelper
 import `in`.engineerakash.covid19india.util.ViewUtil.fadeIn
 import `in`.engineerakash.covid19india.util.ViewUtil.fadeout
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -107,9 +107,21 @@ class MainActivity : AppCompatActivity() {
         actionBar.setDisplayHomeAsUpEnabled(mDrawerLayout != null || !isStartDestination);
         setActionBarUpIndicator(mDrawerLayout != null && isStartDestination);
     }*/
+
     override fun onSupportNavigateUp(): Boolean {
         return navController!!.navigateUp() || super.onSupportNavigateUp()
     }
 
+/*
+    override fun onResume() {
+        super.onResume()
+        val notificationText = getString(R.string.covid_report, 4003, 80423, 808744)
 
+        NotificationHelper.createNotification(
+            this,
+            "covid_report_id", "Daily Covid Report",
+            notificationText, R.drawable.ic_notification, notificationText
+        )
+    }
+*/
 }

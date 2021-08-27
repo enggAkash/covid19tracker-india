@@ -460,6 +460,34 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
             .getString(Constant.SELECTED_DISTRICT_SP_KEY, "") ?: ""
     }
 
+    fun saveNotificationId(context: Context, notificationId: Int) {
+        context
+            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            .edit()
+            .putInt(Constant.NOTIFICATION_ID_SP_KEY, notificationId)
+            .apply()
+    }
+
+    fun getNotificationId(context: Context): Int {
+        return context
+            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            .getInt(Constant.NOTIFICATION_ID_SP_KEY, 0)
+    }
+
+    fun savePeriodicId(context: Context, periodicTaskId: String) {
+        context
+            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            .edit()
+            .putString(Constant.PERIODIC_TASK_ID_SP_KEY, periodicTaskId)
+            .apply()
+    }
+
+    fun getPeriodicId(context: Context): String {
+        return context
+            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            .getString(Constant.PERIODIC_TASK_ID_SP_KEY, "") ?: ""
+    }
+
     fun getMapImageResource(stateName: String?): Int {
         return when (stateName) {
             "Andaman and Nicobar Islands" -> R.drawable.andman
