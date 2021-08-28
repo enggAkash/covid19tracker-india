@@ -17,7 +17,7 @@
         <activity
             android:name=".ui.AboutAppActivity"
             android:exported="true"
-            android:label="About Covid19 Tracker 🇮🇳" />
+            android:label="About App" />
         <activity
             android:name=".ui.home.MainActivity"
             android:exported="true"

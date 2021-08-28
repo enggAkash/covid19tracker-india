@@ -39,7 +39,7 @@
         android:autoLink="web"
         android:background="@android:color/white"
         android:padding="@dimen/margin_smallest"
-        android:text="See Health Ministry, Government of Indian Guidelines ( https://www.mohfw.gov.in/pdf/RevisedguidelinesforHomeIsolationofmildasymptomaticCOVID19cases.pdf )"
+        android:text="See Health Ministry, Government of India Guidelines ( https://www.mohfw.gov.in/pdf/RevisedguidelinesforHomeIsolationofmildasymptomaticCOVID19cases.pdf )"
         android:textColorLink="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/endGuide"

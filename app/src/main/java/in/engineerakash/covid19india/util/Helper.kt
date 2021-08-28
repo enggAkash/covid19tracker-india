@@ -98,12 +98,6 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
         }*/
     }
 
-    fun phoneSupport(context: Context) {
-        val phone = Constant.SUPPORT_PHONE
-        val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phone"))
-        context.startActivity(callIntent)
-    }
-
     @JvmStatic
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager =
@@ -253,13 +247,6 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
         )
         shareIntent.type = "text/plain"
         context.startActivity(shareIntent)
-    }
-
-    fun isSelfUrl(url: String?): Boolean {
-        val uri = Uri.parse(Constant.DOMAIN)
-        return if (uri.host != null && url != null) {
-            url.toLowerCase(Locale.ENGLISH).contains(uri.host!!.toLowerCase(Locale.ENGLISH))
-        } else false
     }
 
     fun handlePhoneCallLink(context: Context, url: String?) {

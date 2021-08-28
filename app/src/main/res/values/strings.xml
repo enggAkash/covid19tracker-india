@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Covid19 Tracker 🇮🇳</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="select_state_ut">Select State/UT:</string>
     <string name="type_to_choose_state">Type to Choose State</string>
     <string name="places_with_case">Places with case:</string>
@@ -9,7 +8,6 @@
     <string name="save">Save</string>
 
     <!--Notification Channel Strings-->
-
     <string-array name="notification_channel_name_list">
         <item>Default</item>
         <item>Covid Report</item>
@@ -43,7 +41,22 @@
     </integer-array>
 
     <string name="covid_report">There is %d cases in your district, %d cases in your state, %d cases in India in Last 24 hour. Be safe, be smart, be kind \uD83D\uDE37</string>
+    <!--END: Notification Channel Strings-->
+
     <string name="about_covid19india_title_text">We get our data from <u>covid19india.org</u></string>
 
-    <!--END: Notification Channel Strings-->
+    <string name="app_desc_text">
+        This app helps you to track Covid19 in indian and it\'s different states and districts.
+        This app will give you report daily about covid cases in your nearby area.&lt;br&gt;
+        This app will tell you different way to prevent from covid and if unfortunately if you got covid, it will tell you different ways to cure.&lt;br&gt;&lt;br&gt;
+        The suggestion and guidelines is taken from Health Ministry, Government of India&lt;br&gt;
+        There is also a section to buy essential things if required from the comfort of your home.
+    </string>
+
+    <string name="share_app_description">Track Covid19 case in the india and stay updated.
+        Buy essentials from home. Get Daily Report about covid cases in your area.
+         Different ways to prevent and cure covid from official sources of Health Ministry, Government of India
+        \n\nDownload %s\n
+        https://play.google.com/store/apps/details?id=%s
+    </string>
 </resources>

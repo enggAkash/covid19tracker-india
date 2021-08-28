@@ -6,6 +6,7 @@ import `in`.engineerakash.covid19india.ui.AboutAppActivity
 import `in`.engineerakash.covid19india.ui.bg_process.LatestReportWorker
 import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Helper
+import `in`.engineerakash.covid19india.util.IntentUtil
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -58,11 +59,11 @@ class SettingsFragment : Fragment() {
         }
 
         binding.shareAppTitleTv.setOnClickListener {
-
+            IntentUtil.shareApp(context)
         }
 
         binding.contactTitleTv.setOnClickListener {
-
+            IntentUtil.contactAppDeveloper(context)
         }
 
         binding.aboutAppTitleTv.setOnClickListener {

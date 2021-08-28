@@ -1,16 +1,10 @@
 package `in`.engineerakash.covid19india.util
 
 object Constant {
-    //    public static final String DOMAIN = "https://billin.in/";
-    const val DOMAIN = "http://192.168.0.110/billin_website/index.php"
-        const val SUPPORT_EMAIL = "support@billin.in"
-    const val SUPPORT_PHONE = "+91 9999361953"
 
-    //    public static final String API_ENDPOINT = "https://api.billin.in/api/index.php";
-    const val API_ENDPOINT = "http://192.168.0.110/billin_api/api/index.php"
-    val PARAM_KEYS = arrayOf("device_type")
-    val PARAM_VALUES = arrayOf("android")
-    const val NO_EMAIL_CLIENT_MSG = "No email client found."
+    const val SUPPORT_EMAIL = "developer.akashkumar@gmail.com"
+
+    const val NO_EMAIL_CLIENT_MSG = "No email app found."
 
     /*will show top most affected states(which has large number of confirmed cases*/
     const val MOST_AFFECTED_STATES_COUNT = 5

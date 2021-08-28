@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".ui.AboutAppActivity">
 
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toTopOf="@id/topGuide" />
+
+    <TextView
+        android:id="@+id/appName"
+        style="@style/HeadingTextMediumSizeMediumFont"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toBottomOf="@id/appIcon" />
+
+    <TextView
+        android:id="@+id/appDescTv"
+        style="@style/NonHeadingTextMediumSizeRegularFont"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:background="@drawable/app_description_bg"
+        android:padding="@dimen/margin_small"
+        android:textColor="#4B4B4B"
+        app:layout_constraintBottom_toTopOf="@id/appVersion"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        app:layout_constraintTop_toBottomOf="@id/appName"
+        app:layout_constraintVertical_bias="0"
+        tools:text="@string/app_desc_text" />
+
+    <TextView
+        android:id="@+id/appVersion"
+        style="@style/NonHeadingTextMediumSizeSemiBoldFont"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@id/bottomGuide"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
+        tools:text="App Version 1.0.0" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="10dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
