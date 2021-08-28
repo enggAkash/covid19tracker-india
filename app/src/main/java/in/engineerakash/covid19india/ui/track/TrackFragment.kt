@@ -7,6 +7,7 @@ import `in`.engineerakash.covid19india.enums.TotalOrDaily
 import `in`.engineerakash.covid19india.pojo.*
 import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
+import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper.parseDate
 import android.os.Bundle
@@ -42,6 +43,21 @@ class TrackFragment : Fragment() {
 
     private val args: TrackFragmentArgs by navArgs<TrackFragmentArgs>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        navController = this.findNavController()
+
+        //todo check if location is selected(Constant.locationIsSelectedByUser), if not redirect them to choose location screen
+        if (Constant.userSelectedState.isEmpty() || Constant.userSelectedDistrict.isEmpty()) {
+            navController.navigate(
+                TrackFragmentDirections.actionTrackFragmentToChooseLocationFragmentWithClearBackstack(
+                    ChooseLocationStartedFrom.TRACK_FRAG
+                )
+            )
+        }
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +75,6 @@ class TrackFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = this.findNavController()
 
         val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(activity!!.application) }
 
@@ -160,7 +175,11 @@ class TrackFragment : Fragment() {
         }
 
         binding.changeLocationTv.setOnClickListener {
-            navController.navigate(TrackFragmentDirections.actionTrackFragmentToChooseLocationFragment())
+            navController.navigate(
+                TrackFragmentDirections.actionTrackFragmentToChooseLocationFragment(
+                    ChooseLocationStartedFrom.TRACK_FRAG
+                )
+            )
         }
     }
 

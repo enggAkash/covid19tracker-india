@@ -8,9 +8,11 @@ import `in`.engineerakash.covid19india.util.ViewUtil.fadeIn
 import `in`.engineerakash.covid19india.util.ViewUtil.fadeout
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
@@ -51,10 +53,14 @@ class MainActivity : AppCompatActivity() {
                 arguments: Bundle?
             ) {
 
-                if (destination.id == R.id.chooseLocationFragment) {
-                    binding.bottomNavigation.fadeout()
-                } else {
-                    binding.bottomNavigation.fadeIn()
+                if (destination.id == R.id.chooseLocationFragment && binding.bottomNavigation.isVisible) {
+                    //binding.bottomNavigation.fadeout()
+                    binding.bottomNavigation.visibility = View.GONE
+                }
+
+                if (destination.id != R.id.chooseLocationFragment && !binding.bottomNavigation.isVisible) {
+                    //binding.bottomNavigation.fadeIn()
+                    binding.bottomNavigation.visibility = View.VISIBLE
                 }
             }
         })
@@ -62,13 +68,6 @@ class MainActivity : AppCompatActivity() {
         // do not remove this, otherwise setOnNavigationItemSelectedListener will be called on reselection
         binding.bottomNavigation.setOnNavigationItemReselectedListener {}
 
-        //todo check if location is selected(Constant.locationIsSelectedByUser), if not redirect them to choose location screen
-        if (Constant.userSelectedState.isEmpty() || Constant.userSelectedDistrict.isEmpty()) {
-            navController!!.navigate(R.id.chooseLocationFragment)
-
-        } else {
-
-        }
     }
 
     fun changeThemeColor(defaultColor: Boolean, color: Int) {

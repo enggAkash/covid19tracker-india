@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Covid19 Tracker🇮🇳</string>
+    <string name="app_name">Covid19 Tracker 🇮🇳</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_state_ut">Select State/UT:</string>
     <string name="type_to_choose_state">Type to Choose State</string>
     <string name="places_with_case">Places with case:</string>

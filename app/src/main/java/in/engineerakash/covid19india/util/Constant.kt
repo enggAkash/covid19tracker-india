@@ -59,3 +59,7 @@ object NotificationChannelName {
     const val BUY_FROM_HOME = "buy_from_home"
     const val PROMOTIONAL = "promotional"
 }
+
+enum class ChooseLocationStartedFrom {
+    TRACK_FRAG, SETTING_FRAG
+}

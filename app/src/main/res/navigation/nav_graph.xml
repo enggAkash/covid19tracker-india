@@ -27,6 +27,12 @@
             android:id="@+id/action_trackFragment_to_chooseLocationFragment"
             app:destination="@id/chooseLocationFragment" />
 
+        <action
+            android:id="@+id/action_trackFragment_to_chooseLocationFragment_with_clear_backstack"
+            app:destination="@id/chooseLocationFragment"
+            app:popUpTo="@id/trackFragment"
+            app:popUpToInclusive="true" />
+
         <argument
             android:name="refresh_data"
             android:defaultValue="false"
@@ -100,7 +106,7 @@
         app:exitAnim="@anim/exit_to_left"
         app:popEnterAnim="@anim/enter_from_left"
         app:popExitAnim="@anim/exit_to_right"
-        tools:layout="@layout/fragment_settings" >
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settingsFragment_to_chooseLocationFragment"
             app:destination="@id/chooseLocationFragment" />
@@ -111,6 +117,12 @@
         android:name="in.engineerakash.covid19india.ui.location.ChooseLocationFragment"
         android:label="fragment_choose_location"
         tools:layout="@layout/fragment_choose_location">
+
+        <argument
+            app:nullable="false"
+            android:name="choose_location_started_from"
+            app:argType="in.engineerakash.covid19india.util.ChooseLocationStartedFrom" />
+
         <action
             android:id="@+id/action_chooseLocationFragment_to_trackFragment"
             app:destination="@id/trackFragment"

@@ -1,9 +1,12 @@
 package `in`.engineerakash.covid19india.ui.location
 
+import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentChooseLocationBinding
 import `in`.engineerakash.covid19india.pojo.StateDistrictWiseResponse
+import `in`.engineerakash.covid19india.ui.home.MainActivity
 import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
+import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper
 import `in`.engineerakash.covid19india.util.ViewUtil.hideKeyboard
@@ -20,9 +23,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.gson.JsonParseException
 import org.json.JSONArray
 
@@ -37,6 +42,8 @@ class ChooseLocationFragment : Fragment() {
 
     private var selectedState = ""
     private var selectedDistrict = ""
+
+    val args by navArgs<ChooseLocationFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -154,9 +161,17 @@ class ChooseLocationFragment : Fragment() {
         }
 
         binding.skipBtn.setOnClickListener {
-            val gotoTrackFragment =
-                ChooseLocationFragmentDirections.actionChooseLocationFragmentToTrackFragment()
-            this.findNavController().navigate(gotoTrackFragment)
+
+            if (args.chooseLocationStartedFrom == ChooseLocationStartedFrom.SETTING_FRAG) {
+                activity?.onBackPressed()
+
+            } else {
+                val gotoTrackFragment =
+                    ChooseLocationFragmentDirections.actionChooseLocationFragmentToTrackFragment()
+                this.findNavController().navigate(gotoTrackFragment)
+
+            }
+
         }
 
         binding.stateAutoCompleteTv.addTextChangedListener(object : TextWatcher {
@@ -209,6 +224,8 @@ class ChooseLocationFragment : Fragment() {
     }
 
     private fun initComponent() {
+        (activity as AppCompatActivity?)?.supportActionBar?.hide()
+
         if (Constant.userSelectedState.isEmpty() || Constant.userSelectedDistrict.isEmpty())
             binding.skipBtn.visibility = View.GONE
         else
@@ -254,5 +271,14 @@ class ChooseLocationFragment : Fragment() {
         }
 
         return districtInThisStateList
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.app_name)
+        (activity as AppCompatActivity?)?.supportActionBar?.subtitle = ""
+        (activity as MainActivity?)?.changeThemeColor(true, 0)
+
     }
 }

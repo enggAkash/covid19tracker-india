@@ -4,6 +4,7 @@ import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentSettingsBinding
 import `in`.engineerakash.covid19india.ui.AboutAppActivity
 import `in`.engineerakash.covid19india.ui.bg_process.LatestReportWorker
+import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Helper
 import android.content.Intent
 import android.os.Bundle
@@ -49,7 +50,11 @@ class SettingsFragment : Fragment() {
         }
 
         binding.changeLocationTitleTv.setOnClickListener {
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToChooseLocationFragment())
+            findNavController().navigate(
+                SettingsFragmentDirections.actionSettingsFragmentToChooseLocationFragment(
+                    ChooseLocationStartedFrom.SETTING_FRAG
+                )
+            )
         }
 
         binding.shareAppTitleTv.setOnClickListener {
