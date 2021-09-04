@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AboutAppActivity">
-
+    tools:context=".ui.settings.AboutAppActivity">
 
     <ImageView
         android:id="@+id/appIcon"
@@ -35,7 +34,7 @@
         android:layout_marginTop="@dimen/margin_small"
         android:background="@drawable/app_description_bg"
         android:padding="@dimen/margin_small"
-        android:textColor="#4B4B4B"
+        android:textColor="@color/description_text_color"
         app:layout_constraintBottom_toTopOf="@id/appVersion"
         app:layout_constraintEnd_toEndOf="@id/endGuide"
         app:layout_constraintHeight_default="wrap"

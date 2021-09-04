@@ -1,4 +1,4 @@
-package `in`.engineerakash.covid19india.ui
+package `in`.engineerakash.covid19india.ui.settings
 
 import `in`.engineerakash.covid19india.BuildConfig
 import `in`.engineerakash.covid19india.R

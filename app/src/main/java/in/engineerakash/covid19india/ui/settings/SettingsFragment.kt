@@ -2,7 +2,6 @@ package `in`.engineerakash.covid19india.ui.settings
 
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentSettingsBinding
-import `in`.engineerakash.covid19india.ui.AboutAppActivity
 import `in`.engineerakash.covid19india.ui.bg_process.LatestReportWorker
 import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Helper
