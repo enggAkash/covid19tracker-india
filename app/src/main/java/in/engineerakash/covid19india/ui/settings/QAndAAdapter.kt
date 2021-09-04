@@ -3,6 +3,7 @@ package `in`.engineerakash.covid19india.ui.settings
 import `in`.engineerakash.covid19india.databinding.ItemQAndABinding
 import `in`.engineerakash.covid19india.pojo.QAndA
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,10 +28,22 @@ class QAndAAdapter(var qAnAList: ArrayList<QAndA>) : RecyclerView.Adapter<QAndAA
     inner class QAndAVh(var itemBinding: ItemQAndABinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
+        init {
+            itemBinding.questionTv.setOnClickListener {
+                if (itemBinding.answerBody.tag == "COLLAPSED") {
+                    itemBinding.answerBody.visibility = View.VISIBLE
+                    itemBinding.answerBody.tag = "EXPANDED"
+                } else {
+                    itemBinding.answerBody.visibility = View.GONE
+                    itemBinding.answerBody.tag = "COLLAPSED"
+                }
+            }
+        }
 
         fun bind(position: Int) {
             itemBinding.questionTv.text = qAnAList[position].question
             itemBinding.answerTv.text = qAnAList[position].answer
+            itemBinding.answerBody.tag = "COLLAPSED"
         }
 
     }

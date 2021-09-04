@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/app_description_bg_color">
+    android:layout_margin="@dimen/margin_smallest"
+    android:background="@drawable/q_and_a_item_bg">
 
     <TextView
         android:id="@+id/questionTv"
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_small"
         android:drawableEnd="@drawable/ic_plus"
+        android:foreground="?attr/selectableItemBackground"
         android:paddingStart="@dimen/margin_small"
         android:paddingEnd="@dimen/margin_small"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoLink="all"
+            android:textColorLink="@color/hyperlink_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

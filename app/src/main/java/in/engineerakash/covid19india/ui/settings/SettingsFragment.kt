@@ -46,7 +46,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.aboutCovid19IndiaTitleTv.setOnClickListener {
-
+            startActivity(Intent(context, AboutCovid19OrgActivity::class.java))
         }
 
         binding.changeLocationTitleTv.setOnClickListener {
