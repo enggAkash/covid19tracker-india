@@ -81,9 +81,9 @@
             official (CM, Health M) handles, PBI, Press Trust of India, ANI reports. These are generally more recent.</item>
         <item>All the data is available through an API for further analysis and development here : api.covid19india.org</item>
         <item>covid19india.org are a group of dedicated volunteers who curate and verify the data coming from several sources.
-            covid19india.org extracts the details, like a patient's relationship with other patients to identify local and community transmissions,
+            covid19india.org extracts the details, like a patient\'s relationship with other patients to identify local and community transmissions,
             travel history and status. covid19india.org never collects or expose any personally identifiable data regarding the patients.</item>
-        <item>Because it affects all of us. Today it's someone else who is getting infected; tomorrow it could be us.
+        <item>Because it affects all of us. Today it\'s someone else who is getting infected; tomorrow it could be us.
             We need to prevent the spread of this virus.
             We need to document the data so that people with knowledge can use this data to make informed decisions.</item>
         <item>No, this app only using api of covid19india.org</item>

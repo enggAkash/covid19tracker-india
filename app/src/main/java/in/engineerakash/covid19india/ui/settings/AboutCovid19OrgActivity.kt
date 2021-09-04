@@ -29,11 +29,11 @@ class AboutCovid19OrgActivity : AppCompatActivity() {
     private fun getQAndAData(): ArrayList<QAndA> {
         val qAndAList = arrayListOf<QAndA>()
 
-        /*val questionArray: Array<String> = resources.getStringArray(R.array.qana_questions_list)
+        val questionArray: Array<String> = resources.getStringArray(R.array.qana_questions_list)
         val answerArray: Array<String> = resources.getStringArray(R.array.qana_answers_list)
 
         for ((index, question) in questionArray.withIndex())
-            qAndAList.add(QAndA(question, answerArray[index]))*/
+            qAndAList.add(QAndA(question, answerArray[index]))
 
         return qAndAList
     }
