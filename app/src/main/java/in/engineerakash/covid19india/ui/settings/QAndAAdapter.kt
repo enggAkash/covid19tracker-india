@@ -1,10 +1,12 @@
 package `in`.engineerakash.covid19india.ui.settings
 
+import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ItemQAndABinding
 import `in`.engineerakash.covid19india.pojo.QAndA
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class QAndAAdapter(var qAnAList: ArrayList<QAndA>) : RecyclerView.Adapter<QAndAAdapter.QAndAVh>() {
@@ -32,9 +34,13 @@ class QAndAAdapter(var qAnAList: ArrayList<QAndA>) : RecyclerView.Adapter<QAndAA
             itemBinding.questionTv.setOnClickListener {
                 if (itemBinding.answerBody.tag == "COLLAPSED") {
                     itemBinding.answerBody.visibility = View.VISIBLE
+
+                    itemBinding.questionTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_minus, 0)
                     itemBinding.answerBody.tag = "EXPANDED"
                 } else {
                     itemBinding.answerBody.visibility = View.GONE
+
+                    itemBinding.questionTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_plus, 0)
                     itemBinding.answerBody.tag = "COLLAPSED"
                 }
             }
@@ -43,6 +49,8 @@ class QAndAAdapter(var qAnAList: ArrayList<QAndA>) : RecyclerView.Adapter<QAndAA
         fun bind(position: Int) {
             itemBinding.questionTv.text = qAnAList[position].question
             itemBinding.answerTv.text = qAnAList[position].answer
+
+            itemBinding.questionTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_plus, 0)
             itemBinding.answerBody.tag = "COLLAPSED"
         }
 

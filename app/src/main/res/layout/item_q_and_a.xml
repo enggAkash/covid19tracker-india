@@ -12,11 +12,12 @@
         style="@style/NonHeadingTextMediumSizeSemiBoldFont"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
-        android:drawableEnd="@drawable/ic_plus"
-        android:foreground="?attr/selectableItemBackground"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:paddingStart="@dimen/margin_small"
+        android:paddingTop="@dimen/margin_small"
         android:paddingEnd="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small"
+        app:drawableEndCompat="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,11 +28,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_smallest"
         android:layout_marginEnd="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
         android:background="@drawable/answer_body_bg"
         android:padding="@dimen/margin_smallest"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/questionTv"
@@ -51,10 +53,5 @@
             tools:text="This is the Sample Answer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.legacy.widget.Space
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_small"
-        app:layout_constraintTop_toBottomOf="@id/answerBody" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

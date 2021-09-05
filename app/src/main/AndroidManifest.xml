@@ -16,11 +16,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.settings.AboutCovid19OrgActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/about_covid19india" />
         <activity
             android:name=".ui.settings.AboutAppActivity"
             android:exported="true"
-            android:label="About App" />
+            android:label="@string/about_app" />
         <activity
             android:name=".ui.home.MainActivity"
             android:exported="true"

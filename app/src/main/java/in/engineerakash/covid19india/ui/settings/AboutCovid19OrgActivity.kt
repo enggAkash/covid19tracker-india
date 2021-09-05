@@ -4,6 +4,7 @@ import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ActivityAboutCovid19OrgBinding
 import `in`.engineerakash.covid19india.pojo.QAndA
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 
 class AboutCovid19OrgActivity : AppCompatActivity() {
@@ -20,10 +21,11 @@ class AboutCovid19OrgActivity : AppCompatActivity() {
     }
 
     private fun initComponent() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
 
         val qAndAAdapter = QAndAAdapter(getQAndAData())
         binding.qAndARv.adapter = qAndAAdapter
-
     }
 
     private fun getQAndAData(): ArrayList<QAndA> {
@@ -37,4 +39,14 @@ class AboutCovid19OrgActivity : AppCompatActivity() {
 
         return qAndAList
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
 }
