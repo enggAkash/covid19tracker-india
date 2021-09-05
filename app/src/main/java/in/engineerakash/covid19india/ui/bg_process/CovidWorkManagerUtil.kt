@@ -49,7 +49,7 @@ object CovidWorkManagerUtil {
         )
 
         val periodicWorkRequest =
-            PeriodicWorkRequestBuilder<LatestReportWorker>(15, TimeUnit.MINUTES)
+            PeriodicWorkRequestBuilder<LatestReportWorker>(24, TimeUnit.HOURS)
                 .setConstraints(fetchReportConstraints)
                 .setInitialDelay(totalInitialDelayInMinute.toLong(), TimeUnit.MINUTES)
                 .build()

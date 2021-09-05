@@ -9,13 +9,13 @@ class District(
     @SerializedName("name")
     var name: String,
 
-    @SerializedName("confirmed")
-    var confirmed: Int,
-
-    @SerializedName("lastupdatedtime")
-    var lastUpdateTime: String,
-
     @SerializedName("delta")
-    var delta: DistrictDelta?
+    var delta: Delta?,
+
+    @SerializedName("meta")
+    var meta: Meta?,
+
+    @SerializedName("total")
+    var total: Total?
 
 ) : Parcelable

@@ -18,6 +18,8 @@ object Constant {
     const val COVID_REPORT_HOUR = 8 // 8AM
     const val COVID_REPORT_MINUTE = 0 // 8:00AM
 
+    val stateCodeNameMap = HashMap<String, String>()
+
     @JvmField
     var userSelectedCountry = "India"
 

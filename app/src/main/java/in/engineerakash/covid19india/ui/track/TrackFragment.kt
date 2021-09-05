@@ -363,18 +363,23 @@ class TrackFragment : Fragment() {
                 break
             }
         }
-        var districtList: ArrayList<District> = ArrayList<District>()
-        if (userSelectedState != null) districtList = userSelectedState.districtArrayList
-        var confirmed = 0
-        val lastUpdatedTime = ""
-        var deltaConfirmed = 0
-        for (district in districtList) {
-            confirmed += district.confirmed
-            deltaConfirmed += district.delta?.confirmed ?: 0
-        }
-        val districtDelta = DistrictDelta(deltaConfirmed)
+
         districtObjectTotal.add(
-            District("Total", confirmed, lastUpdatedTime, districtDelta)
+            District(
+                "Total",
+                Delta(
+                    userSelectedState?.delta?.confirmed, userSelectedState?.delta?.deceased,
+                    userSelectedState?.delta?.recovered
+                ),
+                Meta(
+                    userSelectedState?.meta?.date, userSelectedState?.meta?.lastUpdated,
+                    userSelectedState?.meta?.population
+                ),
+                Total(
+                    userSelectedState?.total?.confirmed, userSelectedState?.total?.deceased,
+                    userSelectedState?.total?.recovered
+                )
+            )
         )
         return districtObjectTotal
     }
@@ -397,7 +402,7 @@ class TrackFragment : Fragment() {
 
         // Sort District according to confirmed cases
         districtList.sortWith { o1, o2 -> // descending
-            o2.confirmed - o1.confirmed
+            (o2.total?.confirmed ?: 0) - (o1.total?.confirmed ?: 0)
         }
         if (districtList.size >= Constant.MOST_AFFECTED_DISTRICT_COUNT) {
             // if district list is greater than the data count to show, then its perfect, add the required subset

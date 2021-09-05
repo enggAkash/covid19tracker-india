@@ -7,6 +7,8 @@ import `in`.engineerakash.covid19india.util.Helper
 import `in`.engineerakash.covid19india.util.NotificationHelper
 import android.app.Application
 import android.util.Log
+import com.google.gson.JsonParseException
+import org.json.JSONArray
 
 private const val TAG = "CovidApplication"
 class CovidApplication : Application() {
@@ -27,6 +29,22 @@ class CovidApplication : Application() {
 
             CovidWorkManagerUtil.createPeriodicTask(this)
         }
+
+
+        val stateJsonFile = Helper.readAssetFile(this, Constant.stateJsonAssetName)
+
+        try {
+            val rootJa = JSONArray(stateJsonFile)
+
+            Constant.stateCodeNameMap.clear()
+            for (i in 0 until rootJa.length()) {
+                val stateJo = rootJa.getJSONObject(i)
+                Constant.stateCodeNameMap[stateJo.getString("code")] = stateJo.getString("name")
+            }
+        } catch (e: JsonParseException) {
+            e.printStackTrace()
+        }
+
     }
 
 }

@@ -33,6 +33,7 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
         return DistrictWiseVH(binding)
     }
 
+
     override fun onBindViewHolder(holder: DistrictWiseVH, position: Int) {
 
         /*if (position == 0) {
@@ -61,10 +62,10 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
             val data: District = list[position]
 
             // show data
-            holder.binding.districtNameTv.setText(data.name)
-            holder.binding.districtConfirmedTv.setText(data.confirmed.toString())
+            holder.binding.districtNameTv.text = data.name
+            holder.binding.districtConfirmedTv.text = (data.total?.confirmed ?: 0).toString()
             holder.binding.districtLastUpdatedTv.text =
-                if (data.lastUpdateTime.isEmpty()) "-" else data.lastUpdateTime
+                if (data.meta?.lastUpdated.isNullOrEmpty()) "-" else data.meta?.lastUpdated
             if (Constant.userSelectedDistrict.trim { it <= ' ' }
                     .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
                 Constant.locationIsSelectedByUser

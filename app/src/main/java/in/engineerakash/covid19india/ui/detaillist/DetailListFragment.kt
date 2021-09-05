@@ -25,7 +25,7 @@ class DetailListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val detailListFragmentArgs : DetailListFragmentArgs by navArgs()
+        val detailListFragmentArgs: DetailListFragmentArgs by navArgs()
 
         currentListType = detailListFragmentArgs.listType
         timeSeriesStateWiseResponse = detailListFragmentArgs.timeSeriesDateWiseResponse
@@ -115,7 +115,7 @@ class DetailListFragment : Fragment() {
 
         // Sort District according to confirmed cases
         districtList.sortWith { o1, o2 -> // descending
-            o2.confirmed - o1.confirmed
+            (o2.total?.confirmed ?: 0) - (o1.total?.confirmed ?: 0)
         }
         val mostAffectedDistricts: ArrayList<District> = ArrayList<District>(districtList)
 
@@ -167,18 +167,25 @@ class DetailListFragment : Fragment() {
                 break
             }
         }
-        var districtList: ArrayList<District> = ArrayList<District>()
-        if (userSelectedState != null) districtList = userSelectedState.districtArrayList
-        var confirmed = 0
-        val lastUpdatedTime = ""
-        var deltaConfirmed = 0
-        for (district in districtList) {
-            confirmed += district.confirmed
-            deltaConfirmed += district.delta?.confirmed ?: 0
-        }
-        val districtDelta = DistrictDelta(deltaConfirmed)
+
         districtObjectTotal.add(
-            District("Total", confirmed, lastUpdatedTime, districtDelta)
+            District(
+                "Total",
+                Delta(
+                    userSelectedState?.total?.confirmed,
+                    userSelectedState?.total?.deceased,
+                    userSelectedState?.total?.recovered,
+                ),
+                Meta(
+                    userSelectedState?.meta?.date, userSelectedState?.meta?.lastUpdated,
+                    userSelectedState?.meta?.population
+                ),
+                Total(
+                    userSelectedState?.total?.confirmed, userSelectedState?.total?.deceased,
+                    userSelectedState?.total?.recovered, userSelectedState?.total?.tested,
+                    userSelectedState?.total?.vaccinated1, userSelectedState?.total?.vaccinated2
+                )
+            )
         )
         return districtObjectTotal
     }

@@ -10,7 +10,7 @@ interface CovidService {
     @get:GET("/data.json")
     val timeSeriesAndStateWiseData: Single<ResponseBody>
 
-    @get:GET("/state_district_wise.json")
+    @get:GET("/v4/min/data.min.json")
     val stateDistrictWiseData: Single<ResponseBody>
 
     @POST
