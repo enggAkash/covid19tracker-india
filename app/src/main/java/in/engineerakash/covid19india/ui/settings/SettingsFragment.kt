@@ -2,24 +2,23 @@ package `in`.engineerakash.covid19india.ui.settings
 
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentSettingsBinding
-import `in`.engineerakash.covid19india.ui.bg_process.LatestReportWorker
-import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
-import `in`.engineerakash.covid19india.util.Helper
-import `in`.engineerakash.covid19india.util.IntentUtil
+import `in`.engineerakash.covid19india.ui.bg_process.CovidWorkManagerUtil
+import `in`.engineerakash.covid19india.util.*
+import `in`.engineerakash.covid19india.util.ViewUtil.isViewIsChangingProgrammatically
+import `in`.engineerakash.covid19india.util.ViewUtil.removeViewIsChangingProgrammatically
+import `in`.engineerakash.covid19india.util.ViewUtil.setViewIsChangingProgrammatically
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import java.util.concurrent.TimeUnit
+import java.util.*
 
+private const val TAG = "SettingsFragment"
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
 
@@ -35,13 +34,40 @@ class SettingsFragment : Fragment() {
     }
 
     private fun initComponent() {
+        Log.d(TAG, "initComponent: ")
+
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
-        binding.dailyNotificationRg.setOnCheckedChangeListener { group, checkedId ->
+        val reportFrequency = Helper.getReportFrequency(context)
+
+        if (reportFrequency == CovidReportFrequency.DAILY) {
+            binding.dailyNotificationRg.setViewIsChangingProgrammatically()
+            binding.dailyNotificationRg.check(R.id.dailyNotificationRb)
+            binding.dailyNotificationRg.removeViewIsChangingProgrammatically()
+        } else if (reportFrequency == CovidReportFrequency.NEVER) {
+            binding.dailyNotificationRg.setViewIsChangingProgrammatically()
+            binding.dailyNotificationRg.check(R.id.neverNotificationRb)
+            binding.dailyNotificationRg.removeViewIsChangingProgrammatically()
+        }
+
+        binding.dailyNotificationRg.setOnCheckedChangeListener { radioGroup, checkedId ->
+            Log.d(TAG, "initComponent: ")
+            if (radioGroup.isViewIsChangingProgrammatically())
+                return@setOnCheckedChangeListener
+
             if (checkedId == R.id.dailyNotificationRb) {
+                Log.d(TAG, "initComponent: checkedId Daily")
+
+                Helper.saveReportFrequency(context, CovidReportFrequency.DAILY)
+                CovidWorkManagerUtil.createPeriodicTask(context)
 
             } else if (checkedId == R.id.neverNotificationRb) {
+                Log.d(TAG, "initComponent: checkedId Never")
 
+                Helper.saveReportFrequency(context, CovidReportFrequency.NEVER)
+
+                val lastPeriodicWorkTag = Helper.getPeriodicWorkTag(context)
+                CovidWorkManagerUtil.cancelPeriodicTask(context, lastPeriodicWorkTag)
             }
         }
 
@@ -70,22 +96,4 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    fun createPeriodicTask() {
-        val fetchReportConstraints =
-            Constraints
-                .Builder()
-                .setRequiresBatteryNotLow(true)
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .build()
-
-        val periodicWorkRequest = PeriodicWorkRequestBuilder<LatestReportWorker>(24, TimeUnit.HOURS)
-            .setConstraints(fetchReportConstraints)
-            .build()
-
-        val id = periodicWorkRequest.id.toString()
-        context?.let { Helper.savePeriodicId(it, id) }
-
-        context?.let { WorkManager.getInstance(it).enqueue(periodicWorkRequest) }
-
     }
-}

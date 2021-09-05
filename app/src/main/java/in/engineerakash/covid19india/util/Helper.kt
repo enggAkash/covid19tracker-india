@@ -447,32 +447,46 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
             .getString(Constant.SELECTED_DISTRICT_SP_KEY, "") ?: ""
     }
 
-    fun saveNotificationId(context: Context, notificationId: Int) {
+    fun saveNotificationId(context: Context?, notificationId: Int) {
         context
-            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
-            .edit()
-            .putInt(Constant.NOTIFICATION_ID_SP_KEY, notificationId)
-            .apply()
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.edit()
+            ?.putInt(Constant.NOTIFICATION_ID_SP_KEY, notificationId)
+            ?.apply()
     }
 
-    fun getNotificationId(context: Context): Int {
+    fun getNotificationId(context: Context?): Int {
         return context
-            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
-            .getInt(Constant.NOTIFICATION_ID_SP_KEY, 0)
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.getInt(Constant.NOTIFICATION_ID_SP_KEY, 0) ?: 0
     }
 
-    fun savePeriodicId(context: Context, periodicTaskId: String) {
+    fun savePeriodicWorkTag(context: Context?, periodicTaskId: String) {
         context
-            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
-            .edit()
-            .putString(Constant.PERIODIC_TASK_ID_SP_KEY, periodicTaskId)
-            .apply()
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.edit()
+            ?.putString(Constant.PERIODIC_TASK_TAG_SP_KEY, periodicTaskId)
+            ?.apply()
     }
 
-    fun getPeriodicId(context: Context): String {
+    fun getPeriodicWorkTag(context: Context?): String {
         return context
-            .getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
-            .getString(Constant.PERIODIC_TASK_ID_SP_KEY, "") ?: ""
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.getString(Constant.PERIODIC_TASK_TAG_SP_KEY, "") ?: ""
+    }
+
+    fun saveReportFrequency(context: Context?, frequency: String) {
+        context
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.edit()
+            ?.putString(Constant.REPORT_FREQUENCY_SP_KEY, frequency)
+            ?.apply()
+    }
+
+    fun getReportFrequency(context: Context?): String {
+        return context
+            ?.getSharedPreferences(Constant.DEFAULT_SP_NAME, Context.MODE_PRIVATE)
+            ?.getString(Constant.REPORT_FREQUENCY_SP_KEY, "") ?: ""
     }
 
     fun getMapImageResource(stateName: String?): Int {
