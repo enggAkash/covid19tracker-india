@@ -10,7 +10,6 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,6 +19,7 @@ import okhttp3.ResponseBody
 import java.io.IOException
 
 private const val TAG = "MainViewModel"
+
 class MainViewModel(
     application: Application,
     var disposables: CompositeDisposable = CompositeDisposable()
@@ -32,8 +32,8 @@ class MainViewModel(
         }
     }
 
-    private val timeSeriesStateWiseResponseLiveData: MutableLiveData<TimeSeriesStateWiseResponse> by lazy {
-        MutableLiveData<TimeSeriesStateWiseResponse>().also {
+    private val timeSeriesStateWiseResponseLiveData: MutableLiveData<ArrayList<TimeSeriesStateWiseResponse>> by lazy {
+        MutableLiveData<ArrayList<TimeSeriesStateWiseResponse>>().also {
             //todo check for internet connection
             fetchStateDistrictData()
         }
@@ -46,7 +46,7 @@ class MainViewModel(
         return stateDistrictListLiveData
     }
 
-    fun getTimeSeriesStateWiseResponseLiveData(): LiveData<TimeSeriesStateWiseResponse> {
+    fun getTimeSeriesStateWiseResponseLiveData(): LiveData<ArrayList<TimeSeriesStateWiseResponse>> {
         return timeSeriesStateWiseResponseLiveData
     }
 
@@ -104,10 +104,7 @@ class MainViewModel(
                         Log.d(TAG, "onSuccess: TimeSeriesAndStateWiseData Response: $response")
 
                         val timeSeriesStateWiseResponse =
-                            Gson().fromJson<TimeSeriesStateWiseResponse>(
-                                response,
-                                TimeSeriesStateWiseResponse::class.java
-                            )
+                            JsonExtractor.parseTimeSeriesWiseResponseJson(response)
 
                         timeSeriesStateWiseResponseLiveData.postValue(timeSeriesStateWiseResponse)
 

@@ -8,6 +8,7 @@ import `in`.engineerakash.covid19india.pojo.TimeSeriesData
 import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.Constant
+import `in`.engineerakash.covid19india.util.DateTimeUtil
 import `in`.engineerakash.covid19india.util.Helper
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -199,8 +200,12 @@ class TotalAndDailyGraphFragment : Fragment() {
         val xAxisList = java.util.ArrayList<String>() // bar values of x axis
         val values =
             java.util.ArrayList<BarEntry>() // bar values of y axis; x will be in multiple of 1 harcoded
-        for (timeSeriesData in timeSeriesList) xAxisList.add(
-            timeSeriesData.date.trim { it <= ' ' })
+        for (timeSeriesData in timeSeriesList)
+            xAxisList.add(
+                DateTimeUtil.parseDateTimeToAppsDefaultDateFormat(
+                    timeSeriesData.date.trim { it <= ' ' }, "yyyy-MM-dd"
+                )
+            )
         var tempCount = 0 // it must start with 0
         when (chartType) {
             ChartType.TOTAL_CONFIRMED -> {
@@ -209,8 +214,7 @@ class TotalAndDailyGraphFragment : Fragment() {
                     "#Total Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.totalConfirmed.toFloat()
+                        tempCount++.toFloat(), (timeSeriesData.total?.confirmed ?: 0f).toFloat()
                     )
                 )
             }
@@ -220,8 +224,7 @@ class TotalAndDailyGraphFragment : Fragment() {
                     "#Total Death Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.totalDeceased.toFloat()
+                        tempCount++.toFloat(), (timeSeriesData.total?.deceased ?: 0f).toFloat()
                     )
                 )
             }
@@ -231,8 +234,7 @@ class TotalAndDailyGraphFragment : Fragment() {
                     "#Total Recovered Cases in ${Constant.userSelectedCountry} Timeline"
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
-                        tempCount++.toFloat(),
-                        timeSeriesData.totalRecovered.toFloat()
+                        tempCount++.toFloat(), (timeSeriesData.total?.recovered ?: 0f).toFloat()
                     )
                 )
             }
@@ -243,7 +245,7 @@ class TotalAndDailyGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.dailyConfirmed.toFloat()
+                        (timeSeriesData.delta?.confirmed ?: 0f).toFloat()
                     )
                 )
             }
@@ -254,7 +256,7 @@ class TotalAndDailyGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.dailyDeceased.toFloat()
+                        (timeSeriesData.delta?.deceased ?: 0f).toFloat()
                     )
                 )
             }
@@ -265,7 +267,7 @@ class TotalAndDailyGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.dailyRecovered.toFloat()
+                        (timeSeriesData.delta?.recovered ?: 0f).toFloat()
                     )
                 )
             }

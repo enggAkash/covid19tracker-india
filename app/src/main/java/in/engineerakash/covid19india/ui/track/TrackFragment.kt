@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import java.util.*
 
 private const val TAG = "TrackFragment"
 
@@ -32,8 +31,9 @@ class TrackFragment : Fragment() {
 
     private lateinit var binding: FragmentTrackBinding
 
-    private var timeSeriesStateWiseResponse: TimeSeriesStateWiseResponse =
-        TimeSeriesStateWiseResponse()
+    private var timeSeriesStateWiseResponse: ArrayList<TimeSeriesStateWiseResponse> = arrayListOf()
+    private var countryWideCasesTimeSeries: TimeSeriesStateWiseResponse =
+        TimeSeriesStateWiseResponse(Constant.TOTAL_ITEM_NAME, Constant.TOTAL_ITEM_CODE)
     private var stateDistrictList: ArrayList<StateDistrictWiseResponse> = arrayListOf()
     private lateinit var navController: NavController
 
@@ -93,11 +93,11 @@ class TrackFragment : Fragment() {
 
                 timeSeriesStateWiseResponse = it
 
-                val casesTimeSeriesList: ArrayList<TimeSeriesData> =
-                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+                countryWideCasesTimeSeries =
+                    getCountryWideCasesTimeSeries(timeSeriesStateWiseResponse)
 
                 (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
-                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                    countryWideCasesTimeSeries.timeSeriesList,
                     true
                 )
 
@@ -127,7 +127,7 @@ class TrackFragment : Fragment() {
                 super.onPageSelected(position)
 
                 (totalAndDailyGraphFragmentList[position] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
-                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+                    countryWideCasesTimeSeries.timeSeriesList
                 )
             }
 
@@ -146,7 +146,7 @@ class TrackFragment : Fragment() {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
                     ListType.STATE,
-                    timeSeriesStateWiseResponse,
+                    countryWideCasesTimeSeries,
                     stateDistrictList.toTypedArray()
                 )
             )
@@ -156,7 +156,7 @@ class TrackFragment : Fragment() {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
                     ListType.DISTRICT,
-                    timeSeriesStateWiseResponse,
+                    countryWideCasesTimeSeries,
                     stateDistrictList.toTypedArray()
                 )
             )
@@ -165,7 +165,7 @@ class TrackFragment : Fragment() {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
                     ListType.STATE,
-                    timeSeriesStateWiseResponse,
+                    countryWideCasesTimeSeries,
                     stateDistrictList.toTypedArray()
                 )
             )
@@ -457,7 +457,7 @@ class TrackFragment : Fragment() {
                 navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
                         chartType,
-                        timeSeriesStateWiseResponse,
+                        countryWideCasesTimeSeries,
                         stateDistrictList.toTypedArray()
                     )
                 )
@@ -466,7 +466,7 @@ class TrackFragment : Fragment() {
                 navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
                         chartType,
-                        timeSeriesStateWiseResponse,
+                        countryWideCasesTimeSeries,
                         stateDistrictList.toTypedArray()
                     )
                 )
@@ -475,7 +475,7 @@ class TrackFragment : Fragment() {
                 navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
                         chartType,
-                        timeSeriesStateWiseResponse,
+                        countryWideCasesTimeSeries,
                         stateDistrictList.toTypedArray()
                     )
                 )
@@ -485,7 +485,7 @@ class TrackFragment : Fragment() {
                 navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
                         chartType,
-                        timeSeriesStateWiseResponse,
+                        countryWideCasesTimeSeries,
                         stateDistrictList.toTypedArray()
                     )
                 )
@@ -494,7 +494,7 @@ class TrackFragment : Fragment() {
                 navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
                         chartType,
-                        timeSeriesStateWiseResponse,
+                        countryWideCasesTimeSeries,
                         stateDistrictList.toTypedArray()
                     )
                 )
@@ -503,12 +503,30 @@ class TrackFragment : Fragment() {
                 navController.navigate(
                     TrackFragmentDirections.actionTrackFragmentToDetailGraphFragment(
                         chartType,
-                        timeSeriesStateWiseResponse,
+                        countryWideCasesTimeSeries,
                         stateDistrictList.toTypedArray()
                     )
                 )
             }
         }
+    }
+
+    private fun getCountryWideCasesTimeSeries(timeSeriesList: ArrayList<TimeSeriesStateWiseResponse>): TimeSeriesStateWiseResponse {
+
+        val countryWideCaseTimeSeries =
+            TimeSeriesStateWiseResponse(Constant.TOTAL_ITEM_NAME, Constant.TOTAL_ITEM_CODE)
+
+        for (timeSeriesData in timeSeriesList) {
+            if (
+                timeSeriesData.code.equals(Constant.TOTAL_ITEM_CODE, true) ||
+                timeSeriesData.name.equals(Constant.TOTAL_ITEM_NAME, true)
+            ) {
+                countryWideCaseTimeSeries.timeSeriesList = timeSeriesData.timeSeriesList
+                break
+            }
+        }
+
+        return countryWideCaseTimeSeries
     }
 
     inner class TotalAndDailyGraphAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -519,12 +537,12 @@ class TrackFragment : Fragment() {
 
             val fragment: Fragment = if (position == 0)
                 TotalAndDailyGraphFragment.newInstance(
-                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                    countryWideCasesTimeSeries.timeSeriesList,
                     TotalOrDaily.DAILY
                 )
             else
                 TotalAndDailyGraphFragment.newInstance(
-                    timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
+                    countryWideCasesTimeSeries.timeSeriesList,
                     TotalOrDaily.TOTAL
                 )
 

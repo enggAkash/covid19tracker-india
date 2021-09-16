@@ -7,7 +7,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface CovidService {
-    @get:GET("/data.json")
+    @get:GET("/v4/min/timeseries.min.json")
     val timeSeriesAndStateWiseData: Single<ResponseBody>
 
     @get:GET("/v4/min/data.min.json")

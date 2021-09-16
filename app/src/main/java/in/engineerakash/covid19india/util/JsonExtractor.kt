@@ -3,7 +3,7 @@ package `in`.engineerakash.covid19india.util
 import `in`.engineerakash.covid19india.pojo.*
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.*
+import kotlin.collections.ArrayList
 
 object JsonExtractor {
 
@@ -116,5 +116,77 @@ object JsonExtractor {
         }
 
         return stateDistrictList
+    }
+
+    fun parseTimeSeriesWiseResponseJson(json: String?): ArrayList<TimeSeriesStateWiseResponse> {
+        val timeSeriesStateWiseList: ArrayList<TimeSeriesStateWiseResponse> =
+            ArrayList<TimeSeriesStateWiseResponse>()
+
+        try {
+            val rootJo = JSONObject(json.toString())
+            val stateKeys = rootJo.keys()
+
+            while (stateKeys.hasNext()) {
+
+                val stateCode = stateKeys.next()
+                val stateName = Constant.stateCodeNameMap[stateCode] ?: ""
+
+                val stateJo = rootJo.getJSONObject(stateCode)
+
+                var timeSeriesDataList: ArrayList<TimeSeriesData> = arrayListOf()
+                if (stateJo.has("dates")) {
+                    val datesJo = stateJo.getJSONObject("dates")
+
+                    val datesKeys = datesJo.keys()
+
+                    while (datesKeys.hasNext()) {
+
+                        val date = datesKeys.next()
+
+                        val exactDateJo = datesJo.getJSONObject(date)
+
+
+                        var exactDateDelta: Delta? = null
+                        if (exactDateJo.has("delta")) {
+                            val deltaJo = exactDateJo.getJSONObject("delta")
+
+                            exactDateDelta = Delta(
+                                deltaJo.optInt("confirmed"), deltaJo.optInt("deceased"),
+                                deltaJo.optInt("recovered")
+                            )
+                        }
+
+
+                        var exactDateTotal: Total? = null
+                        if (exactDateJo.has("total")) {
+                            val totalJo = exactDateJo.getJSONObject("total")
+
+                            exactDateTotal = Total(
+                                totalJo.optInt("confirmed"),
+                                totalJo.optInt("deceased"),
+                                totalJo.optInt("recovered"),
+                                totalJo.optInt("tested"),
+                                totalJo.optInt("vaccinated1"),
+                                totalJo.optInt("vaccinated2")
+                            )
+                        }
+
+                        timeSeriesDataList.add(TimeSeriesData(date, exactDateDelta, exactDateTotal))
+
+                    }
+                }
+
+                timeSeriesStateWiseList.add(
+                    TimeSeriesStateWiseResponse(
+                        stateName, stateCode, timeSeriesDataList
+                    )
+                )
+            }
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+
+        return timeSeriesStateWiseList
+
     }
 }

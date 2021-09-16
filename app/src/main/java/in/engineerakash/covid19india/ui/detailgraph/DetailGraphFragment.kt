@@ -9,6 +9,7 @@ import `in`.engineerakash.covid19india.pojo.TimeSeriesData
 import `in`.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse
 import `in`.engineerakash.covid19india.ui.home.MainActivity
 import `in`.engineerakash.covid19india.util.Constant
+import `in`.engineerakash.covid19india.util.DateTimeUtil
 import `in`.engineerakash.covid19india.util.Helper.getBarChartColor
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -72,7 +73,7 @@ class DetailGraphFragment : Fragment() {
             )
         )
         val casesTimeSeriesList: ArrayList<TimeSeriesData> =
-            timeSeriesStateWiseResponse.casesTimeSeriesArrayList
+            timeSeriesStateWiseResponse.timeSeriesList
         setTotalCasesTimelineChart(currentChartType, casesTimeSeriesList)
 
         when (currentChartType) {
@@ -111,7 +112,12 @@ class DetailGraphFragment : Fragment() {
         val xAxisList = ArrayList<String>() // bar values of y axis
         val values =
             ArrayList<BarEntry>() // bar values of y axis; x will be in multiple of 1 harcoded
-        for (timeSeriesData in timeSeriesList) xAxisList.add(timeSeriesData.date.trim { it <= ' ' })
+        for (timeSeriesData in timeSeriesList)
+            xAxisList.add(
+                DateTimeUtil.parseDateTimeToAppsDefaultDateFormat(
+                    timeSeriesData.date.trim { it <= ' ' }, "yyyy-MM-dd"
+                )
+            )
         var tempCount = 0 // it must start with 0
         when (chartType) {
             ChartType.TOTAL_CONFIRMED -> {
@@ -119,7 +125,7 @@ class DetailGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.totalConfirmed.toFloat()
+                        (timeSeriesData.total?.confirmed ?: 0f).toFloat()
                     )
                 )
             }
@@ -128,7 +134,7 @@ class DetailGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.totalDeceased.toFloat()
+                        (timeSeriesData.total?.deceased ?: 0f).toFloat()
                     )
                 )
             }
@@ -137,7 +143,7 @@ class DetailGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.totalRecovered.toFloat()
+                        (timeSeriesData.total?.recovered ?: 0f).toFloat()
                     )
                 )
             }
@@ -146,7 +152,7 @@ class DetailGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.dailyConfirmed.toFloat()
+                        (timeSeriesData.delta?.confirmed ?: 0f).toFloat()
                     )
                 )
             }
@@ -155,7 +161,7 @@ class DetailGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.dailyDeceased.toFloat()
+                        (timeSeriesData.delta?.deceased ?: 0f).toFloat()
                     )
                 )
             }
@@ -164,7 +170,7 @@ class DetailGraphFragment : Fragment() {
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
-                        timeSeriesData.dailyRecovered.toFloat()
+                        (timeSeriesData.delta?.recovered ?: 0f).toFloat()
                     )
                 )
             }
