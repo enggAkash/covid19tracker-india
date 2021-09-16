@@ -34,16 +34,16 @@ object Constant {
     const val stateJsonAssetName = "state_json.json"
 
     const val DEFAULT_SP_NAME = "covid_sp"
-
     const val SELECTED_STATE_SP_KEY = "selected_state_key"
-
     const val SELECTED_DISTRICT_SP_KEY = "selected_district_key"
 
     const val NOTIFICATION_ID_SP_KEY = "notification_id_key"
 
     const val PERIODIC_TASK_TAG_SP_KEY = "periodic_task_id_key"
-
     const val REPORT_FREQUENCY_SP_KEY = "report_frequency_sp_key"
+
+    const val TOTAL_ITEM_NAME = "Total"
+    const val TOTAL_ITEM_CODE = "TT"
 }
 
 enum class ChooseLocationStartedFrom {

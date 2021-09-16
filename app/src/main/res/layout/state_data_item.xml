@@ -44,19 +44,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:gravity="center"
             android:text="Confirmed"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/stateActiveTv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-
-            android:gravity="center"
-            android:text="Active"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -64,7 +53,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:gravity="center"
             android:text="Recovered"
             android:textColor="@android:color/black" />
@@ -74,7 +62,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:gravity="center"
             android:text="Death"
             android:textColor="@android:color/black" />

@@ -350,13 +350,13 @@ object DateTimeUtil {
 
     /**
      * input 2021-09-05T17:56:52+05:30
-     * output dd MM, yy, hh:mm a
+     * output d MMM, yy, h:mm a
      */
-    fun parseMetaDateTimeAppsDefaultDateTime(inputDateTime: String?): String {
+    fun parseMetaDateTimeToAppsDefaultDateTime(inputDateTime: String?, outputFormat: String = APPS_DEFAULT_DATE_TIME_FORMAT_SHORT): String {
         var outputDateTime = inputDateTime?.replace("T", " ")?.replace("+05:30", "")
         val inputDateTimeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("en", "IN"))
         val outputDateTimeFormat =
-            SimpleDateFormat(APPS_DEFAULT_DATE_TIME_FORMAT_SHORT, Locale.getDefault())
+            SimpleDateFormat(outputFormat, Locale.getDefault())
         try {
             val inputDateTimeParsed = inputDateTimeFormat.parse(outputDateTime.toString())
 

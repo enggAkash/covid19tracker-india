@@ -15,11 +15,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
+private const val TYPE_ITEM = 1
+private const val TYPE_EMPTY_VIEW = 2
+
 class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimation: Boolean = true) :
     RecyclerView.Adapter<DistrictWiseAdapter.DistrictWiseVH>() {
-
-    private val TYPE_ITEM = 1
-    private val TYPE_EMPTY_VIEW = 2
 
     private var context: Context? = null
     private var lastPosition = 0
@@ -27,106 +27,14 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DistrictWiseVH {
         context = parent.context
         val binding = DistrictDataItemBinding.inflate(
-            LayoutInflater.from(context),
-            parent, false
+            LayoutInflater.from(context), parent, false
         )
         return DistrictWiseVH(binding)
     }
 
 
     override fun onBindViewHolder(holder: DistrictWiseVH, position: Int) {
-
-        /*if (position == 0) {
-            // show header
-            holder.binding.districtNameTv.setText("District");
-            holder.binding.districtConfirmedTv.setText("Confirmed");
-            holder.binding.districtLastUpdatedTv.setText("Last updated at");
-
-            holder.binding.userDistrictTv.setVisibility(View.GONE);
-
-            holder.binding.dataContainer.setVisibility(View.VISIBLE);
-            holder.binding.emptyView.setVisibility(View.GONE);
-
-        } else*/
-        if (getItemViewType(position) == TYPE_EMPTY_VIEW) {
-            // show empty view
-            holder.binding.dataContainer.visibility = View.GONE
-            holder.binding.emptyView.visibility = View.VISIBLE
-            holder.binding.root.setBackgroundColor(
-                ContextCompat.getColor(
-                    holder.binding.root.context,
-                    R.color.colorOddItem
-                )
-            )
-        } else {
-            val data: District = list[position]
-
-            // show data
-            holder.binding.districtNameTv.text = data.name
-            holder.binding.districtConfirmedTv.text = (data.total?.confirmed ?: 0).toString()
-            holder.binding.districtLastUpdatedTv.text =
-                if (data.meta?.lastUpdated.isNullOrEmpty()) "-" else data.meta?.lastUpdated
-            if (Constant.userSelectedDistrict.trim { it <= ' ' }
-                    .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
-                Constant.locationIsSelectedByUser
-            ) holder.binding.userDistrictTv.visibility =
-                View.VISIBLE else holder.binding.userDistrictTv.visibility = View.GONE
-            holder.binding.dataContainer.visibility = View.VISIBLE
-            holder.binding.emptyView.visibility = View.GONE
-            if (position % 2 == 0) {
-                holder.binding.root.setBackgroundColor(
-                    ContextCompat.getColor(
-                        holder.binding.root.context,
-                        R.color.colorOddItem
-                    )
-                )
-            } else {
-                holder.binding.root.setBackgroundColor(
-                    ContextCompat.getColor(
-                        holder.binding.root.context,
-                        R.color.colorEvenItem
-                    )
-                )
-            }
-
-            // Total element
-            if (position == itemCount - 1) {
-                holder.binding.districtNameTv.setTypeface(
-                    holder.binding.districtNameTv.typeface,
-                    Typeface.BOLD
-                )
-                holder.binding.districtConfirmedTv.setTypeface(
-                    holder.binding.districtConfirmedTv.typeface,
-                    Typeface.BOLD
-                )
-                holder.binding.districtLastUpdatedTv.setTypeface(
-                    holder.binding.districtLastUpdatedTv.typeface,
-                    Typeface.BOLD
-                )
-            } else {
-                holder.binding.districtNameTv.setTypeface(
-                    holder.binding.districtNameTv.typeface,
-                    Typeface.NORMAL
-                )
-                holder.binding.districtConfirmedTv.setTypeface(
-                    holder.binding.districtConfirmedTv.typeface,
-                    Typeface.NORMAL
-                )
-                holder.binding.districtLastUpdatedTv.setTypeface(
-                    holder.binding.districtLastUpdatedTv.typeface,
-                    Typeface.NORMAL
-                )
-            }
-        }
-
-        if (allowScrollAnimation) {
-            val animation: Animation = AnimationUtils.loadAnimation(
-                context,
-                if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
-            )
-            holder.itemView.startAnimation(animation)
-            lastPosition = position
-        }
+        holder.bind(position)
     }
 
     override fun onViewDetachedFromWindow(holder: DistrictWiseVH) {
@@ -145,7 +53,72 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
         return if (list.isEmpty()) TYPE_EMPTY_VIEW else TYPE_ITEM
     }
 
-    class DistrictWiseVH(val binding: DistrictDataItemBinding) : RecyclerView.ViewHolder(
-        binding.root
-    )
+    inner class DistrictWiseVH(private val itemBinding: DistrictDataItemBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+
+        fun bind(position: Int) {
+
+            if (getItemViewType(position) == TYPE_EMPTY_VIEW) {
+                // show empty view
+                itemBinding.dataContainer.visibility = View.GONE
+                itemBinding.emptyView.visibility = View.VISIBLE
+                itemBinding.root.setBackgroundColor(
+                    ContextCompat.getColor(itemBinding.root.context, R.color.colorOddItem)
+                )
+            } else {
+                val data: District = list[position]
+
+                // show data
+                itemBinding.districtNameTv.text = data.name
+                itemBinding.districtConfirmedTv.text = (data.total?.confirmed ?: 0).toString()
+                itemBinding.districtRecoveredTv.text = (data.total?.recovered ?: 0).toString()
+                itemBinding.districtDeathTv.text = (data.total?.deceased ?: 0).toString()
+
+                if (Constant.userSelectedDistrict.trim { it <= ' ' }
+                        .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
+                    Constant.locationIsSelectedByUser
+                ) itemBinding.userDistrictTv.visibility =
+                    View.VISIBLE else itemBinding.userDistrictTv.visibility = View.GONE
+                itemBinding.dataContainer.visibility = View.VISIBLE
+                itemBinding.emptyView.visibility = View.GONE
+                if (position % 2 == 0) {
+                    itemBinding.root.setBackgroundColor(
+                        ContextCompat.getColor(itemBinding.root.context, R.color.colorOddItem)
+                    )
+                } else {
+                    itemBinding.root.setBackgroundColor(
+                        ContextCompat.getColor(itemBinding.root.context, R.color.colorEvenItem)
+                    )
+                }
+
+                // Total element
+                if (data.name.equals(Constant.TOTAL_ITEM_NAME, ignoreCase = true)) {
+                    itemBinding.districtNameTv.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                    itemBinding.districtConfirmedTv.typeface =
+                        Typeface.defaultFromStyle(Typeface.BOLD)
+                    itemBinding.districtRecoveredTv.typeface =
+                        Typeface.defaultFromStyle(Typeface.BOLD)
+                    itemBinding.districtDeathTv.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                } else {
+                    itemBinding.districtNameTv.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
+                    itemBinding.districtConfirmedTv.typeface =
+                        Typeface.defaultFromStyle(Typeface.NORMAL)
+                    itemBinding.districtRecoveredTv.typeface =
+                        Typeface.defaultFromStyle(Typeface.NORMAL)
+                    itemBinding.districtDeathTv.typeface =
+                        Typeface.defaultFromStyle(Typeface.NORMAL)
+                }
+            }
+
+            if (allowScrollAnimation) {
+                val animation: Animation = AnimationUtils.loadAnimation(
+                    context,
+                    if (position > lastPosition) R.anim.up_from_bottom else R.anim.down_from_top
+                )
+                itemView.startAnimation(animation)
+                lastPosition = position
+            }
+
+        }
+    }
 }

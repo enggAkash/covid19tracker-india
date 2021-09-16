@@ -10,7 +10,4 @@ class TimeSeriesStateWiseResponse(
     @SerializedName("cases_time_series")
     var casesTimeSeriesArrayList: ArrayList<TimeSeriesData> = arrayListOf(),
 
-    @SerializedName("statewise")
-    var stateWiseDataArrayList: ArrayList<StateWiseData> = arrayListOf()
-
-) : Parcelable
+    ) : Parcelable

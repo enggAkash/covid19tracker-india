@@ -9,7 +9,7 @@ import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Constant
-import `in`.engineerakash.covid19india.util.Helper.parseDate
+import `in`.engineerakash.covid19india.util.DateTimeUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +47,6 @@ class TrackFragment : Fragment() {
         super.onCreate(savedInstanceState)
         navController = this.findNavController()
 
-        //todo check if location is selected(Constant.locationIsSelectedByUser), if not redirect them to choose location screen
         if (Constant.userSelectedState.isEmpty() || Constant.userSelectedDistrict.isEmpty()) {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToChooseLocationFragmentWithClearBackstack(
@@ -83,6 +82,10 @@ class TrackFragment : Fragment() {
                 stateDistrictList.clear()
                 stateDistrictList.addAll(it)
                 fillMostAffectedDistrictSection(stateDistrictList)
+
+                fillDashboard(stateDistrictList)
+                fillMostAffectedStateSection(stateDistrictList)
+
             })
 
         viewModel.getTimeSeriesStateWiseResponseLiveData()
@@ -92,12 +95,6 @@ class TrackFragment : Fragment() {
 
                 val casesTimeSeriesList: ArrayList<TimeSeriesData> =
                     timeSeriesStateWiseResponse.casesTimeSeriesArrayList
-
-                val stateWiseDataList: java.util.ArrayList<StateWiseData> =
-                    timeSeriesStateWiseResponse.stateWiseDataArrayList
-
-                fillDashboard(stateWiseDataList)
-                fillMostAffectedStateSection(stateWiseDataList)
 
                 (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
                     timeSeriesStateWiseResponse.casesTimeSeriesArrayList,
@@ -183,15 +180,18 @@ class TrackFragment : Fragment() {
         }
     }
 
-    private fun fillDashboard(stateWiseDataArrayList: ArrayList<StateWiseData>) {
-        val dashboardStats: StateWiseData = getCurrentStateStats(stateWiseDataArrayList)
-        binding.totalCasesInUserStateTitleTv.text = "#Total Cases in " + dashboardStats.state
-        binding.defaultStateNameTv.text = dashboardStats.state
-        binding.totalConfirmedCasesTv.text = "Confirmed\n---------\n${dashboardStats.confirmed}"
-        binding.totalDeathCasesTv.text = "Death\n---------\n${dashboardStats.deaths}"
-        binding.totalRecoveredCasesTv.text = "Recovered\n---------\n${dashboardStats.recovered}"
+    private fun fillDashboard(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
+        val dashboardStats: StateDistrictWiseResponse? = getCurrentStateStats(stateDistrictList)
+        binding.totalCasesInUserStateTitleTv.text = "#Total Cases in ${dashboardStats?.name ?: "-"}"
+        binding.defaultStateNameTv.text = (dashboardStats?.name ?: "-")
+        binding.totalConfirmedCasesTv.text =
+            "Confirmed\n---------\n${dashboardStats?.total?.confirmed ?: "-"}\n---------\n${dashboardStats?.delta?.confirmed ?: "-"}"
+        binding.totalDeathCasesTv.text =
+            "Death\n---------\n${dashboardStats?.total?.deceased ?: "-"}\n---------\n${dashboardStats?.delta?.deceased ?: "-"}"
+        binding.totalRecoveredCasesTv.text =
+            "Recovered\n---------\n${dashboardStats?.total?.recovered ?: "-"}\n---------\n${dashboardStats?.delta?.recovered ?: "-"}"
         binding.dashBoardStatsLastUpdateTime.text =
-            "Last Updated: ${parseDate(dashboardStats.lastUpdatedTime)}"
+            "Last Updated: ${DateTimeUtil.parseMetaDateTimeToAppsDefaultDateTime(dashboardStats?.meta?.lastUpdated ?: "-")}"
     }
 
     private fun fillMostAffectedDistrictSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>?) {
@@ -204,11 +204,11 @@ class TrackFragment : Fragment() {
         binding.mostAffectedDistrictRv.adapter = districtWiseAdapter
     }
 
-    private fun fillMostAffectedStateSection(stateWiseDataArrayList: ArrayList<StateWiseData>) {
-        val mostAffectedStateWiseList: ArrayList<StateWiseData> =
-            getMostAffectedStates(stateWiseDataArrayList)
+    private fun fillMostAffectedStateSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
+        val mostAffectedStateWiseList: ArrayList<StateDistrictWiseResponse> =
+            getMostAffectedStates(stateDistrictList)
         mostAffectedStateWiseList
-            .add(getObjectTotalOfAffectedState(stateWiseDataArrayList))
+            .add(getObjectTotalOfAffectedState(stateDistrictList))
         binding.mostAffectedStateTitleTv.text =
             "#Most Affected States & UT in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
         val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList, false)
@@ -217,95 +217,91 @@ class TrackFragment : Fragment() {
     }
 
 
-    private fun getCurrentStateStats(stateWiseDataArrayList: ArrayList<StateWiseData>): StateWiseData {
-        var currentStateStats = StateWiseData()
-        for (stateWiseData in stateWiseDataArrayList) {
+    private fun getCurrentStateStats(stateDistrictList: ArrayList<StateDistrictWiseResponse>): StateDistrictWiseResponse? {
+        var currentStateStats: StateDistrictWiseResponse? = null
+        for (stateDistrictData in stateDistrictList) {
             if (Constant.userSelectedState.trim { it <= ' ' }
-                    .equals(stateWiseData.state.trim { it <= ' ' }, ignoreCase = true)) {
-                currentStateStats = stateWiseData
+                    .equals(stateDistrictData.name.trim { it <= ' ' }, ignoreCase = true)) {
+                currentStateStats = stateDistrictData
                 break
             }
         }
         return currentStateStats
     }
 
-
-    private fun getObjectTotalOfAffectedState(stateWiseDataArrayList: ArrayList<StateWiseData>): StateWiseData {
-        var objectTotalOfMostAffectedState: StateWiseData? = null
-        for (stateWiseData in stateWiseDataArrayList) {
-            if ("Total".equals(stateWiseData.state, ignoreCase = true) ||
-                "TT".equals(stateWiseData.stateCode, ignoreCase = true)
+    private fun getObjectTotalOfAffectedState(stateDistrictList: ArrayList<StateDistrictWiseResponse>): StateDistrictWiseResponse {
+        var objectTotalOfMostAffectedState: StateDistrictWiseResponse? = null
+        for (stateWiseData in stateDistrictList) {
+            if (Constant.TOTAL_ITEM_CODE.equals(stateWiseData.code, ignoreCase = true) ||
+                Constant.TOTAL_ITEM_NAME.equals(stateWiseData.name, ignoreCase = true)
             ) {
                 objectTotalOfMostAffectedState = stateWiseData
             }
         }
         if (objectTotalOfMostAffectedState == null) {
-            var active = 0
             var confirmed = 0
             var deaths = 0
             var deltaConfirmed = 0
             var deltaDeaths = 0
             var deltaRecovered = 0
-            val lastUpdatedTime = ""
+            var tested = 0
+            var vaccinated1 = 0
+            var vaccinated2 = 0
+
             var recovered = 0
-            val state = "Total"
-            val stateCode = "TT"
+            val state = Constant.TOTAL_ITEM_NAME
+            val stateCode = Constant.TOTAL_ITEM_CODE
 
             // if Object "Total" Does not found in the list, compute manually
-            for (stateWiseData in stateWiseDataArrayList) {
-                active += stateWiseData.active.toInt()
-                confirmed += stateWiseData.confirmed.toInt()
-                deaths += stateWiseData.deaths.toInt()
-                deltaConfirmed += stateWiseData.deltaConfirmed.toInt()
-                deltaDeaths += stateWiseData.deltaDeaths.toInt()
-                deltaRecovered += stateWiseData.deltaRecovered.toInt()
-                recovered += stateWiseData.recovered.toInt()
+            for (stateWiseData in stateDistrictList) {
+                confirmed += stateWiseData.total?.confirmed ?: 0
+                deaths += stateWiseData.total?.deceased ?: 0
+                tested += stateWiseData.total?.tested ?: 0
+                vaccinated1 += stateWiseData.total?.vaccinated1 ?: 0
+                vaccinated2 += stateWiseData.total?.vaccinated2 ?: 0
+                deltaConfirmed += stateWiseData.delta?.confirmed ?: 0
+                deltaDeaths += stateWiseData.delta?.deceased ?: 0
+                deltaRecovered += stateWiseData.delta?.recovered ?: 0
+                recovered += stateWiseData.delta?.recovered ?: 0
             }
-            objectTotalOfMostAffectedState = StateWiseData(
-                active.toString(),
-                confirmed.toString(),
-                deaths.toString(),
-                deltaConfirmed.toString(),
-                deltaDeaths.toString(),
-                deltaRecovered.toString(),
-                lastUpdatedTime,
-                recovered.toString(),
-                state,
-                stateCode
+            objectTotalOfMostAffectedState = StateDistrictWiseResponse(
+                state, stateCode, Delta(deltaConfirmed, deltaDeaths, deltaRecovered),
+                arrayListOf(), Meta(),
+                Total(confirmed, deaths, recovered)
             )
         }
         return objectTotalOfMostAffectedState
     }
 
-    private fun getMostAffectedStates(stateWiseDataArrayList: ArrayList<StateWiseData>): ArrayList<StateWiseData> {
-        val mostAffectedStates: ArrayList<StateWiseData> = ArrayList<StateWiseData>()
+    private fun getMostAffectedStates(stateDistrictList: ArrayList<StateDistrictWiseResponse>): ArrayList<StateDistrictWiseResponse> {
+        val mostAffectedStates: ArrayList<StateDistrictWiseResponse> = arrayListOf()
 
         // Remove Total if there is any
-        for (i in stateWiseDataArrayList.indices) {
-            if (stateWiseDataArrayList[i].state.equals("Total", ignoreCase = true) ||
-                stateWiseDataArrayList[i].stateCode.equals("TT", ignoreCase = true)
+        for (i in stateDistrictList.indices) {
+            if (stateDistrictList[i].code.equals(Constant.TOTAL_ITEM_CODE, ignoreCase = true) ||
+                stateDistrictList[i].name.equals(Constant.TOTAL_ITEM_NAME, ignoreCase = true)
             ) {
-                stateWiseDataArrayList.removeAt(i)
+                stateDistrictList.removeAt(i)
                 break
             }
         }
 
         // Sort State according to confirmed cases
-        stateWiseDataArrayList.sortWith { o1, o2 -> // descending
-            o2.confirmed.toInt() - o1.confirmed.toInt()
+        stateDistrictList.sortWith { o1, o2 -> // descending
+            (o2.total?.confirmed ?: 0) - (o1.total?.confirmed ?: 0)
         }
 
-        if (stateWiseDataArrayList.size >= Constant.MOST_AFFECTED_STATES_COUNT) {
+        if (stateDistrictList.size >= Constant.MOST_AFFECTED_STATES_COUNT) {
             // if state list is greater than the data count to show, then its perfect, add the required subset
             mostAffectedStates.addAll(
-                stateWiseDataArrayList.subList(
+                stateDistrictList.subList(
                     0,
                     Constant.MOST_AFFECTED_STATES_COUNT - 1
                 )
             )
         } else {
             // if state list is less than the data count required to show, then add all of them
-            mostAffectedStates.addAll(stateWiseDataArrayList)
+            mostAffectedStates.addAll(stateDistrictList)
         }
 
         // Check if user has selected their state and district then only perform this action
@@ -314,10 +310,10 @@ class TrackFragment : Fragment() {
             var userStateIsInMostAffectedStateIndex = -1
             // check if user selected state is in list, if not add them
             for (i in mostAffectedStates.indices) {
-                val mostAffectedState: StateWiseData = mostAffectedStates[i]
+                val mostAffectedState: StateDistrictWiseResponse = mostAffectedStates[i]
                 if (Constant.userSelectedState.trim { it <= ' ' }
                         .equals(
-                            mostAffectedState.state.trim { it <= ' ' },
+                            mostAffectedState.name.trim { it <= ' ' },
                             ignoreCase = true
                         )
                 ) {
@@ -329,10 +325,10 @@ class TrackFragment : Fragment() {
 
             // if user selected state is not in the most affected state list, add them from all state list
             if (!userStateIsInMostAffectedState) {
-                for (stateWiseData in stateWiseDataArrayList) {
+                for (stateWiseData in stateDistrictList) {
                     if (Constant.userSelectedState.trim { it <= ' ' }
                             .equals(
-                                stateWiseData.state.trim { it <= ' ' },
+                                stateWiseData.name.trim { it <= ' ' },
                                 ignoreCase = true
                             )
                     ) {
@@ -343,7 +339,8 @@ class TrackFragment : Fragment() {
             } else {
 
                 // move user selected state at 0th index
-                val temp: StateWiseData = mostAffectedStates[userStateIsInMostAffectedStateIndex]
+                val temp: StateDistrictWiseResponse =
+                    mostAffectedStates[userStateIsInMostAffectedStateIndex]
                 mostAffectedStates.removeAt(userStateIsInMostAffectedStateIndex)
                 mostAffectedStates.add(0, temp)
             }
@@ -366,7 +363,7 @@ class TrackFragment : Fragment() {
 
         districtObjectTotal.add(
             District(
-                "Total",
+                Constant.TOTAL_ITEM_NAME,
                 Delta(
                     userSelectedState?.delta?.confirmed, userSelectedState?.delta?.deceased,
                     userSelectedState?.delta?.recovered

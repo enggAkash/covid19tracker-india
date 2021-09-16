@@ -28,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                tools:text="District"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                tools:text="District" />
 
             <TextView
                 android:id="@+id/userDistrictTv"
@@ -38,7 +38,8 @@
                 android:padding="2dp"
                 android:text="(Your District)"
                 android:textSize="12sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
@@ -49,17 +50,25 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="2dp"
-            tools:text="Confirmed"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            tools:text="Confirmed" />
 
         <TextView
-            android:id="@+id/districtLastUpdatedTv"
+            android:id="@+id/districtRecoveredTv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="2dp"
-            tools:text="Last updated at"
+            android:text="Recovered"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/districtDeathTv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Death"
             android:textColor="@android:color/black" />
 
     </LinearLayout>

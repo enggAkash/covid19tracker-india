@@ -40,7 +40,7 @@ object JsonExtractor {
 
                     stateMeta = Meta(
                         stateMetaJo.optString("date"),
-                        DateTimeUtil.parseMetaDateTimeAppsDefaultDateTime(stateMetaJo.optString("last_updated")),
+                        DateTimeUtil.parseMetaDateTimeToAppsDefaultDateTime(stateMetaJo.optString("last_updated")),
                         stateMetaJo.optInt("population")
                     )
                 }
@@ -70,7 +70,7 @@ object JsonExtractor {
 
                         districtMeta = Meta(
                             metaJo.optString("date"),
-                            DateTimeUtil.parseMetaDateTimeAppsDefaultDateTime(metaJo.optString("last_updated")),
+                            DateTimeUtil.parseMetaDateTimeToAppsDefaultDateTime(metaJo.optString("last_updated")),
                             metaJo.optInt("population")
                         )
                     }

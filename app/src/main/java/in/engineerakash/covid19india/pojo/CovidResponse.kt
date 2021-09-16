@@ -36,7 +36,16 @@ class Delta(
     @SerializedName("recovered")
     var recovered: Int? = null,
 
-    ) : Parcelable
+    @SerializedName("tested")
+    var tested: Int? = null,
+
+    @SerializedName("vaccinated1")
+    var vaccinated1: Int? = null,
+
+    @SerializedName("vaccinated2")
+    var vaccinated2: Int? = null
+
+) : Parcelable
 
 @Parcelize
 class Meta(
