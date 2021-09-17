@@ -160,4 +160,8 @@ object ViewUtil {
         }
     }
 
+    fun Int?.isNullOr0(): Boolean {
+        return this == null || this <= 0
+    }
+
 }

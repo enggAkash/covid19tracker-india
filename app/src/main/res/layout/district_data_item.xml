@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/districtItemContainer"
     android:layout_width="match_parent"
@@ -25,6 +26,7 @@
 
             <TextView
                 android:id="@+id/districtNameTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
@@ -33,43 +35,105 @@
 
             <TextView
                 android:id="@+id/userDistrictTv"
+                style="@style/NonHeadingTextVerySmallSizeRegularFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
                 android:text="(Your District)"
-                android:textSize="12sp"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/districtConfirmedTv"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:padding="2dp"
-            android:textColor="@android:color/black"
-            tools:text="Confirmed" />
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="2dp">
 
-        <TextView
-            android:id="@+id/districtRecoveredTv"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Recovered"
-            android:textColor="@android:color/black" />
+            <TextView
+                android:id="@+id/deltaDistrictConfirmedTv"
+                style="@style/NonHeadingTextVerySmallSizeRegularFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/confirmedCasesColor"
+                app:drawableStartCompat="@drawable/ic_arrow_upward"
+                app:drawableTint="@color/confirmedCasesColor"
+                tools:text="4" />
 
-        <TextView
-            android:id="@+id/districtDeathTv"
+            <TextView
+                android:id="@+id/districtConfirmedTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                tools:text="Confirmed" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="Death"
-            android:textColor="@android:color/black" />
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/deltaDistrictRecoveredTv"
+                style="@style/NonHeadingTextVerySmallSizeRegularFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/recoveredCasesColor"
+                app:drawableStartCompat="@drawable/ic_arrow_upward"
+                app:drawableTint="@color/recoveredCasesColor"
+                tools:text="4" />
+
+            <TextView
+                android:id="@+id/districtRecoveredTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Recovered"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/deltaDistrictDeathTv"
+                style="@style/NonHeadingTextVerySmallSizeRegularFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/deathCasesColor"
+                app:drawableStartCompat="@drawable/ic_arrow_upward"
+                app:drawableTint="@color/deathCasesColor"
+                tools:text="4" />
+
+            <TextView
+                android:id="@+id/districtDeathTv"
+                style="@style/HeadingTextSmallSizeRegularFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Death"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -80,6 +144,7 @@
         android:gravity="center"
         android:padding="3dp"
         android:text="No Record Found!"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </LinearLayout>

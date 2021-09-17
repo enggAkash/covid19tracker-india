@@ -4,6 +4,7 @@ import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.DistrictDataItemBinding
 import `in`.engineerakash.covid19india.pojo.District
 import `in`.engineerakash.covid19india.util.Constant
+import `in`.engineerakash.covid19india.util.ViewUtil.isNullOr0
 import android.content.Context
 import android.graphics.Typeface
 import android.view.LayoutInflater
@@ -70,9 +71,15 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
 
                 // show data
                 itemBinding.districtNameTv.text = data.name
+
                 itemBinding.districtConfirmedTv.text = (data.total?.confirmed ?: 0).toString()
+                itemBinding.deltaDistrictConfirmedTv.text = (data.delta?.confirmed ?: 0).toString()
+
                 itemBinding.districtRecoveredTv.text = (data.total?.recovered ?: 0).toString()
+                itemBinding.deltaDistrictRecoveredTv.text = (data.delta?.recovered ?: 0).toString()
+
                 itemBinding.districtDeathTv.text = (data.total?.deceased ?: 0).toString()
+                itemBinding.deltaDistrictDeathTv.text = (data.delta?.deceased ?: 0).toString()
 
                 if (Constant.userSelectedDistrict.trim { it <= ' ' }
                         .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
@@ -107,6 +114,29 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
                         Typeface.defaultFromStyle(Typeface.NORMAL)
                     itemBinding.districtDeathTv.typeface =
                         Typeface.defaultFromStyle(Typeface.NORMAL)
+                }
+
+                if (data.delta?.confirmed.isNullOr0() && data.delta?.recovered.isNullOr0() && data.delta?.deceased.isNullOr0()) {
+                    itemBinding.deltaDistrictConfirmedTv.visibility = View.GONE
+                    itemBinding.deltaDistrictRecoveredTv.visibility = View.GONE
+                    itemBinding.deltaDistrictDeathTv.visibility = View.GONE
+                } else {
+
+                    if (data.delta?.confirmed.isNullOr0())
+                        itemBinding.deltaDistrictConfirmedTv.visibility = View.INVISIBLE
+                    else
+                        itemBinding.deltaDistrictConfirmedTv.visibility = View.VISIBLE
+
+                    if (data.delta?.recovered.isNullOr0())
+                        itemBinding.deltaDistrictRecoveredTv.visibility = View.INVISIBLE
+                    else
+                        itemBinding.deltaDistrictRecoveredTv.visibility = View.VISIBLE
+
+                    if (data.delta?.deceased.isNullOr0())
+                        itemBinding.deltaDistrictDeathTv.visibility = View.INVISIBLE
+                    else
+                        itemBinding.deltaDistrictDeathTv.visibility = View.VISIBLE
+
                 }
             }
 
