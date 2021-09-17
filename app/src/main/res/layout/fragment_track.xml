@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_small">
 
         <!--TODO FULL Page Error Layout if API is not working-->
         <LinearLayout
@@ -31,7 +32,7 @@
 
         </LinearLayout>
 
-        <!--Total Cases in your State-->
+        <!--Cases in your State-->
         <LinearLayout
             android:id="@+id/totalCasesInUserStateContainer"
             android:layout_width="match_parent"
@@ -45,12 +46,11 @@
                 style="@style/HeadingTextSmallSizeSemiBoldFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
+                android:paddingStart="@dimen/margin_smallest"
+                android:paddingTop="@dimen/margin_smallest"
+                android:paddingEnd="@dimen/margin_smallest"
                 android:textColor="@color/heading_text_color"
-                android:textSize="13sp"
-                tools:text="#Total Cases in Delhi" />
+                tools:text="#Cases in Delhi" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
 
                     <TextView
                         android:id="@+id/defaultStateNameTv"
-                        style="@android:style/TextAppearance.DeviceDefault.Large"
+                        style="@style/HeadingTextLargeSizeMediumFont"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -85,43 +85,143 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/totalConfirmedCasesTv"
-                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
+                            android:layout_marginEnd="@dimen/margin_smallest"
                             android:layout_weight="1"
                             android:background="@drawable/confirmed_cases_bg"
-                            android:padding="5dp"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/white"
-                            tools:text="Confirmed\n---------\n20" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/totalDeathCasesTv"
-                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            <TextView
+                                android:id="@+id/totalConfirmedCasesTitleTv"
+                                style="@style/NonHeadingTextMediumSizeRegularFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="Confirmed"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/deltaConfirmedCasesTv"
+                                style="@style/HeadingTextSmallSizeSemiBoldFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.8"
+                                android:paddingStart="@dimen/margin_smallest"
+                                android:paddingTop="@dimen/margin_smallest"
+                                android:paddingEnd="@dimen/margin_smallest"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                tools:text="(+158)" />
+
+                            <TextView
+                                android:id="@+id/totalConfirmedCasesTv"
+                                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/margin_smallest"
+                                android:paddingEnd="@dimen/margin_smallest"
+                                android:paddingBottom="@dimen/margin_smallest"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                tools:text="49308" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="5dp"
+                            android:layout_marginEnd="@dimen/margin_smallest"
                             android:layout_weight="1"
                             android:background="@drawable/death_cases_bg"
-                            android:padding="5dp"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/white"
-                            tools:text="Death\n---------\n12" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/totalRecoveredCasesTv"
-                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            <TextView
+                                android:id="@+id/totalDeathCasesTitleTv"
+                                style="@style/NonHeadingTextMediumSizeRegularFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="Death"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/deltaDeathCasesTv"
+                                style="@style/HeadingTextSmallSizeSemiBoldFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:alpha="0.8"
+                                android:paddingStart="@dimen/margin_smallest"
+                                android:paddingTop="@dimen/margin_smallest"
+                                android:paddingEnd="@dimen/margin_smallest"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                tools:text="(+12)" />
+
+                            <TextView
+                                android:id="@+id/totalDeathCasesTv"
+                                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/margin_smallest"
+                                android:paddingEnd="@dimen/margin_smallest"
+                                android:paddingBottom="@dimen/margin_smallest"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                tools:text="5314" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_smallest"
                             android:layout_weight="1"
                             android:background="@drawable/recovered_cases_bg"
-                            android:padding="5dp"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/white"
-                            tools:text="Recovered\n---------\n20" />
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/totalRecoveredCasesTitleTv"
+                                style="@style/NonHeadingTextMediumSizeRegularFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/recovered_cases_bg"
+                                android:padding="5dp"
+                                android:text="Recovered"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white" />
+
+                            <TextView
+                                android:id="@+id/deltaRecoveredCasesTv"
+                                style="@style/HeadingTextSmallSizeSemiBoldFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.8"
+                                android:background="@drawable/recovered_cases_bg"
+                                android:paddingStart="@dimen/margin_smallest"
+                                android:paddingTop="@dimen/margin_smallest"
+                                android:paddingEnd="@dimen/margin_smallest"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                tools:text="(+541)" />
+
+                            <TextView
+                                android:id="@+id/totalRecoveredCasesTv"
+                                style="@style/HeadingTextMediumSizeSemiBoldFont"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/recovered_cases_bg"
+                                android:paddingStart="@dimen/margin_smallest"
+                                android:paddingEnd="@dimen/margin_smallest"
+                                android:paddingBottom="@dimen/margin_smallest"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/white"
+                                tools:text="8320" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -132,22 +232,21 @@
 
                         <TextView
                             android:id="@+id/changeLocationTv"
+                            style="@style/NonHeadingTextSmallSizeRegularFont"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:foreground="?android:selectableItemBackground"
                             android:padding="@dimen/margin_smallest"
-                            android:text="Change Location"
-                            android:textSize="12sp" />
+                            android:text="Change Location" />
 
                         <TextView
                             android:id="@+id/dashBoardStatsLastUpdateTime"
-                            style="@android:style/TextAppearance.DeviceDefault.Small"
+                            style="@style/NonHeadingTextSmallSizeRegularFont"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="end"
                             android:padding="@dimen/margin_smallest"
-                            android:textSize="12sp"
                             tools:text="Last Updated: 8 Apr 2019 12:24 AM" />
 
                     </LinearLayout>
@@ -171,11 +270,10 @@
                 style="@style/HeadingTextSmallSizeSemiBoldFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
+                android:paddingStart="@dimen/margin_smallest"
+                android:paddingTop="@dimen/margin_smallest"
+                android:paddingEnd="@dimen/margin_smallest"
                 android:textColor="@color/heading_text_color"
-                android:textSize="13sp"
                 tools:text="#Most Affected District in Delhi" />
 
             <include
@@ -183,9 +281,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="5dp"
+                android:paddingStart="@dimen/margin_smallest"
+                android:paddingTop="@dimen/margin_smallest"
+                android:paddingEnd="@dimen/margin_smallest"
                 android:visibility="visible" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -195,26 +293,26 @@
                 android:layout_marginBottom="@dimen/main_activity_margin_bottom"
                 android:layoutAnimation="@anim/data_list_recycler_layout_anim"
                 android:overScrollMode="never"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="5dp"
+                android:paddingStart="@dimen/margin_smallest"
+                android:paddingEnd="@dimen/margin_smallest"
+                android:paddingBottom="@dimen/margin_smallest"
                 tools:itemCount="5"
                 tools:listitem="@layout/district_data_item" />
 
             <TextView
                 android:id="@+id/completeDistrictList"
-                android:layout_width="match_parent"
+                style="@style/HeadingTextSmallSizeMediumFont"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/dp_3"
+                android:layout_marginEnd="@dimen/dp_3"
                 android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:gravity="end"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="5dp"
+                android:foreground="?android:selectableItemBackground"
+                android:padding="@dimen/margin_smallest"
                 android:text="More"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@color/more_text_color"
+                app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
         </LinearLayout>
 
@@ -247,7 +345,6 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/heading_text_color"
-                android:textSize="13sp"
                 tools:text="#Most Affected States &amp; UT in India" />
 
             <include
@@ -274,18 +371,21 @@
 
             <TextView
                 android:id="@+id/completeStateList"
-                android:layout_width="match_parent"
+                style="@style/HeadingTextSmallSizeMediumFont"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginEnd="3dp"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/dp_3"
+                android:layout_marginEnd="@dimen/dp_3"
                 android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-                android:gravity="end"
-                android:paddingStart="5dp"
-                android:paddingTop="5dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="5dp"
+                android:foreground="?android:selectableItemBackground"
+                android:paddingStart="@dimen/margin_smallest"
+                android:paddingTop="@dimen/margin_smallest"
+                android:paddingEnd="@dimen/dp_8"
+                android:paddingBottom="@dimen/margin_smallest"
                 android:text="More"
-                android:textColor="@android:color/holo_blue_dark" />
+                android:textColor="@color/more_text_color"
+                app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
         </LinearLayout>
 

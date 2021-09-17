@@ -4,6 +4,8 @@
     <dimen name="regular_14dp">14sp</dimen>
     <dimen name="regular_12dp">12sp</dimen>
     <dimen name="regular_17dp">17sp</dimen>
+    <dimen name="regular_20dp">20sp</dimen>
+    <dimen name="regular_22dp">22sp</dimen>
     <dimen name="regular_11dp">11sp</dimen>
     <dimen name="regular_38dp">38sp</dimen>
     <dimen name="quick_actions_width">96.75dp</dimen>

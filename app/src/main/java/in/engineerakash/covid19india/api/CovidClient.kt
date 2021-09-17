@@ -17,7 +17,7 @@ class CovidClient private constructor() {
     companion object {
         private const val TAG = "CovidClient"
 
-        private const val COVID_19_INDIA_BASE_URL = "https://api.covid19india.org/"
+        private const val COVID_19_INDIA_BASE_URL = "https://data.covid19india.org/"
 
         var instance: CovidClient = CovidClient()
         private lateinit var covidService: CovidService

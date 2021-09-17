@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,11 +20,10 @@
             style="@style/HeadingTextSmallSizeSemiBoldFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="@dimen/margin_smallest"
+            android:paddingTop="@dimen/margin_smallest"
+            android:paddingEnd="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color"
-            android:textSize="13sp"
             tools:text="#Daily Confirmed Cases in India Timeline" />
 
         <com.github.mikephil.charting.charts.BarChart
@@ -33,20 +33,22 @@
             android:layout_marginStart="@dimen/main_activity_margin_start"
             android:layout_marginEnd="@dimen/main_activity_margin_end"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-            android:padding="5dp" />
+            android:padding="@dimen/margin_smallest" />
 
         <TextView
             android:id="@+id/dailyConfirmedCasesTimelineChartMore"
+            style="@style/HeadingTextSmallSizeMediumFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="@dimen/dp_3"
+            android:layout_marginEnd="@dimen/dp_3"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/margin_smallest"
             android:text="More"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@color/more_text_color"
+            app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
 
@@ -63,11 +65,10 @@
             style="@style/HeadingTextSmallSizeSemiBoldFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="@dimen/margin_smallest"
+            android:paddingTop="@dimen/margin_smallest"
+            android:paddingEnd="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color"
-            android:textSize="13sp"
             tools:text="#Daily Death Cases in India Timeline" />
 
         <com.github.mikephil.charting.charts.BarChart
@@ -78,21 +79,23 @@
             android:layout_marginStart="@dimen/main_activity_margin_start"
             android:layout_marginEnd="@dimen/main_activity_margin_end"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-            android:padding="5dp"
+            android:padding="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color" />
 
         <TextView
             android:id="@+id/dailyDeathCasesTimelineChartMore"
+            style="@style/HeadingTextSmallSizeMediumFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="@dimen/dp_3"
+            android:layout_marginEnd="@dimen/dp_3"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/margin_smallest"
             android:text="More"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@color/more_text_color"
+            app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
 
@@ -109,11 +112,10 @@
             style="@style/HeadingTextSmallSizeSemiBoldFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="@dimen/margin_smallest"
+            android:paddingTop="@dimen/margin_smallest"
+            android:paddingEnd="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color"
-            android:textSize="13sp"
             tools:text="#Daily Recovered Cases in India Timeline" />
 
         <com.github.mikephil.charting.charts.BarChart
@@ -123,20 +125,22 @@
             android:layout_marginStart="@dimen/main_activity_margin_start"
             android:layout_marginEnd="@dimen/main_activity_margin_end"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-            android:padding="5dp" />
+            android:padding="@dimen/margin_smallest" />
 
         <TextView
             android:id="@+id/dailyRecoveredCasesTimelineChartMore"
+            style="@style/HeadingTextSmallSizeMediumFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="@dimen/dp_3"
+            android:layout_marginEnd="@dimen/dp_3"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/margin_smallest"
             android:text="More"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@color/more_text_color"
+            app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
 
@@ -154,11 +158,10 @@
             style="@style/HeadingTextSmallSizeSemiBoldFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="@dimen/margin_smallest"
+            android:paddingTop="@dimen/margin_smallest"
+            android:paddingEnd="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color"
-            android:textSize="13sp"
             tools:text="#Total Confirmed Cases in India Timeline" />
 
         <com.github.mikephil.charting.charts.BarChart
@@ -168,20 +171,22 @@
             android:layout_marginStart="@dimen/main_activity_margin_start"
             android:layout_marginEnd="@dimen/main_activity_margin_end"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-            android:padding="5dp" />
+            android:padding="@dimen/margin_smallest" />
 
         <TextView
             android:id="@+id/totalConfirmedCasesTimelineChartMore"
+            style="@style/HeadingTextSmallSizeMediumFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="@dimen/dp_3"
+            android:layout_marginEnd="@dimen/dp_3"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/margin_smallest"
             android:text="More"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@color/more_text_color"
+            app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
 
@@ -198,11 +203,10 @@
             style="@style/HeadingTextSmallSizeSemiBoldFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="@dimen/margin_smallest"
+            android:paddingTop="@dimen/margin_smallest"
+            android:paddingEnd="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color"
-            android:textSize="13sp"
             tools:text="#Total Death Cases in India Timeline" />
 
         <com.github.mikephil.charting.charts.BarChart
@@ -212,20 +216,22 @@
             android:layout_marginStart="@dimen/main_activity_margin_start"
             android:layout_marginEnd="@dimen/main_activity_margin_end"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-            android:padding="5dp" />
+            android:padding="@dimen/margin_smallest" />
 
         <TextView
             android:id="@+id/totalDeathCasesTimelineChartMore"
+            style="@style/HeadingTextSmallSizeMediumFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="@dimen/dp_3"
+            android:layout_marginEnd="@dimen/dp_3"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/margin_smallest"
             android:text="More"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@color/more_text_color"
+            app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
 
@@ -242,11 +248,10 @@
             style="@style/HeadingTextSmallSizeSemiBoldFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
+            android:paddingStart="@dimen/margin_smallest"
+            android:paddingTop="@dimen/margin_smallest"
+            android:paddingEnd="@dimen/margin_smallest"
             android:textColor="@color/heading_text_color"
-            android:textSize="13sp"
             tools:text="#Total Recovered Cases in India Timeline" />
 
         <com.github.mikephil.charting.charts.BarChart
@@ -256,20 +261,22 @@
             android:layout_marginStart="@dimen/main_activity_margin_start"
             android:layout_marginEnd="@dimen/main_activity_margin_end"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
-            android:padding="5dp" />
+            android:padding="@dimen/margin_smallest" />
 
         <TextView
             android:id="@+id/totalRecoveredCasesTimelineChartMore"
+            style="@style/HeadingTextSmallSizeMediumFont"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginStart="@dimen/dp_3"
+            android:layout_marginEnd="@dimen/dp_3"
             android:layout_marginBottom="@dimen/main_activity_margin_bottom"
             android:foreground="?android:selectableItemBackground"
             android:padding="@dimen/margin_smallest"
             android:text="More"
-            android:textColor="@android:color/holo_blue_dark" />
+            android:textColor="@color/more_text_color"
+            app:drawableEndCompat="@drawable/ic_arrow_forward" />
 
     </LinearLayout>
 

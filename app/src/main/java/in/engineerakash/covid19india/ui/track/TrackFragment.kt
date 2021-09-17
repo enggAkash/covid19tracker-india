@@ -182,14 +182,28 @@ class TrackFragment : Fragment() {
 
     private fun fillDashboard(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
         val dashboardStats: StateDistrictWiseResponse? = getCurrentStateStats(stateDistrictList)
-        binding.totalCasesInUserStateTitleTv.text = "#Total Cases in ${dashboardStats?.name ?: "-"}"
+        binding.totalCasesInUserStateTitleTv.text = "#Cases in ${dashboardStats?.name ?: "-"}"
         binding.defaultStateNameTv.text = (dashboardStats?.name ?: "-")
-        binding.totalConfirmedCasesTv.text =
-            "Confirmed\n---------\n${dashboardStats?.total?.confirmed ?: "-"}\n---------\n${dashboardStats?.delta?.confirmed ?: "-"}"
-        binding.totalDeathCasesTv.text =
-            "Death\n---------\n${dashboardStats?.total?.deceased ?: "-"}\n---------\n${dashboardStats?.delta?.deceased ?: "-"}"
-        binding.totalRecoveredCasesTv.text =
-            "Recovered\n---------\n${dashboardStats?.total?.recovered ?: "-"}\n---------\n${dashboardStats?.delta?.recovered ?: "-"}"
+
+        binding.totalConfirmedCasesTv.text = "${dashboardStats?.total?.confirmed ?: "-"}"
+
+        binding.deltaConfirmedCasesTv.text = if ((dashboardStats?.delta?.confirmed ?: 0) == 0)
+            "-"
+        else
+            "(+${dashboardStats?.delta?.confirmed ?: 0})"
+
+        binding.totalDeathCasesTv.text = "${dashboardStats?.total?.deceased ?: "-"}"
+        binding.deltaDeathCasesTv.text = if ((dashboardStats?.delta?.deceased ?: 0) == 0)
+            "-"
+        else
+            "(+${dashboardStats?.delta?.deceased ?: 0})"
+
+        binding.totalRecoveredCasesTv.text = "${dashboardStats?.total?.recovered ?: "-"}"
+        binding.deltaRecoveredCasesTv.text = if ((dashboardStats?.delta?.recovered ?: 0) == 0)
+            "-"
+        else
+            "(+${dashboardStats?.delta?.recovered ?: "-"})"
+
         binding.dashBoardStatsLastUpdateTime.text =
             "Last Updated: ${DateTimeUtil.parseMetaDateTimeToAppsDefaultDateTime(dashboardStats?.meta?.lastUpdated ?: "-")}"
     }

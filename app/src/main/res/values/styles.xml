@@ -64,6 +64,56 @@
         <item name="android:textColor">@color/blackOpacity90</item>
     </style>
 
+    <!-- large2 text size -->
+    <style name="HeadingTextLarge2SizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_20dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <style name="HeadingTextLarge2SizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_20dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <style name="HeadingTextLarge2SizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_20dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <style name="HeadingTextLarge2SizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_20dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <!-- large3 text size -->
+    <style name="HeadingTextLarge3SizeMediumFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">@dimen/regular_22dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <style name="HeadingTextLarge3SizeRegularFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_regular</item>
+        <item name="android:textSize">@dimen/regular_22dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <style name="HeadingTextLarge3SizeBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_bold</item>
+        <item name="android:textSize">@dimen/regular_22dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
+    <style name="HeadingTextLarge3SizeSemiBoldFont" parent="TextAppearance.AppCompat.Small">
+        <item name="android:fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">@dimen/regular_22dp</item>
+        <item name="android:textColor">@color/blackOpacity90</item>
+    </style>
+
     <style name="ActionText" parent="TextAppearance.AppCompat.Medium">
         <item name="android:fontFamily">@font/sf_pro_display_medium</item>
         <item name="android:textSize">@dimen/action_title</item>

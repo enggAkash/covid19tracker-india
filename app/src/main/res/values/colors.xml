@@ -21,4 +21,6 @@
     <color name="app_description_bg_color">#E2F3F8</color>
     <color name="description_text_color">#4B4B4B</color>
     <color name="hyperlink_color">#0645AD</color>
+
+    <color name="more_text_color">@color/colorAccentDefault</color>
 </resources>

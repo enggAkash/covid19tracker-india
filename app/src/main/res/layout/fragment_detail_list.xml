@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="5dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="5dp"
+        android:paddingStart="@dimen/margin_smallest"
+        android:paddingTop="@dimen/margin_smallest"
+        android:paddingEnd="@dimen/margin_smallest"
         android:visibility="gone" />
 
     <include
@@ -24,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingStart="5dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="5dp"
+        android:paddingStart="@dimen/margin_smallest"
+        android:paddingTop="@dimen/margin_smallest"
+        android:paddingEnd="@dimen/margin_smallest"
         android:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/main_activity_margin_bottom"
         android:layoutAnimation="@anim/data_list_recycler_layout_anim"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:paddingBottom="5dp"
+        android:paddingStart="@dimen/margin_smallest"
+        android:paddingEnd="@dimen/margin_smallest"
+        android:paddingBottom="@dimen/margin_smallest"
         tools:itemCount="5"
         tools:listitem="@layout/state_data_item" />
 
