@@ -4,7 +4,10 @@ import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.Helper
 import android.content.Context
 import android.util.Log
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -47,6 +50,11 @@ object CovidWorkManagerUtil {
             TAG,
             "createPeriodicTask: initial delay in minute: $totalInitialDelayInMinute"
         )
+
+        //cancel previous task, if there is any
+        val lastPeriodicWorkTag = Helper.getPeriodicWorkTag(context)
+        if (lastPeriodicWorkTag.isNotEmpty())
+            cancelPeriodicTask(context, lastPeriodicWorkTag)
 
         val periodicWorkRequest =
             PeriodicWorkRequestBuilder<LatestReportWorker>(24, TimeUnit.HOURS)

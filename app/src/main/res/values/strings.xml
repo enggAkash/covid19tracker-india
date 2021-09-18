@@ -2,7 +2,7 @@
     <string name="app_name">Covid19 Tracker 🇮🇳</string>
     <string name="select_state_ut">Select State/UT:</string>
     <string name="type_to_choose_state">Type to Choose State</string>
-    <string name="places_with_case">Places with case:</string>
+    <string name="places_with_case">Place with cases:</string>
     <string name="type_to_choose_place">Type to Choose Place</string>
     <string name="skip">Skip</string>
     <string name="save">Save</string>
@@ -40,7 +40,8 @@
         <item>2</item><!--IMPORTANCE_LOW-->
     </integer-array>
 
-    <string name="covid_report">There is %d cases in your district, %d cases in your state, %d cases in India in Last 24 hour. Be safe, be smart, be kind \uD83D\uDE37</string>
+    <string name="covid_report">There is %d new cases in %s, %d new cases in %s and %d new cases in %s. Be safe, be smart, be kind \uD83D\uDE37</string>
+    <string name="covid_report_india_only">There is %d new cases in %s. Be safe, be smart, be kind \uD83D\uDE37</string>
     <!--END: Notification Channel Strings-->
 
     <string name="about_covid19india_title_text">We get our data from <u>covid19india.org</u></string>

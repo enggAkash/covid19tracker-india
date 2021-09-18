@@ -10,6 +10,7 @@ import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
 import `in`.engineerakash.covid19india.util.Constant
 import `in`.engineerakash.covid19india.util.DateTimeUtil
+import `in`.engineerakash.covid19india.util.Helper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -181,7 +182,7 @@ class TrackFragment : Fragment() {
     }
 
     private fun fillDashboard(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
-        val dashboardStats: StateDistrictWiseResponse? = getCurrentStateStats(stateDistrictList)
+        val dashboardStats: StateDistrictWiseResponse? = Helper.getCurrentStateStats(stateDistrictList)
         binding.totalCasesInUserStateTitleTv.text = "#Cases in ${dashboardStats?.name ?: "-"}"
         binding.defaultStateNameTv.text = (dashboardStats?.name ?: "-")
 
@@ -209,8 +210,8 @@ class TrackFragment : Fragment() {
     }
 
     private fun fillMostAffectedDistrictSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>?) {
-        val mostAffectedDistricts: ArrayList<District> = getMostAffectedDistricts(stateDistrictList)
-        mostAffectedDistricts.addAll(getObjectTotalOfAffectedDistricts(stateDistrictList))
+        val mostAffectedDistricts: ArrayList<District> = Helper.getMostAffectedDistricts(stateDistrictList)
+        mostAffectedDistricts.addAll(Helper.getObjectTotalOfAffectedDistricts(stateDistrictList))
         binding.mostAffectedDistrictTitleTv.text =
             "#Most Affected District in ${Constant.userSelectedState.trim { it <= ' ' }}"
         val districtWiseAdapter = DistrictWiseAdapter(mostAffectedDistricts, false)
@@ -220,248 +221,14 @@ class TrackFragment : Fragment() {
 
     private fun fillMostAffectedStateSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
         val mostAffectedStateWiseList: ArrayList<StateDistrictWiseResponse> =
-            getMostAffectedStates(stateDistrictList)
+            Helper.getMostAffectedStates(stateDistrictList)
         mostAffectedStateWiseList
-            .add(getObjectTotalOfAffectedState(stateDistrictList))
+            .add(Helper.getObjectTotalOfAffectedState(stateDistrictList))
         binding.mostAffectedStateTitleTv.text =
             "#Most Affected States & UT in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
         val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList, false)
         binding.mostAffectedStateRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedStateRv.adapter = stateWiseAdapter
-    }
-
-
-    private fun getCurrentStateStats(stateDistrictList: ArrayList<StateDistrictWiseResponse>): StateDistrictWiseResponse? {
-        var currentStateStats: StateDistrictWiseResponse? = null
-        for (stateDistrictData in stateDistrictList) {
-            if (Constant.userSelectedState.trim { it <= ' ' }
-                    .equals(stateDistrictData.name.trim { it <= ' ' }, ignoreCase = true)) {
-                currentStateStats = stateDistrictData
-                break
-            }
-        }
-        return currentStateStats
-    }
-
-    private fun getObjectTotalOfAffectedState(stateDistrictList: ArrayList<StateDistrictWiseResponse>): StateDistrictWiseResponse {
-        var objectTotalOfMostAffectedState: StateDistrictWiseResponse? = null
-        for (stateWiseData in stateDistrictList) {
-            if (Constant.TOTAL_ITEM_CODE.equals(stateWiseData.code, ignoreCase = true) ||
-                Constant.TOTAL_ITEM_NAME.equals(stateWiseData.name, ignoreCase = true)
-            ) {
-                objectTotalOfMostAffectedState = stateWiseData
-            }
-        }
-        if (objectTotalOfMostAffectedState == null) {
-            var confirmed = 0
-            var deaths = 0
-            var deltaConfirmed = 0
-            var deltaDeaths = 0
-            var deltaRecovered = 0
-            var tested = 0
-            var vaccinated1 = 0
-            var vaccinated2 = 0
-
-            var recovered = 0
-            val state = Constant.TOTAL_ITEM_NAME
-            val stateCode = Constant.TOTAL_ITEM_CODE
-
-            // if Object "Total" Does not found in the list, compute manually
-            for (stateWiseData in stateDistrictList) {
-                confirmed += stateWiseData.total?.confirmed ?: 0
-                deaths += stateWiseData.total?.deceased ?: 0
-                tested += stateWiseData.total?.tested ?: 0
-                vaccinated1 += stateWiseData.total?.vaccinated1 ?: 0
-                vaccinated2 += stateWiseData.total?.vaccinated2 ?: 0
-                deltaConfirmed += stateWiseData.delta?.confirmed ?: 0
-                deltaDeaths += stateWiseData.delta?.deceased ?: 0
-                deltaRecovered += stateWiseData.delta?.recovered ?: 0
-                recovered += stateWiseData.delta?.recovered ?: 0
-            }
-            objectTotalOfMostAffectedState = StateDistrictWiseResponse(
-                state, stateCode, Delta(deltaConfirmed, deltaDeaths, deltaRecovered),
-                arrayListOf(), Meta(),
-                Total(confirmed, deaths, recovered)
-            )
-        }
-        return objectTotalOfMostAffectedState
-    }
-
-    private fun getMostAffectedStates(stateDistrictList: ArrayList<StateDistrictWiseResponse>): ArrayList<StateDistrictWiseResponse> {
-        val mostAffectedStates: ArrayList<StateDistrictWiseResponse> = arrayListOf()
-
-        // Remove Total if there is any
-        for (i in stateDistrictList.indices) {
-            if (stateDistrictList[i].code.equals(Constant.TOTAL_ITEM_CODE, ignoreCase = true) ||
-                stateDistrictList[i].name.equals(Constant.TOTAL_ITEM_NAME, ignoreCase = true)
-            ) {
-                stateDistrictList.removeAt(i)
-                break
-            }
-        }
-
-        // Sort State according to confirmed cases
-        stateDistrictList.sortWith { o1, o2 -> // descending
-            (o2.total?.confirmed ?: 0) - (o1.total?.confirmed ?: 0)
-        }
-
-        if (stateDistrictList.size >= Constant.MOST_AFFECTED_STATES_COUNT) {
-            // if state list is greater than the data count to show, then its perfect, add the required subset
-            mostAffectedStates.addAll(
-                stateDistrictList.subList(
-                    0,
-                    Constant.MOST_AFFECTED_STATES_COUNT - 1
-                )
-            )
-        } else {
-            // if state list is less than the data count required to show, then add all of them
-            mostAffectedStates.addAll(stateDistrictList)
-        }
-
-        // Check if user has selected their state and district then only perform this action
-        if (Constant.locationIsSelectedByUser) {
-            var userStateIsInMostAffectedState = false
-            var userStateIsInMostAffectedStateIndex = -1
-            // check if user selected state is in list, if not add them
-            for (i in mostAffectedStates.indices) {
-                val mostAffectedState: StateDistrictWiseResponse = mostAffectedStates[i]
-                if (Constant.userSelectedState.trim { it <= ' ' }
-                        .equals(
-                            mostAffectedState.name.trim { it <= ' ' },
-                            ignoreCase = true
-                        )
-                ) {
-                    userStateIsInMostAffectedState = true
-                    userStateIsInMostAffectedStateIndex = i
-                    break
-                }
-            }
-
-            // if user selected state is not in the most affected state list, add them from all state list
-            if (!userStateIsInMostAffectedState) {
-                for (stateWiseData in stateDistrictList) {
-                    if (Constant.userSelectedState.trim { it <= ' ' }
-                            .equals(
-                                stateWiseData.name.trim { it <= ' ' },
-                                ignoreCase = true
-                            )
-                    ) {
-                        mostAffectedStates.add(0, stateWiseData)
-                        break
-                    }
-                }
-            } else {
-
-                // move user selected state at 0th index
-                val temp: StateDistrictWiseResponse =
-                    mostAffectedStates[userStateIsInMostAffectedStateIndex]
-                mostAffectedStates.removeAt(userStateIsInMostAffectedStateIndex)
-                mostAffectedStates.add(0, temp)
-            }
-        }
-        return mostAffectedStates
-    }
-
-    private fun getObjectTotalOfAffectedDistricts(stateWiseDataArrayList: ArrayList<StateDistrictWiseResponse>?): ArrayList<District> {
-        val districtObjectTotal: ArrayList<District> = ArrayList<District>()
-
-        //Get user selected state
-        var userSelectedState: StateDistrictWiseResponse? = null
-        for (stateDistrictWiseResponse in stateWiseDataArrayList!!) {
-            if (Constant.userSelectedState.trim { it <= ' ' }
-                    .equals(stateDistrictWiseResponse.name.trim { it <= ' ' }, ignoreCase = true)) {
-                userSelectedState = stateDistrictWiseResponse
-                break
-            }
-        }
-
-        districtObjectTotal.add(
-            District(
-                Constant.TOTAL_ITEM_NAME,
-                Delta(
-                    userSelectedState?.delta?.confirmed, userSelectedState?.delta?.deceased,
-                    userSelectedState?.delta?.recovered
-                ),
-                Meta(
-                    userSelectedState?.meta?.date, userSelectedState?.meta?.lastUpdated,
-                    userSelectedState?.meta?.population
-                ),
-                Total(
-                    userSelectedState?.total?.confirmed, userSelectedState?.total?.deceased,
-                    userSelectedState?.total?.recovered
-                )
-            )
-        )
-        return districtObjectTotal
-    }
-
-    private fun getMostAffectedDistricts(stateWiseDataArrayList: ArrayList<StateDistrictWiseResponse>?): ArrayList<District> {
-        val mostAffectedDistricts: ArrayList<District> = ArrayList<District>()
-
-        //Get user selected state
-        var userSelectedState: StateDistrictWiseResponse? = null
-        for (stateDistrictWiseResponse in stateWiseDataArrayList!!) {
-            if (Constant.userSelectedState.trim { it <= ' ' }
-                    .equals(stateDistrictWiseResponse.name.trim { it <= ' ' }, ignoreCase = true)) {
-                userSelectedState = stateDistrictWiseResponse
-                break
-            }
-        }
-        var districtList: ArrayList<District> = ArrayList<District>()
-        if (userSelectedState != null) districtList = userSelectedState.districtArrayList
-
-
-        // Sort District according to confirmed cases
-        districtList.sortWith { o1, o2 -> // descending
-            (o2.total?.confirmed ?: 0) - (o1.total?.confirmed ?: 0)
-        }
-        if (districtList.size >= Constant.MOST_AFFECTED_DISTRICT_COUNT) {
-            // if district list is greater than the data count to show, then its perfect, add the required subset
-            mostAffectedDistricts.addAll(
-                districtList.subList(
-                    0,
-                    Constant.MOST_AFFECTED_DISTRICT_COUNT - 1
-                )
-            )
-        } else {
-            // if district list is less than the data count required to show, then add all of them
-            mostAffectedDistricts.addAll(districtList)
-        }
-
-        // Check if user has selected their state and district then only perform this action
-        if (Constant.locationIsSelectedByUser) {
-            var userDistrictIsInMostAffectedState = false
-            var userDistrictIsInMostAffectedStateIndex = -1
-
-            // check if user selected state is in list, if not add them
-            for (i in mostAffectedDistricts.indices) {
-                val district: District = mostAffectedDistricts[i]
-                if (Constant.userSelectedDistrict.trim { it <= ' ' }
-                        .equals(district.name.trim { it <= ' ' }, ignoreCase = true)) {
-                    userDistrictIsInMostAffectedState = true
-                    userDistrictIsInMostAffectedStateIndex = i
-                    break
-                }
-            }
-
-            // if user selected district is not in the most affected state list, add them from all state list
-            if (!userDistrictIsInMostAffectedState) {
-                for (district in districtList) {
-                    if (Constant.userSelectedDistrict.trim { it <= ' ' }
-                            .equals(district.name.trim { it <= ' ' }, ignoreCase = true)) {
-                        mostAffectedDistricts.add(0, district)
-                        break
-                    }
-                }
-            } else {
-
-                // move user selected district at 0th index
-                val temp: District = mostAffectedDistricts[userDistrictIsInMostAffectedStateIndex]
-                mostAffectedDistricts.removeAt(userDistrictIsInMostAffectedStateIndex)
-                mostAffectedDistricts.add(0, temp)
-            }
-        }
-        return mostAffectedDistricts
     }
 
     private fun showCompleteChart(chartType: ChartType) {

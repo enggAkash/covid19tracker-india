@@ -15,8 +15,8 @@ object Constant {
     /*will show last 3 date data*/
     const val BAR_CHART_DATE_COUNT = 3
 
-    const val COVID_REPORT_HOUR = 8 // 8AM
-    const val COVID_REPORT_MINUTE = 0 // 8:00AM
+    const val COVID_REPORT_HOUR = 10 // 10AM
+    const val COVID_REPORT_MINUTE = 0 // 10:00AM
 
     val stateCodeNameMap = HashMap<String, String>()
 
