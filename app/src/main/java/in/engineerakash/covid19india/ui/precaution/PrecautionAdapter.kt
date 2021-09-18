@@ -113,9 +113,9 @@ class PrecautionAdapter(val list: ArrayList<Precaution>) :
             itemBinding.descTv.visibility =
                 if (list[position].description.isEmpty()) View.GONE else View.VISIBLE
             itemBinding.affiliateLink1Tv.visibility =
-                if (list[position].affiliateLink1Text.isEmpty()) View.GONE else View.VISIBLE
+                if (list[position].affiliateLink1Text.isEmpty() || list[position].affiliateLink1Url.isEmpty()) View.GONE else View.VISIBLE
             itemBinding.affiliateLink2Tv.visibility =
-                if (list[position].affiliateLink2Text.isEmpty()) View.GONE else View.VISIBLE
+                if (list[position].affiliateLink2Text.isEmpty() || list[position].affiliateLink2Url.isEmpty()) View.GONE else View.VISIBLE
         }
 
     }

@@ -33,6 +33,8 @@ class PrecautionFragment : Fragment() {
     private fun getPrecautionList(): ArrayList<Precaution> {
         val list = arrayListOf<Precaution>()
 
+        //todo add affiliate marketing links
+
         val precautionList = arrayListOf<Precaution>(
             Precaution("PREVENTION"),
             Precaution(
