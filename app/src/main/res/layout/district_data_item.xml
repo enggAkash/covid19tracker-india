@@ -11,6 +11,7 @@
         android:id="@+id/dataContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
@@ -22,14 +23,14 @@
             android:layout_weight="1"
             android:gravity="start|center_vertical"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:padding="@dimen/dp_2">
 
             <TextView
                 android:id="@+id/districtNameTv"
                 style="@style/HeadingTextSmallSizeRegularFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:padding="@dimen/dp_2"
                 android:textColor="@android:color/black"
                 tools:text="District" />
 
@@ -38,7 +39,7 @@
                 style="@style/NonHeadingTextVerySmallSizeRegularFont"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:padding="@dimen/dp_2"
                 android:text="(Your District)"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -51,7 +52,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:padding="@dimen/dp_2">
 
             <TextView
                 android:id="@+id/deltaDistrictConfirmedTv"
@@ -71,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                tools:text="Confirmed" />
+                tools:text="43141" />
 
         </LinearLayout>
 
@@ -81,7 +82,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:padding="@dimen/dp_2">
 
             <TextView
                 android:id="@+id/deltaDistrictRecoveredTv"
@@ -100,8 +101,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Recovered"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                tools:text="3145" />
 
         </LinearLayout>
 
@@ -111,7 +112,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:padding="@dimen/dp_2">
 
             <TextView
                 android:id="@+id/deltaDistrictDeathTv"
@@ -130,8 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Death"
-                android:textColor="@android:color/black" />
+                android:textColor="@android:color/black"
+                tools:text="43141" />
 
         </LinearLayout>
 

@@ -72,20 +72,24 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
                 // show data
                 itemBinding.districtNameTv.text = data.name
 
-                itemBinding.districtConfirmedTv.text = (data.total?.confirmed ?: 0).toString()
-                itemBinding.deltaDistrictConfirmedTv.text = (data.delta?.confirmed ?: 0).toString()
+                itemBinding.districtConfirmedTv.text = (data.total?.confirmed ?: "-").toString()
+                itemBinding.deltaDistrictConfirmedTv.text =
+                    (data.delta?.confirmed ?: "-").toString()
 
-                itemBinding.districtRecoveredTv.text = (data.total?.recovered ?: 0).toString()
-                itemBinding.deltaDistrictRecoveredTv.text = (data.delta?.recovered ?: 0).toString()
+                itemBinding.districtRecoveredTv.text = (data.total?.recovered ?: "-").toString()
+                itemBinding.deltaDistrictRecoveredTv.text =
+                    (data.delta?.recovered ?: "-").toString()
 
-                itemBinding.districtDeathTv.text = (data.total?.deceased ?: 0).toString()
-                itemBinding.deltaDistrictDeathTv.text = (data.delta?.deceased ?: 0).toString()
+                itemBinding.districtDeathTv.text = (data.total?.deceased ?: "-").toString()
+                itemBinding.deltaDistrictDeathTv.text = (data.delta?.deceased ?: "-").toString()
 
                 if (Constant.userSelectedDistrict.trim { it <= ' ' }
                         .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
                     Constant.locationIsSelectedByUser
-                ) itemBinding.userDistrictTv.visibility =
-                    View.VISIBLE else itemBinding.userDistrictTv.visibility = View.GONE
+                )
+                    itemBinding.userDistrictTv.visibility = View.VISIBLE
+                else
+                    itemBinding.userDistrictTv.visibility = View.GONE
                 itemBinding.dataContainer.visibility = View.VISIBLE
                 itemBinding.emptyView.visibility = View.GONE
                 if (position % 2 == 0) {
@@ -136,7 +140,6 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
                         itemBinding.deltaDistrictDeathTv.visibility = View.INVISIBLE
                     else
                         itemBinding.deltaDistrictDeathTv.visibility = View.VISIBLE
-
                 }
             }
 

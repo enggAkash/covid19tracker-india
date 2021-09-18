@@ -4,6 +4,7 @@ import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.StateDataItemBinding
 import `in`.engineerakash.covid19india.pojo.StateDistrictWiseResponse
 import `in`.engineerakash.covid19india.util.Constant
+import `in`.engineerakash.covid19india.util.ViewUtil.isNullOr0
 import android.content.Context
 import android.graphics.Typeface
 import android.view.LayoutInflater
@@ -19,8 +20,7 @@ private const val TYPE_ITEM = 1
 private const val TYPE_EMPTY_VIEW = 2
 
 class StateWiseAdapter(
-    var list: ArrayList<StateDistrictWiseResponse>,
-    var allowScrollAnimation: Boolean = true
+    var list: ArrayList<StateDistrictWiseResponse>, var allowScrollAnimation: Boolean = true
 ) :
     RecyclerView.Adapter<StateWiseAdapter.StateWiseVH>() {
 
@@ -70,40 +70,40 @@ class StateWiseAdapter(
                 itemBinding.dataContainer.visibility = View.GONE
                 itemBinding.emptyView.visibility = View.VISIBLE
                 itemBinding.root.setBackgroundColor(
-                    ContextCompat.getColor(
-                        itemBinding.root.context,
-                        R.color.colorOddItem
-                    )
+                    ContextCompat.getColor(itemBinding.root.context, R.color.colorOddItem)
                 )
             } else {
 
                 val data: StateDistrictWiseResponse = list[position]
 
                 // show data
-                itemBinding.stateNameTv.setText(data.name)
+                itemBinding.stateNameTv.text = data.name
+
                 itemBinding.stateConfirmedTv.text = (data.total?.confirmed ?: "-").toString()
+                itemBinding.deltaStateConfirmedTv.text = (data.delta?.confirmed ?: "-").toString()
+
                 itemBinding.stateRecoveredTv.text = (data.total?.recovered ?: "-").toString()
+                itemBinding.deltaStateRecoveredTv.text = (data.delta?.recovered ?: "-").toString()
+
                 itemBinding.stateDeathTv.text = (data.total?.deceased ?: "-").toString()
+                itemBinding.deltaStateDeathTv.text = (data.delta?.deceased ?: "-").toString()
+
                 if (Constant.userSelectedState.trim { it <= ' ' }
                         .equals(data.name.trim { it <= ' ' }, ignoreCase = true) &&
                     Constant.locationIsSelectedByUser
-                ) itemBinding.userStateTv.visibility =
-                    View.VISIBLE else itemBinding.userStateTv.visibility = View.GONE
+                )
+                    itemBinding.userStateTv.visibility = View.VISIBLE
+                else
+                    itemBinding.userStateTv.visibility = View.GONE
                 itemBinding.dataContainer.visibility = View.VISIBLE
                 itemBinding.emptyView.visibility = View.GONE
                 if (position % 2 == 0) {
                     itemBinding.root.setBackgroundColor(
-                        ContextCompat.getColor(
-                            itemBinding.root.context,
-                            R.color.colorOddItem
-                        )
+                        ContextCompat.getColor(itemBinding.root.context, R.color.colorOddItem)
                     )
                 } else {
                     itemBinding.root.setBackgroundColor(
-                        ContextCompat.getColor(
-                            itemBinding.root.context,
-                            R.color.colorEvenItem
-                        )
+                        ContextCompat.getColor(itemBinding.root.context, R.color.colorEvenItem)
                     )
                 }
 
@@ -121,6 +121,29 @@ class StateWiseAdapter(
                         Typeface.defaultFromStyle(Typeface.NORMAL)
                     itemBinding.stateDeathTv.typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
                 }
+
+                if (data.delta?.confirmed.isNullOr0() && data.delta?.recovered.isNullOr0() && data.delta?.deceased.isNullOr0()) {
+                    itemBinding.deltaStateConfirmedTv.visibility = View.GONE
+                    itemBinding.deltaStateRecoveredTv.visibility = View.GONE
+                    itemBinding.deltaStateDeathTv.visibility = View.GONE
+                } else {
+
+                    if (data.delta?.confirmed.isNullOr0())
+                        itemBinding.deltaStateConfirmedTv.visibility = View.INVISIBLE
+                    else
+                        itemBinding.deltaStateConfirmedTv.visibility = View.VISIBLE
+
+                    if (data.delta?.recovered.isNullOr0())
+                        itemBinding.deltaStateRecoveredTv.visibility = View.INVISIBLE
+                    else
+                        itemBinding.deltaStateRecoveredTv.visibility = View.VISIBLE
+
+                    if (data.delta?.deceased.isNullOr0())
+                        itemBinding.deltaStateDeathTv.visibility = View.INVISIBLE
+                    else
+                        itemBinding.deltaStateDeathTv.visibility = View.VISIBLE
+                }
+
             }
 
             if (allowScrollAnimation) {
