@@ -7,10 +7,14 @@ import `in`.engineerakash.covid19india.util.Helper
 import `in`.engineerakash.covid19india.util.NotificationHelper
 import android.app.Application
 import android.util.Log
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.initialization.InitializationStatus
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import com.google.gson.JsonParseException
 import org.json.JSONArray
 
 private const val TAG = "CovidApplication"
+
 class CovidApplication : Application() {
 
     override fun onCreate() {
@@ -44,6 +48,11 @@ class CovidApplication : Application() {
         } catch (e: JsonParseException) {
             e.printStackTrace()
         }
+
+        //todo implement it via jetpack's startup library
+        MobileAds.initialize(this, object : OnInitializationCompleteListener {
+            override fun onInitializationComplete(initializationStatus: InitializationStatus?) {}
+        })
 
     }
 

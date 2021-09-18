@@ -3,10 +3,13 @@ package `in`.engineerakash.covid19india.ui.settings
 import `in`.engineerakash.covid19india.BuildConfig
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ActivityAboutAppBinding
+import `in`.engineerakash.covid19india.util.Constant
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class AboutAppActivity : AppCompatActivity() {
 
@@ -30,6 +33,9 @@ class AboutAppActivity : AppCompatActivity() {
         )
 
         binding.appVersion.text = "App Version ${BuildConfig.VERSION_NAME}"
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -40,4 +46,12 @@ class AboutAppActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+    private fun loadAds() {
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+    }
+
 }

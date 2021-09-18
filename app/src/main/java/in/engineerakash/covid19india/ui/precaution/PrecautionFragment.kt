@@ -3,12 +3,15 @@ package `in`.engineerakash.covid19india.ui.precaution
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentPrecautionBinding
 import `in`.engineerakash.covid19india.pojo.Precaution
+import `in`.engineerakash.covid19india.util.Constant
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class PrecautionFragment : Fragment() {
     private lateinit var binding: FragmentPrecautionBinding
@@ -28,6 +31,9 @@ class PrecautionFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
 
         binding.precautionRv.adapter = PrecautionAdapter(getPrecautionList())
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     private fun getPrecautionList(): ArrayList<Precaution> {
@@ -113,6 +119,15 @@ class PrecautionFragment : Fragment() {
         list.addAll(cureList)
 
         return list
+    }
+
+    private fun loadAds() {
+        context.let {
+            MobileAds.initialize(it!!) {}
+
+            val adRequest = AdRequest.Builder().build()
+            binding.adView.loadAd(adRequest)
+        }
     }
 
 }

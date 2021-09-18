@@ -26,6 +26,8 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import java.util.*
 
 class DetailGraphFragment : Fragment() {
@@ -63,6 +65,9 @@ class DetailGraphFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.show()
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     override fun onStart() {
@@ -236,4 +241,14 @@ class DetailGraphFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.subtitle = ""
         (activity as MainActivity?)?.changeThemeColor(true, 0)
     }
+
+    private fun loadAds() {
+        context.let {
+            MobileAds.initialize(it!!) {}
+
+            val adRequest = AdRequest.Builder().build()
+            binding.adView.loadAd(adRequest)
+        }
+    }
+
 }

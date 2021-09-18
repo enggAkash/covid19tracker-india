@@ -16,9 +16,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import java.util.*
 
 private const val TAG = "SettingsFragment"
+
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
 
@@ -94,6 +97,18 @@ class SettingsFragment : Fragment() {
         binding.aboutAppTitleTv.setOnClickListener {
             startActivity(Intent(context, AboutAppActivity::class.java))
         }
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
+    private fun loadAds() {
+        context.let {
+            MobileAds.initialize(it!!) {}
+
+            val adRequest = AdRequest.Builder().build()
+            binding.adView.loadAd(adRequest)
+        }
     }
+
+}

@@ -44,6 +44,8 @@ object Constant {
 
     const val TOTAL_ITEM_NAME = "Total"
     const val TOTAL_ITEM_CODE = "TT"
+
+    const val SHOW_ADS = true // todo remove empty space when not showing ads
 }
 
 enum class ChooseLocationStartedFrom {

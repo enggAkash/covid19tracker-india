@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import java.util.*
 
 class DetailListFragment : Fragment() {
@@ -48,6 +50,9 @@ class DetailListFragment : Fragment() {
         (activity as AppCompatActivity?)?.supportActionBar?.show()
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity?)?.supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     override fun onStart() {
@@ -296,4 +301,14 @@ class DetailListFragment : Fragment() {
         }
         return objectTotalOfMostAffectedState
     }
+
+    private fun loadAds() {
+        context.let {
+            MobileAds.initialize(it!!) {}
+
+            val adRequest = AdRequest.Builder().build()
+            binding.adView.loadAd(adRequest)
+        }
+    }
+
 }

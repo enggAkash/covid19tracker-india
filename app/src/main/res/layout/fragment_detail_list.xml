@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,13 +33,25 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mostAffectedDistrictAndStateRv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/main_activity_margin_bottom"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/margin_smallest"
+        android:layout_weight="1"
         android:layoutAnimation="@anim/data_list_recycler_layout_anim"
         android:paddingStart="@dimen/margin_smallest"
         android:paddingEnd="@dimen/margin_smallest"
         android:paddingBottom="@dimen/margin_smallest"
         tools:itemCount="5"
         tools:listitem="@layout/state_data_item" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        ads:adSize="LARGE_BANNER"
+        ads:adUnitId="@string/admob_tracking_screen_banner_ad_id"
+        ads:layout_constraintBottom_toTopOf="@id/appVersion"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
 
 </LinearLayout>

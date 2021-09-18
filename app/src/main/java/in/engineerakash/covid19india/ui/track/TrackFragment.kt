@@ -26,6 +26,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.material.tabs.TabLayoutMediator
 
 private const val TAG = "TrackFragment"
@@ -67,6 +70,9 @@ class TrackFragment : Fragment() {
         binding = FragmentTrackBinding.inflate(inflater, container, false)
 
         initComponent()
+
+
+
 
         return binding.root
     }
@@ -162,6 +168,9 @@ class TrackFragment : Fragment() {
             viewModel.fetchTimeSeriesAndStateWiseData()
             viewModel.fetchStateDistrictData()
         }
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     private fun getTimeSeriesData(viewModel: MainViewModel, forceUpdate: Boolean = false) {
@@ -410,6 +419,16 @@ class TrackFragment : Fragment() {
             totalAndDailyGraphFragmentList[position] = fragment
 
             return fragment
+        }
+    }
+
+    private fun loadAds() {
+        context.let {
+            MobileAds.initialize(it!!) {}
+
+            val adRequest = AdRequest.Builder().build()
+            binding.adView.loadAd(adRequest)
+            binding.adView2.loadAd(adRequest)
         }
     }
 

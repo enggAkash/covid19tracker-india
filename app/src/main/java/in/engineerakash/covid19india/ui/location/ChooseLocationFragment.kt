@@ -28,6 +28,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.google.gson.JsonParseException
 import org.json.JSONArray
 
@@ -84,7 +86,7 @@ class ChooseLocationFragment : Fragment() {
             }
         })
 
-        binding.retryBtn.setOnClickListener{
+        binding.retryBtn.setOnClickListener {
             fetchDistrictData(viewModel, true)
         }
 
@@ -124,6 +126,9 @@ class ChooseLocationFragment : Fragment() {
         setupClickListeners()
 
         stateAdapter?.setList(getStateList())
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     private fun fetchDistrictData(viewModel: MainViewModel, forceUpdate: Boolean = false) {
@@ -315,4 +320,14 @@ class ChooseLocationFragment : Fragment() {
         (activity as MainActivity?)?.changeThemeColor(true, 0)
 
     }
+
+    private fun loadAds() {
+        context.let {
+            MobileAds.initialize(it!!) {}
+
+            val adRequest = AdRequest.Builder().build()
+            binding.adView.loadAd(adRequest)
+        }
+    }
+
 }

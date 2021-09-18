@@ -93,5 +93,14 @@
         <item>No, this app is only using it\'s api (data.covid19india.org)</item>
     </string-array>
 
+    <!--TODO Change this at the time of Release-->
+    <!--Demo Admob Account-->
+    <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <!--Live Admob Account-->
+    <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
+    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
+
     <!--END About Covid19IndiaOrg Q&A-->
 </resources>

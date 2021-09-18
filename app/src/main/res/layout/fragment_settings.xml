@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,200 +8,219 @@
     android:background="@android:color/white"
     tools:context=".ui.settings.SettingsFragment">
 
-    <TextView
-        android:id="@+id/dailyNotificationTitleTv"
-        style="@style/HeadingTextMediumSizeSemiBoldFont"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_small"
-        android:text="Get report about Covid cases in your area"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toTopOf="@id/topGuide" />
+        android:background="@android:color/white"
+        tools:context=".ui.settings.SettingsFragment">
 
-    <RadioGroup
-        android:id="@+id/dailyNotificationRg"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/dailyNotificationTitleTv">
-
-        <RadioButton
-            android:id="@+id/dailyNotificationRb"
-            style="@style/NonHeadingTextMediumSizeSemiBoldFont"
+        <TextView
+            android:id="@+id/dailyNotificationTitleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:foreground="?android:selectableItemBackground"
-            android:text="Daily" />
+            android:paddingTop="@dimen/margin_small"
+            android:paddingBottom="@dimen/margin_small"
+            android:text="Get report about Covid cases in your area"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toTopOf="@id/topGuide" />
 
-        <RadioButton
-            android:id="@+id/neverNotificationRb"
-            style="@style/NonHeadingTextMediumSizeSemiBoldFont"
+        <RadioGroup
+            android:id="@+id/dailyNotificationRg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/dailyNotificationTitleTv">
+
+            <RadioButton
+                android:id="@+id/dailyNotificationRb"
+                style="@style/NonHeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:selectableItemBackground"
+                android:text="Daily" />
+
+            <RadioButton
+                android:id="@+id/neverNotificationRb"
+                style="@style/NonHeadingTextMediumSizeSemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:foreground="?android:selectableItemBackground"
+                android:text="Never" />
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/notificationDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/colorLightGrey"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/dailyNotificationRg" />
+
+
+        <TextView
+            android:id="@+id/aboutCovid19IndiaTitleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_setting_arrow_forward"
             android:foreground="?android:selectableItemBackground"
-            android:text="Never" />
+            android:paddingTop="@dimen/margin_medium_minus"
+            android:paddingBottom="@dimen/margin_medium_minus"
+            android:text="@string/about_covid19india_title_text"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/notificationDivider" />
 
-    </RadioGroup>
+        <View
+            android:id="@+id/aboutCovid19IndiaDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/colorLightGrey"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaTitleTv" />
 
-    <View
-        android:id="@+id/notificationDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_1"
-        android:layout_marginTop="@dimen/margin_small"
-        android:background="@color/colorLightGrey"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/dailyNotificationRg" />
+        <TextView
+            android:id="@+id/changeLocationTitleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_setting_arrow_forward"
+            android:foreground="?android:selectableItemBackground"
+            android:paddingTop="@dimen/margin_medium_minus"
+            android:paddingBottom="@dimen/margin_medium_minus"
+            android:text="Change Location"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaDivider" />
 
+        <View
+            android:id="@+id/changeLocationDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/colorLightGrey"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/changeLocationTitleTv" />
 
-    <TextView
-        android:id="@+id/aboutCovid19IndiaTitleTv"
-        style="@style/HeadingTextMediumSizeSemiBoldFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_setting_arrow_forward"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingTop="@dimen/margin_medium_minus"
-        android:paddingBottom="@dimen/margin_medium_minus"
-        android:text="@string/about_covid19india_title_text"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/notificationDivider" />
+        <TextView
+            android:id="@+id/shareAppTitleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_share"
+            android:foreground="?android:selectableItemBackground"
+            android:paddingTop="@dimen/margin_medium_minus"
+            android:paddingBottom="@dimen/margin_medium_minus"
+            android:text="Share App"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/changeLocationDivider" />
 
-    <View
-        android:id="@+id/aboutCovid19IndiaDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorLightGrey"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaTitleTv" />
+        <View
+            android:id="@+id/shareAppDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/colorLightGrey"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/shareAppTitleTv" />
 
-    <TextView
-        android:id="@+id/changeLocationTitleTv"
-        style="@style/HeadingTextMediumSizeSemiBoldFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_setting_arrow_forward"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingTop="@dimen/margin_medium_minus"
-        android:paddingBottom="@dimen/margin_medium_minus"
-        android:text="Change Location"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaDivider" />
+        <TextView
+            android:id="@+id/contactTitleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_email"
+            android:foreground="?android:selectableItemBackground"
+            android:paddingTop="@dimen/margin_medium_minus"
+            android:paddingBottom="@dimen/margin_medium_minus"
+            android:text="Contact App Developer"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/shareAppDivider" />
 
-    <View
-        android:id="@+id/changeLocationDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorLightGrey"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/changeLocationTitleTv" />
+        <View
+            android:id="@+id/contactDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/colorLightGrey"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/contactTitleTv" />
 
-    <TextView
-        android:id="@+id/shareAppTitleTv"
-        style="@style/HeadingTextMediumSizeSemiBoldFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_share"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingTop="@dimen/margin_medium_minus"
-        android:paddingBottom="@dimen/margin_medium_minus"
-        android:text="Share App"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/changeLocationDivider" />
+        <TextView
+            android:id="@+id/aboutAppTitleTv"
+            style="@style/HeadingTextMediumSizeSemiBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_setting_arrow_forward"
+            android:foreground="?android:selectableItemBackground"
+            android:paddingTop="@dimen/margin_medium_minus"
+            android:paddingBottom="@dimen/margin_medium_minus"
+            android:text="About App"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/contactDivider" />
 
-    <View
-        android:id="@+id/shareAppDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorLightGrey"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/shareAppTitleTv" />
+        <View
+            android:id="@+id/aboutAppDivider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/colorLightGrey"
+            app:layout_constraintEnd_toEndOf="@id/endGuide"
+            app:layout_constraintStart_toStartOf="@id/startGuide"
+            app:layout_constraintTop_toBottomOf="@id/aboutAppTitleTv" />
 
-    <TextView
-        android:id="@+id/contactTitleTv"
-        style="@style/HeadingTextMediumSizeSemiBoldFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_email"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingTop="@dimen/margin_medium_minus"
-        android:paddingBottom="@dimen/margin_medium_minus"
-        android:text="Contact App Developer"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/shareAppDivider" />
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_minus"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/admob_tracking_screen_banner_ad_id"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toBottomOf="@id/aboutAppDivider" />
 
-    <View
-        android:id="@+id/contactDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorLightGrey"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/contactTitleTv" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/margin_medium" />
 
-    <TextView
-        android:id="@+id/aboutAppTitleTv"
-        style="@style/HeadingTextMediumSizeSemiBoldFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_setting_arrow_forward"
-        android:foreground="?android:selectableItemBackground"
-        android:paddingTop="@dimen/margin_medium_minus"
-        android:paddingBottom="@dimen/margin_medium_minus"
-        android:text="About App"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/contactDivider" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottomGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/margin_medium" />
 
-    <View
-        android:id="@+id/aboutAppDivider"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/colorLightGrey"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toBottomOf="@id/aboutAppTitleTv" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/margin_medium" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/topGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="@dimen/margin_medium" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/margin_medium" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bottomGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="@dimen/margin_medium" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/startGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/margin_medium" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/endGuide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/margin_medium" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

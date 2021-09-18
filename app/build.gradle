@@ -141,4 +141,7 @@ dependencies {
     //implementation "androidx.work:work-multiprocess:$work_version"
 
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    //admob
+    implementation 'com.google.android.gms:play-services-ads:20.3.0'
 }

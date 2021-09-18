@@ -3,9 +3,12 @@ package `in`.engineerakash.covid19india.ui.settings
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.ActivityAboutCovid19OrgBinding
 import `in`.engineerakash.covid19india.pojo.QAndA
+import `in`.engineerakash.covid19india.util.Constant
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 class AboutCovid19OrgActivity : AppCompatActivity() {
 
@@ -26,6 +29,9 @@ class AboutCovid19OrgActivity : AppCompatActivity() {
 
         val qAndAAdapter = QAndAAdapter(getQAndAData())
         binding.qAndARv.adapter = qAndAAdapter
+
+        if (Constant.SHOW_ADS)
+            loadAds()
     }
 
     private fun getQAndAData(): ArrayList<QAndA> {
@@ -47,6 +53,13 @@ class AboutCovid19OrgActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun loadAds() {
+        MobileAds.initialize(this) {}
+
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
     }
 
 }
