@@ -62,28 +62,33 @@ class ChooseLocationFragment : Fragment() {
 
         val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(activity!!.application) }
 
-        viewModel.getStateDistrictListLiveData()
-            .observe(viewLifecycleOwner, {
-                stateDistrictWiseResponse = it
+        viewModel.stateDistrictListLoaderLiveData.observe(viewLifecycleOwner, {
+            if (it) {
+                binding.dataLayout.visibility = View.GONE
+                binding.errorLayout.visibility = View.GONE
 
-                if (Constant.userSelectedState.isNotEmpty()) {
-                    val stateIndexToSelect =
-                        stateAdapter?.getPosition(Constant.userSelectedState) ?: -1
-                    if (stateIndexToSelect >= 0) {
+                binding.loaderLayout.visibility = View.VISIBLE
+            } else {
+                // error or data liveData will hide the loader
+            }
+        })
 
-                        binding.stateAutoCompleteTv.setViewIsChangingProgrammatically()
-                        selectedState = Constant.userSelectedState
-                        binding.stateAutoCompleteTv.setText(Constant.userSelectedState, true)
-                        binding.stateAutoCompleteTv.removeViewIsChangingProgrammatically()
+        viewModel.stateDistrictListErrorLiveData.observe(viewLifecycleOwner, {
+            if (!it.isNullOrEmpty()) {
+                binding.dataLayout.visibility = View.GONE
+                binding.loaderLayout.visibility = View.GONE
 
-                        Helper.setSelectedState(context, Constant.userSelectedState)
+                binding.errorMessageTv.text = it
+                binding.retryBtn.visibility = View.VISIBLE
+                binding.errorLayout.visibility = View.VISIBLE
+            }
+        })
 
-                        setDistrict()
+        binding.retryBtn.setOnClickListener{
+            fetchDistrictData(viewModel, true)
+        }
 
-                        binding.mapIv.setImageResource(Helper.getMapImageResource(selectedState))
-                    }
-                }
-            })
+        fetchDistrictData(viewModel)
 
         if (context != null) {
             stateAdapter = LocationAdapter(context!!, arrayListOf())
@@ -119,6 +124,35 @@ class ChooseLocationFragment : Fragment() {
         setupClickListeners()
 
         stateAdapter?.setList(getStateList())
+    }
+
+    private fun fetchDistrictData(viewModel: MainViewModel, forceUpdate: Boolean = false) {
+        viewModel.getStateDistrictListLiveData(forceUpdate)
+            .observe(viewLifecycleOwner, {
+                stateDistrictWiseResponse = it
+
+                binding.loaderLayout.visibility = View.GONE
+                binding.errorLayout.visibility = View.GONE
+                binding.dataLayout.visibility = View.VISIBLE
+
+                if (Constant.userSelectedState.isNotEmpty()) {
+                    val stateIndexToSelect =
+                        stateAdapter?.getPosition(Constant.userSelectedState) ?: -1
+                    if (stateIndexToSelect >= 0) {
+
+                        binding.stateAutoCompleteTv.setViewIsChangingProgrammatically()
+                        selectedState = Constant.userSelectedState
+                        binding.stateAutoCompleteTv.setText(Constant.userSelectedState, true)
+                        binding.stateAutoCompleteTv.removeViewIsChangingProgrammatically()
+
+                        Helper.setSelectedState(context, Constant.userSelectedState)
+
+                        setDistrict()
+
+                        binding.mapIv.setImageResource(Helper.getMapImageResource(selectedState))
+                    }
+                }
+            })
     }
 
     private fun setDistrict() {

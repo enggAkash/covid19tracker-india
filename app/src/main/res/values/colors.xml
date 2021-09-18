@@ -23,4 +23,5 @@
     <color name="hyperlink_color">#0645AD</color>
 
     <color name="more_text_color">@color/colorAccentDefault</color>
+    <color name="choose_fragment_bg_color">#801A1919</color>
 </resources>

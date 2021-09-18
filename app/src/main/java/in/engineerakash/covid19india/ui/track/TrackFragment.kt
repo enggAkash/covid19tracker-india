@@ -4,7 +4,9 @@ import `in`.engineerakash.covid19india.databinding.FragmentTrackBinding
 import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.enums.ListType
 import `in`.engineerakash.covid19india.enums.TotalOrDaily
-import `in`.engineerakash.covid19india.pojo.*
+import `in`.engineerakash.covid19india.pojo.District
+import `in`.engineerakash.covid19india.pojo.StateDistrictWiseResponse
+import `in`.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse
 import `in`.engineerakash.covid19india.ui.home.MainViewModel
 import `in`.engineerakash.covid19india.ui.home.MainViewModelFactory
 import `in`.engineerakash.covid19india.util.ChooseLocationStartedFrom
@@ -78,31 +80,8 @@ class TrackFragment : Fragment() {
 
         val viewModel: MainViewModel by activityViewModels { MainViewModelFactory(activity!!.application) }
 
-        viewModel.getStateDistrictListLiveData()
-            .observe(viewLifecycleOwner, {
-                stateDistrictList.clear()
-                stateDistrictList.addAll(it)
-                fillMostAffectedDistrictSection(stateDistrictList)
-
-                fillDashboard(stateDistrictList)
-                fillMostAffectedStateSection(stateDistrictList)
-
-            })
-
-        viewModel.getTimeSeriesStateWiseResponseLiveData()
-            .observe(viewLifecycleOwner, {
-
-                timeSeriesStateWiseResponse = it
-
-                countryWideCasesTimeSeries =
-                    getCountryWideCasesTimeSeries(timeSeriesStateWiseResponse)
-
-                (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
-                    countryWideCasesTimeSeries.timeSeriesList,
-                    true
-                )
-
-            })
+        getStateDistrictData(viewModel)
+        getTimeSeriesData(viewModel)
 
         viewModel.getGraphChartMoreClickLiveData().observe(viewLifecycleOwner, {
             if (it != null) {
@@ -131,10 +110,53 @@ class TrackFragment : Fragment() {
                     countryWideCasesTimeSeries.timeSeriesList
                 )
             }
-
         })
 
-        setupClickListeners()
+        viewModel.stateDistrictListLoaderLiveData.observe(viewLifecycleOwner, {
+            if (it || viewModel.timeSeriesStateWiseResponseLoaderLiveData.value == true) {
+                binding.dataLayout.visibility = View.GONE
+                binding.errorLayout.visibility = View.GONE
+
+                binding.loaderLayout.visibility = View.VISIBLE
+            } else {
+                // error or data liveData will hide the loader
+            }
+        })
+        viewModel.timeSeriesStateWiseResponseLoaderLiveData.observe(viewLifecycleOwner, {
+            if (it || viewModel.stateDistrictListLoaderLiveData.value == true) {
+                binding.dataLayout.visibility = View.GONE
+                binding.errorLayout.visibility = View.GONE
+
+                binding.loaderLayout.visibility = View.VISIBLE
+            } else {
+                // error or data liveData will hide the loader
+            }
+        })
+
+        viewModel.stateDistrictListErrorLiveData.observe(viewLifecycleOwner, {
+            if (!it.isNullOrEmpty()) {
+                binding.dataLayout.visibility = View.GONE
+                binding.loaderLayout.visibility = View.GONE
+
+                binding.errorMessageTv.text = it
+                binding.retryBtn.visibility = View.VISIBLE
+                binding.errorLayout.visibility = View.VISIBLE
+            }
+        })
+
+        viewModel.timeSeriesStateWiseResponseErrorLiveData.observe(viewLifecycleOwner, {
+            if (!it.isNullOrEmpty()) {
+                binding.dataLayout.visibility = View.GONE
+                binding.loaderLayout.visibility = View.GONE
+
+                binding.errorMessageTv.text = it
+                binding.retryBtn.visibility = View.VISIBLE
+                binding.errorLayout.visibility = View.VISIBLE
+            }
+        })
+
+
+        setupClickListeners(viewModel)
 
         if (args.refreshData) {
             viewModel.fetchTimeSeriesAndStateWiseData()
@@ -142,7 +164,58 @@ class TrackFragment : Fragment() {
         }
     }
 
-    private fun setupClickListeners() {
+    private fun getTimeSeriesData(viewModel: MainViewModel, forceUpdate: Boolean = false) {
+        viewModel.getTimeSeriesStateWiseResponseLiveData(forceUpdate)
+            .observe(viewLifecycleOwner, {
+
+                timeSeriesStateWiseResponse = it
+
+                if (
+                    viewModel.stateDistrictListLoaderLiveData.value == false &&
+                    viewModel.stateDistrictListErrorLiveData.value.isNullOrEmpty()
+                ) {
+
+                    binding.loaderLayout.visibility = View.GONE
+                    binding.errorLayout.visibility = View.GONE
+                    binding.dataLayout.visibility = View.VISIBLE
+                }
+
+                countryWideCasesTimeSeries =
+                    getCountryWideCasesTimeSeries(timeSeriesStateWiseResponse)
+
+                (totalAndDailyGraphFragmentList[binding.totalAndDailyViewPager.currentItem] as TotalAndDailyGraphFragment?)?.updateTimeSeriesDataList(
+                    countryWideCasesTimeSeries.timeSeriesList,
+                    true
+                )
+
+            })
+    }
+
+    private fun getStateDistrictData(viewModel: MainViewModel, forceUpdate: Boolean = false) {
+        viewModel.getStateDistrictListLiveData(forceUpdate)
+            .observe(viewLifecycleOwner, {
+
+                if (
+                    viewModel.timeSeriesStateWiseResponseLoaderLiveData.value == false &&
+                    viewModel.timeSeriesStateWiseResponseErrorLiveData.value.isNullOrEmpty()
+                ) {
+
+                    binding.loaderLayout.visibility = View.GONE
+                    binding.errorLayout.visibility = View.GONE
+                    binding.dataLayout.visibility = View.VISIBLE
+                }
+
+                stateDistrictList.clear()
+                stateDistrictList.addAll(it)
+                fillMostAffectedDistrictSection(stateDistrictList)
+
+                fillDashboard(stateDistrictList)
+                fillMostAffectedStateSection(stateDistrictList)
+
+            })
+    }
+
+    private fun setupClickListeners(viewModel: MainViewModel) {
         binding.totalCasesInUserStateContainer.setOnClickListener {
             navController.navigate(
                 TrackFragmentDirections.actionTrackFragmentToDetailListFragment(
@@ -179,10 +252,16 @@ class TrackFragment : Fragment() {
                 )
             )
         }
+
+        binding.retryBtn.setOnClickListener {
+            getStateDistrictData(viewModel, true)
+            getTimeSeriesData(viewModel, true)
+        }
     }
 
     private fun fillDashboard(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
-        val dashboardStats: StateDistrictWiseResponse? = Helper.getCurrentStateStats(stateDistrictList)
+        val dashboardStats: StateDistrictWiseResponse? =
+            Helper.getCurrentStateStats(stateDistrictList)
         binding.totalCasesInUserStateTitleTv.text = "#Cases in ${dashboardStats?.name ?: "-"}"
         binding.defaultStateNameTv.text = (dashboardStats?.name ?: "-")
 
@@ -210,7 +289,8 @@ class TrackFragment : Fragment() {
     }
 
     private fun fillMostAffectedDistrictSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>?) {
-        val mostAffectedDistricts: ArrayList<District> = Helper.getMostAffectedDistricts(stateDistrictList)
+        val mostAffectedDistricts: ArrayList<District> =
+            Helper.getMostAffectedDistricts(stateDistrictList)
         mostAffectedDistricts.addAll(Helper.getObjectTotalOfAffectedDistricts(stateDistrictList))
         binding.mostAffectedDistrictTitleTv.text =
             "#Most Affected District in ${Constant.userSelectedState.trim { it <= ' ' }}"

@@ -17,6 +17,8 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import java.io.IOException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 private const val TAG = "MainViewModel"
 
@@ -27,26 +29,38 @@ class MainViewModel(
 
     private val stateDistrictListLiveData: MutableLiveData<ArrayList<StateDistrictWiseResponse>> by lazy {
         MutableLiveData<ArrayList<StateDistrictWiseResponse>>().also {
-            //todo check for internet connection
-            fetchTimeSeriesAndStateWiseData()
-        }
-    }
-
-    private val timeSeriesStateWiseResponseLiveData: MutableLiveData<ArrayList<TimeSeriesStateWiseResponse>> by lazy {
-        MutableLiveData<ArrayList<TimeSeriesStateWiseResponse>>().also {
-            //todo check for internet connection
             fetchStateDistrictData()
         }
     }
 
+    val stateDistrictListErrorLiveData = MutableLiveData<String>()
+    val stateDistrictListLoaderLiveData = MutableLiveData<Boolean>()
+
+    private val timeSeriesStateWiseResponseLiveData: MutableLiveData<ArrayList<TimeSeriesStateWiseResponse>> by lazy {
+        MutableLiveData<ArrayList<TimeSeriesStateWiseResponse>>().also {
+            fetchTimeSeriesAndStateWiseData()
+        }
+    }
+
+    val timeSeriesStateWiseResponseErrorLiveData = MutableLiveData<String>()
+    val timeSeriesStateWiseResponseLoaderLiveData = MutableLiveData<Boolean>()
+
     private val graphChartMoreClickLiveData = MutableLiveData<ChartType?>()
 
 
-    fun getStateDistrictListLiveData(): LiveData<ArrayList<StateDistrictWiseResponse>> {
+    fun getStateDistrictListLiveData(forceUpdate: Boolean = false): LiveData<ArrayList<StateDistrictWiseResponse>> {
+        if (forceUpdate) {
+            stateDistrictListErrorLiveData.value = ""
+            fetchStateDistrictData()
+        }
         return stateDistrictListLiveData
     }
 
-    fun getTimeSeriesStateWiseResponseLiveData(): LiveData<ArrayList<TimeSeriesStateWiseResponse>> {
+    fun getTimeSeriesStateWiseResponseLiveData(forceUpdate: Boolean = false): LiveData<ArrayList<TimeSeriesStateWiseResponse>> {
+        if (forceUpdate) {
+            timeSeriesStateWiseResponseErrorLiveData.value = ""
+            fetchTimeSeriesAndStateWiseData()
+        }
         return timeSeriesStateWiseResponseLiveData
     }
 
@@ -57,11 +71,16 @@ class MainViewModel(
 
     fun fetchStateDistrictData() {
         //todo save last fetched json, and show them if internet is not connected
+
+        stateDistrictListLoaderLiveData.value = true
         CovidClient
             .instance
             .stateDistrictWiseData
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally {
+                stateDistrictListLoaderLiveData.value = false
+            }
             .subscribe(object : SingleObserver<ResponseBody> {
                 override fun onSubscribe(d: Disposable) {
                     disposables.add(d)
@@ -73,26 +92,36 @@ class MainViewModel(
                         val stateDistrictList =
                             JsonExtractor.parseStateDistrictWiseResponseJson(response)
 
-                        stateDistrictListLiveData.postValue(stateDistrictList)
+                        stateDistrictListLiveData.value = stateDistrictList
 
                     } catch (e: IOException) {
                         e.printStackTrace()
+                        stateDistrictListErrorLiveData.value = e.localizedMessage
                     }
                 }
 
                 override fun onError(e: Throwable) {
                     e.printStackTrace()
+                    stateDistrictListErrorLiveData.value =
+                        if (e is UnknownHostException || e is SocketTimeoutException)
+                            "Please check your internet connection"
+                        else
+                            e.localizedMessage
                 }
             })
     }
 
     fun fetchTimeSeriesAndStateWiseData() {
         //todo save last fetched json, and show them if internet is not connected
+        timeSeriesStateWiseResponseLoaderLiveData.value = true
         CovidClient
             .instance
             .timeSeriesAndStateWiseData
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally {
+                timeSeriesStateWiseResponseLoaderLiveData.value = false
+            }
             .subscribe(object : SingleObserver<ResponseBody> {
                 override fun onSubscribe(d: Disposable) {
                     disposables.add(d)
@@ -106,21 +135,27 @@ class MainViewModel(
                         val timeSeriesStateWiseResponse =
                             JsonExtractor.parseTimeSeriesWiseResponseJson(response)
 
-                        timeSeriesStateWiseResponseLiveData.postValue(timeSeriesStateWiseResponse)
+                        timeSeriesStateWiseResponseLiveData.value = timeSeriesStateWiseResponse
 
                     } catch (e: IOException) {
                         e.printStackTrace()
+                        timeSeriesStateWiseResponseErrorLiveData.value = e.localizedMessage
                     }
                 }
 
                 override fun onError(e: Throwable) {
                     e.printStackTrace()
+                    timeSeriesStateWiseResponseErrorLiveData.value =
+                        if (e is UnknownHostException || e is SocketTimeoutException)
+                            "Please check your internet connection"
+                        else
+                            e.localizedMessage
                 }
             })
     }
 
     fun setGraphChartMoreClickLiveData(chartType: ChartType?) {
-        graphChartMoreClickLiveData.postValue(chartType)
+        graphChartMoreClickLiveData.value = chartType
     }
 
     override fun onCleared() {
@@ -128,4 +163,6 @@ class MainViewModel(
             disposables.dispose()
         super.onCleared()
     }
+
+
 }

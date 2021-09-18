@@ -62,6 +62,7 @@
     </string>
     <string name="about_covid19india">About covid19india.org</string>
     <string name="about_app">About App</string>
+    <string name="indian_map">Indian Map</string>
 
     <!--About Covid19IndiaOrg Q&A-->
     <string-array name="q_and_a_questions_list">

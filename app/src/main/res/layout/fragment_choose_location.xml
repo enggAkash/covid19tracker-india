@@ -12,12 +12,15 @@
         android:id="@+id/mapIv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/indian_map"
         android:src="@drawable/india" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dataLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#801A1919">
+        android:background="@color/choose_fragment_bg_color"
+        android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -166,6 +169,67 @@
                 app:layout_constraintGuide_end="10dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loaderLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/choose_fragment_bg_color"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/choose_fragment_bg_color"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/errorMessageTv"
+            style="@style/HeadingTextMediumSizeBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_smallest"
+            android:layout_marginEnd="@dimen/margin_smallest"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="No Internet" />
+
+        <TextView
+            android:id="@+id/retryBtn"
+            style="@style/NonHeadingTextMediumSizeBoldFont"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/location_screen_save_btn_bg"
+            android:foreground="?android:selectableItemBackground"
+            android:paddingStart="25dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="5dp"
+            android:text="Please Retry"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/errorMessageTv"
+            app:layout_constraintWidth_default="wrap" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
