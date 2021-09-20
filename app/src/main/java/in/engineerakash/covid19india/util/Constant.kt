@@ -46,6 +46,9 @@ object Constant {
     const val TOTAL_ITEM_CODE = "TT"
 
     const val SHOW_ADS = true // todo remove empty space when not showing ads
+
+    //todo change in production
+    val THIS_BUILD_IS_FOR = AppStore.AMAZON_APP_STORE
 }
 
 enum class ChooseLocationStartedFrom {
@@ -55,4 +58,21 @@ enum class ChooseLocationStartedFrom {
 object CovidReportFrequency {
     const val DAILY = "daily"
     const val NEVER = "never"
+}
+
+object AppUpdateType {
+    const val FLEXIBLE = 0
+    const val IMMEDIATE = 1
+}
+
+enum class AppStore {
+    APK_PURE, AMAZON_APP_STORE, GOOGLE_PLAY_STORE
+}
+
+object AppStoreDefaultUrl {
+    val APK_PURE = "https://apkpure.com/p/in.engineerakash.covid19india"
+    val AMAZON_APP_STORE =
+        "http://www.amazon.com/gp/mas/dl/android?p=in.engineerakash.covid19india"
+    val GOOGLE_PLAY_STORE =
+        "https://play.google.com/store/apps/details?id=in.engineerakash.covid19india"
 }

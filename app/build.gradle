@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 31
@@ -144,4 +145,10 @@ dependencies {
 
     //admob
     implementation 'com.google.android.gms:play-services-ads:20.3.0'
+
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:28.4.1')
+
+    implementation 'com.google.firebase:firebase-config-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }

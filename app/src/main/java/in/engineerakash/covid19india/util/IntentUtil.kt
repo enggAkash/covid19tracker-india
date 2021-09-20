@@ -21,9 +21,18 @@ object IntentUtil {
 
             val appName = context?.getString(R.string.app_name)
 
-            val shareMessage = context?.getString(
-                R.string.share_app_description, appName, BuildConfig.APPLICATION_ID
-            )
+            val playStoreUrl =
+                if (Constant.THIS_BUILD_IS_FOR == AppStore.AMAZON_APP_STORE) {
+                    AppStoreDefaultUrl.AMAZON_APP_STORE
+                } else if (Constant.THIS_BUILD_IS_FOR == AppStore.APK_PURE) {
+                    AppStoreDefaultUrl.APK_PURE
+                } else {
+                    // google play store
+                    AppStoreDefaultUrl.GOOGLE_PLAY_STORE
+                }
+
+            val shareMessage =
+                context?.getString(R.string.share_app_description, appName, playStoreUrl)
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             context?.startActivity(Intent.createChooser(shareIntent, "choose one"))
 
@@ -57,7 +66,12 @@ object IntentUtil {
         emailIntent.putExtra(Intent.EXTRA_TEXT, body)
 
         try {
-            context.startActivity(Intent.createChooser(emailIntent, "Reach out to developer via email"));
+            context.startActivity(
+                Intent.createChooser(
+                    emailIntent,
+                    "Reach out to developer via email"
+                )
+            );
         } catch (e: Exception) {
             Toast.makeText(context, Constant.NO_EMAIL_CLIENT_MSG, Toast.LENGTH_SHORT).show()
         }
