@@ -58,7 +58,7 @@
         Buy essentials from home. Get Daily Report about covid cases in your area.
          Different ways to prevent and cure covid from official sources of Health Ministry, Government of India
         \n\nDownload %s\n
-        https://play.google.com/store/apps/details?id=%s
+        %s
     </string>
     <string name="about_covid19india">About covid19india.org</string>
     <string name="about_app">About App</string>
@@ -95,12 +95,12 @@
 
     <!--TODO Change this at the time of Release-->
     <!--Demo Admob Account-->
-    <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <!--Live Admob Account-->
-    <string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
-    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>
+    <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
+    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
 
     <!--END About Covid19IndiaOrg Q&A-->
 </resources>
