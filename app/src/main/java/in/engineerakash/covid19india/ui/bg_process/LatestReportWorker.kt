@@ -130,11 +130,11 @@ class LatestReportWorker(var context: Context, workerParameters: WorkerParameter
                 context.getString(
                     R.string.covid_report, casesInDistrict, Constant.userSelectedDistrict,
                     casesInState, Constant.userSelectedState, casesInIndia,
-                    Constant.userSelectedCountry
+                    context.getString(R.string.india)
                 )
             } else {
                 context.getString(
-                    R.string.covid_report_india_only, casesInIndia, Constant.userSelectedCountry
+                    R.string.covid_report_india_only, casesInIndia, context.getString(R.string.india)
                 )
             }
 
@@ -142,7 +142,7 @@ class LatestReportWorker(var context: Context, workerParameters: WorkerParameter
 
         NotificationHelper.createNotification(
             context,
-            "covid_report_id", "Daily Covid Report",
+            "covid_report_id", context.getString(R.string.daily_covid_report_notif_title),
             notificationText, R.mipmap.ic_launcher_rectangular, notificationText
         )
     }

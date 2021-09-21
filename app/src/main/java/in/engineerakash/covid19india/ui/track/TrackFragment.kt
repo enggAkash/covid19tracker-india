@@ -1,5 +1,6 @@
 package `in`.engineerakash.covid19india.ui.track
 
+import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentTrackBinding
 import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.enums.ListType
@@ -39,11 +40,14 @@ class TrackFragment : Fragment() {
 
     private var timeSeriesStateWiseResponse: ArrayList<TimeSeriesStateWiseResponse> = arrayListOf()
     private var countryWideCasesTimeSeries: TimeSeriesStateWiseResponse =
-        TimeSeriesStateWiseResponse(Constant.TOTAL_ITEM_NAME, Constant.TOTAL_ITEM_CODE)
+        TimeSeriesStateWiseResponse(
+            context?.getString(R.string.total) ?: "",
+            Constant.TOTAL_ITEM_CODE
+        )
     private var stateDistrictList: ArrayList<StateDistrictWiseResponse> = arrayListOf()
     private lateinit var navController: NavController
 
-    private val totalAndDailyGraphList = arrayListOf<String>("Daily", "Total")
+    private var totalAndDailyGraphList = arrayListOf<String>()
     private lateinit var totalAndDailyGraphAdapter: TotalAndDailyGraphAdapter
     private var totalAndDailyGraphFragmentList = arrayListOf<Fragment?>(null, null)
 
@@ -71,14 +75,16 @@ class TrackFragment : Fragment() {
 
         initComponent()
 
-
-
-
         return binding.root
     }
 
     private fun initComponent() {
         (activity as AppCompatActivity?)?.supportActionBar?.hide()
+
+        totalAndDailyGraphList = arrayListOf<String>(
+            context?.getString(R.string.daily) ?: "",
+            context?.getString(R.string.total) ?: ""
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -271,7 +277,8 @@ class TrackFragment : Fragment() {
     private fun fillDashboard(stateDistrictList: ArrayList<StateDistrictWiseResponse>) {
         val dashboardStats: StateDistrictWiseResponse? =
             Helper.getCurrentStateStats(stateDistrictList)
-        binding.totalCasesInUserStateTitleTv.text = "#Cases in ${dashboardStats?.name ?: "-"}"
+        binding.totalCasesInUserStateTitleTv.text =
+            getString(R.string.cases_in_state, (dashboardStats?.name ?: "-"))
         binding.defaultStateNameTv.text = (dashboardStats?.name ?: "-")
 
         binding.totalConfirmedCasesTv.text = "${dashboardStats?.total?.confirmed ?: "-"}"
@@ -294,7 +301,12 @@ class TrackFragment : Fragment() {
             "(+${dashboardStats?.delta?.recovered ?: "-"})"
 
         binding.dashBoardStatsLastUpdateTime.text =
-            "Last Updated: ${DateTimeUtil.parseMetaDateTimeToAppsDefaultDateTime(dashboardStats?.meta?.lastUpdated ?: "-")}"
+            getString(
+                R.string.last_updated_date,
+                (DateTimeUtil.parseMetaDateTimeToAppsDefaultDateTime(
+                    dashboardStats?.meta?.lastUpdated ?: "-"
+                ))
+            )
     }
 
     private fun fillMostAffectedDistrictSection(stateDistrictList: ArrayList<StateDistrictWiseResponse>?) {
@@ -302,7 +314,10 @@ class TrackFragment : Fragment() {
             Helper.getMostAffectedDistricts(stateDistrictList)
         mostAffectedDistricts.addAll(Helper.getObjectTotalOfAffectedDistricts(stateDistrictList))
         binding.mostAffectedDistrictTitleTv.text =
-            "#Most Affected District in ${Constant.userSelectedState.trim { it <= ' ' }}"
+            getString(
+                R.string.most_affected_district_in_state,
+                (Constant.userSelectedState.trim { it <= ' ' })
+            )
         val districtWiseAdapter = DistrictWiseAdapter(mostAffectedDistricts, false)
         binding.mostAffectedDistrictRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedDistrictRv.adapter = districtWiseAdapter
@@ -314,7 +329,7 @@ class TrackFragment : Fragment() {
         mostAffectedStateWiseList
             .add(Helper.getObjectTotalOfAffectedState(stateDistrictList))
         binding.mostAffectedStateTitleTv.text =
-            "#Most Affected States & UT in ${Constant.userSelectedCountry.trim { it <= ' ' }}"
+            getString(R.string.most_affected_state_in_india, context?.getString(R.string.india)?.trim { it <= ' ' })
         val stateWiseAdapter = StateWiseAdapter(mostAffectedStateWiseList, false)
         binding.mostAffectedStateRv.layoutManager = LinearLayoutManager(context)
         binding.mostAffectedStateRv.adapter = stateWiseAdapter
@@ -384,12 +399,15 @@ class TrackFragment : Fragment() {
     private fun getCountryWideCasesTimeSeries(timeSeriesList: ArrayList<TimeSeriesStateWiseResponse>): TimeSeriesStateWiseResponse {
 
         val countryWideCaseTimeSeries =
-            TimeSeriesStateWiseResponse(Constant.TOTAL_ITEM_NAME, Constant.TOTAL_ITEM_CODE)
+            TimeSeriesStateWiseResponse(
+                context?.getString(R.string.total) ?: "",
+                Constant.TOTAL_ITEM_CODE
+            )
 
         for (timeSeriesData in timeSeriesList) {
             if (
                 timeSeriesData.code.equals(Constant.TOTAL_ITEM_CODE, true) ||
-                timeSeriesData.name.equals(Constant.TOTAL_ITEM_NAME, true)
+                timeSeriesData.name.equals(context?.getString(R.string.total), true)
             ) {
                 countryWideCaseTimeSeries.timeSeriesList = timeSeriesData.timeSeriesList
                 break

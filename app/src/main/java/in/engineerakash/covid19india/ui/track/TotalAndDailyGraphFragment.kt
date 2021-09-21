@@ -1,5 +1,6 @@
 package `in`.engineerakash.covid19india.ui.track
 
+import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.chartutil.IndexAxisValueFormatter
 import `in`.engineerakash.covid19india.databinding.FragmentTotalAndDailyGraphBinding
 import `in`.engineerakash.covid19india.enums.ChartType
@@ -211,7 +212,7 @@ class TotalAndDailyGraphFragment : Fragment() {
             ChartType.TOTAL_CONFIRMED -> {
                 chart = binding.totalConfirmedCasesTimelineChart
                 binding.totalConfirmedCasesTimelineTitleTv.text =
-                    "#Total Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
+                    getString(R.string.total_confirmed_cases_in_country, context?.getString(R.string.india))
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(), (timeSeriesData.total?.confirmed ?: 0f).toFloat()
@@ -221,7 +222,7 @@ class TotalAndDailyGraphFragment : Fragment() {
             ChartType.TOTAL_DECEASED -> {
                 chart = binding.totalDeathCasesTimelineChart
                 binding.totalDeathCasesTimelineTitleTv.text =
-                    "#Total Death Cases in ${Constant.userSelectedCountry} Timeline"
+                    getString(R.string.total_death_cases_in_country, context?.getString(R.string.india))
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(), (timeSeriesData.total?.deceased ?: 0f).toFloat()
@@ -231,7 +232,7 @@ class TotalAndDailyGraphFragment : Fragment() {
             ChartType.TOTAL_RECOVERED -> {
                 chart = binding.totalRecoveredCasesTimelineChart
                 binding.totalRecoveredCasesTimelineTitleTv.text =
-                    "#Total Recovered Cases in ${Constant.userSelectedCountry} Timeline"
+                    getString(R.string.total_recovered_cases_in_country, context?.getString(R.string.india))
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(), (timeSeriesData.total?.recovered ?: 0f).toFloat()
@@ -241,7 +242,7 @@ class TotalAndDailyGraphFragment : Fragment() {
             ChartType.DAILY_CONFIRMED -> {
                 chart = binding.dailyConfirmedCasesTimelineChart
                 binding.dailyConfirmedCasesTimelineTitleTv.text =
-                    "#Daily Confirmed Cases in ${Constant.userSelectedCountry} Timeline"
+                    getString(R.string.daily_confirmed_cases_in_country, context?.getString(R.string.india))
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -252,7 +253,7 @@ class TotalAndDailyGraphFragment : Fragment() {
             ChartType.DAILY_DECEASED -> {
                 chart = binding.dailyDeathCasesTimelineChart
                 binding.dailyDeathCasesTimelineTitleTv.text =
-                    "#Daily Death Cases in ${Constant.userSelectedCountry} Timeline"
+                    getString(R.string.daily_death_cases_in_country, context?.getString(R.string.india))
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),
@@ -263,7 +264,7 @@ class TotalAndDailyGraphFragment : Fragment() {
             ChartType.DAILY_RECOVERED -> {
                 chart = binding.dailyRecoveredCasesTimelineChart
                 binding.dailyRecoveredCasesTimelineTitleTv.text =
-                    "#Daily Recovered Cases in ${Constant.userSelectedCountry} Timeline"
+                    getString(R.string.daily_recovered_cases_in_country, context?.getString(R.string.india))
                 for (timeSeriesData in timeSeriesList) values.add(
                     BarEntry(
                         tempCount++.toFloat(),

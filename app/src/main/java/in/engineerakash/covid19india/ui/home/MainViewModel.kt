@@ -1,9 +1,11 @@
 package `in`.engineerakash.covid19india.ui.home
 
+import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.api.CovidClient
 import `in`.engineerakash.covid19india.enums.ChartType
 import `in`.engineerakash.covid19india.pojo.StateDistrictWiseResponse
 import `in`.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse
+import `in`.engineerakash.covid19india.ui.CovidApplication
 import `in`.engineerakash.covid19india.util.JsonExtractor
 import android.app.Application
 import android.util.Log
@@ -104,7 +106,7 @@ class MainViewModel(
                     e.printStackTrace()
                     stateDistrictListErrorLiveData.value =
                         if (e is UnknownHostException || e is SocketTimeoutException)
-                            "Please check your internet connection"
+                            getApplication<CovidApplication>().getString(R.string.please_check_internet)
                         else
                             e.localizedMessage
                 }
@@ -147,7 +149,7 @@ class MainViewModel(
                     e.printStackTrace()
                     timeSeriesStateWiseResponseErrorLiveData.value =
                         if (e is UnknownHostException || e is SocketTimeoutException)
-                            "Please check your internet connection"
+                            getApplication<CovidApplication>().getString(R.string.please_check_internet)
                         else
                             e.localizedMessage
                 }

@@ -34,28 +34,28 @@ object IntentUtil {
             val shareMessage =
                 context?.getString(R.string.share_app_description, appName, playStoreUrl)
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
-            context?.startActivity(Intent.createChooser(shareIntent, "choose one"))
+            context?.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.choose_one)))
 
         } catch (e: Exception) {
-            Toast.makeText(context, "There is no app to handle this Request", Toast.LENGTH_LONG)
+            Toast.makeText(context, context?.getString(R.string.app_not_installed), Toast.LENGTH_LONG)
                 .show()
         }
     }
 
     fun contactAppDeveloper(context: Context?) {
-        Toast.makeText(context, "Select Email App", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context?.getString(R.string.select_email_app), Toast.LENGTH_SHORT).show()
 
 
-        val subject = "App Support"
+        val subject = context?.getString(R.string.app_support)
 
-        val instruction = "-- Below Information will help us to give you better support. --"
-        val deviceId = "Device ID : ${getAndroidId(context)}"
+        val instruction = context?.getString(R.string.below_info_help_us_to_support_better)
+        val deviceId = context?.getString(R.string.device_id, getAndroidId(context))
         val dm = DisplayMetrics()
         (context as Activity).windowManager.defaultDisplay.getMetrics(dm)
-        val display = "Display: ${dm.widthPixels} X ${dm.heightPixels}"
-        val androidVersion = "Android Version: ${Build.VERSION.RELEASE}"
-        val product = "Product Name : ${Build.PRODUCT}"
-        val versionName = "App Version : ${BuildConfig.VERSION_NAME}"
+        val display = context.getString(R.string.display_pixel, dm.widthPixels, dm.heightPixels)
+        val androidVersion = context.getString(R.string.android_version, Build.VERSION.RELEASE)
+        val product = context.getString(R.string.android_product, Build.PRODUCT)
+        val versionName = context.getString(R.string.app_version, BuildConfig.VERSION_NAME)
 
         val body = "\n\n\n\n\n$instruction\n$deviceId$display$androidVersion$product$versionName\n"
 
@@ -69,11 +69,11 @@ object IntentUtil {
             context.startActivity(
                 Intent.createChooser(
                     emailIntent,
-                    "Reach out to developer via email"
+                    context.getString(R.string.reach_out_to_developer)
                 )
             );
         } catch (e: Exception) {
-            Toast.makeText(context, Constant.NO_EMAIL_CLIENT_MSG, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.no_email_app_found), Toast.LENGTH_SHORT).show()
         }
     }
 

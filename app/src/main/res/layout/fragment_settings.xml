@@ -22,7 +22,7 @@
             android:foreground="?android:selectableItemBackground"
             android:paddingTop="@dimen/margin_small"
             android:paddingBottom="@dimen/margin_small"
-            android:text="Get report about Covid cases in your area"
+            android:text="@string/get_report_about_covid_cases_in_your_area"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
             app:layout_constraintTop_toTopOf="@id/topGuide" />
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:foreground="?android:selectableItemBackground"
-                android:text="Daily" />
+                android:text="@string/daily" />
 
             <RadioButton
                 android:id="@+id/neverNotificationRb"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:foreground="?android:selectableItemBackground"
-                android:text="Never" />
+                android:text="@string/never" />
 
         </RadioGroup>
 
@@ -72,14 +72,14 @@
             style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_setting_arrow_forward"
             android:foreground="?android:selectableItemBackground"
             android:paddingTop="@dimen/margin_medium_minus"
             android:paddingBottom="@dimen/margin_medium_minus"
             android:text="@string/about_covid19india_title_text"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/notificationDivider" />
+            app:layout_constraintTop_toBottomOf="@id/notificationDivider"
+            ads:drawableEndCompat="@drawable/ic_setting_arrow_forward" />
 
         <View
             android:id="@+id/aboutCovid19IndiaDivider"
@@ -95,14 +95,14 @@
             style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_setting_arrow_forward"
             android:foreground="?android:selectableItemBackground"
             android:paddingTop="@dimen/margin_medium_minus"
             android:paddingBottom="@dimen/margin_medium_minus"
-            android:text="Change Location"
+            android:text="@string/change_location"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaDivider" />
+            app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaDivider"
+            ads:drawableEndCompat="@drawable/ic_setting_arrow_forward" />
 
         <View
             android:id="@+id/changeLocationDivider"
@@ -118,14 +118,14 @@
             style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_share"
             android:foreground="?android:selectableItemBackground"
             android:paddingTop="@dimen/margin_medium_minus"
             android:paddingBottom="@dimen/margin_medium_minus"
-            android:text="Share App"
+            android:text="@string/share_app"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/changeLocationDivider" />
+            app:layout_constraintTop_toBottomOf="@id/changeLocationDivider"
+            ads:drawableEndCompat="@drawable/ic_share" />
 
         <View
             android:id="@+id/shareAppDivider"
@@ -141,14 +141,14 @@
             style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_email"
             android:foreground="?android:selectableItemBackground"
             android:paddingTop="@dimen/margin_medium_minus"
             android:paddingBottom="@dimen/margin_medium_minus"
-            android:text="Contact App Developer"
+            android:text="@string/contact_app_developer"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/shareAppDivider" />
+            app:layout_constraintTop_toBottomOf="@id/shareAppDivider"
+            ads:drawableEndCompat="@drawable/ic_email" />
 
         <View
             android:id="@+id/contactDivider"
@@ -164,14 +164,14 @@
             style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_setting_arrow_forward"
             android:foreground="?android:selectableItemBackground"
             android:paddingTop="@dimen/margin_medium_minus"
             android:paddingBottom="@dimen/margin_medium_minus"
-            android:text="About App"
+            android:text="@string/about_app"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/contactDivider" />
+            app:layout_constraintTop_toBottomOf="@id/contactDivider"
+            ads:drawableEndCompat="@drawable/ic_setting_arrow_forward" />
 
         <View
             android:id="@+id/aboutAppDivider"

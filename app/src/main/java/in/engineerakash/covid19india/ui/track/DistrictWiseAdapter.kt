@@ -103,7 +103,7 @@ class DistrictWiseAdapter(var list: ArrayList<District>, var allowScrollAnimatio
                 }
 
                 // Total element
-                if (data.name.equals(Constant.TOTAL_ITEM_NAME, ignoreCase = true)) {
+                if (data.name.equals(context?.getString(R.string.total), ignoreCase = true)) {
                     itemBinding.districtNameTv.typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                     itemBinding.districtConfirmedTv.typeface =
                         Typeface.defaultFromStyle(Typeface.BOLD)

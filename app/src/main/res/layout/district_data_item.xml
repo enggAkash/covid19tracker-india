@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
+        android:paddingTop="@dimen/dp_3"
+        android:paddingBottom="@dimen/dp_3"
         android:visibility="visible">
 
         <LinearLayout
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_2"
-                android:text="(Your District)"
+                android:text="@string/your_place"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -143,8 +143,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="3dp"
-        android:text="No Record Found!"
+        android:padding="@dimen/dp_3"
+        android:text="@string/no_record_found"
         android:visibility="gone"
         tools:visibility="visible" />
 

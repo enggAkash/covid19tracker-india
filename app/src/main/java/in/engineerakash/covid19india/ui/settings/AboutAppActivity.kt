@@ -7,6 +7,7 @@ import `in`.engineerakash.covid19india.util.Constant
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -32,7 +33,7 @@ class AboutAppActivity : AppCompatActivity() {
             getString(R.string.app_desc_text), HtmlCompat.FROM_HTML_MODE_COMPACT
         )
 
-        binding.appVersion.text = "App Version ${BuildConfig.VERSION_NAME}"
+        binding.appVersion.text = getString(R.string.app_version, BuildConfig.VERSION_NAME)
 
         if (Constant.SHOW_ADS)
             loadAds()

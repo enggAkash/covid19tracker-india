@@ -33,48 +33,6 @@ object Helper {
     private const val TAG = "Helper"
     private var progressDialog: AlertDialog? = null
 
-    fun emailSupport(context: Context) {
-        val subject = "Billin App Support"
-        val instruction = "-- Below Information will help us to give you better support. --"
-        val deviceId = """
-               
-               Device ID : ${getAndroidId(context)}
-               """.trimIndent()
-        val dm = DisplayMetrics()
-
-        (context as Activity).windowManager.defaultDisplay.getMetrics(dm)
-        val display = """
-Display: ${dm.widthPixels} X ${dm.heightPixels}"""
-        val androidVersion = """
-               
-               Android Version: ${Build.VERSION.RELEASE}
-               """.trimIndent()
-        val product = """
-               
-               Product Name : ${Build.PRODUCT}
-               """.trimIndent()
-        val versionName = """
-               
-               App Version : ${BuildConfig.VERSION_NAME}
-               
-               
-               """.trimIndent()
-        val body = """
-               
-               
-               
-               
-               
-               $instruction$deviceId$display$androidVersion$product$versionName
-               """.trimIndent()
-        val emailIntent = Intent(Intent.ACTION_SEND)
-        emailIntent.type = "message/rfc822"
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(Constant.SUPPORT_EMAIL))
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        emailIntent.putExtra(Intent.EXTRA_TEXT, body)
-        context.startActivity(Intent.createChooser(emailIntent, "Reach to Billin support..."))
-    }
-
     fun getAndroidId(context: Context): String {
         return Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
     }
@@ -126,7 +84,7 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
     @JvmOverloads
     fun showErr(
         context: Context?,
-        err: String? = "Something Went Wrong while processing your request"
+        err: String? = context?.getString(R.string.something_went_wrong)
     ) {
         if (context != null) Toast.makeText(context, err, Toast.LENGTH_LONG).show()
     }
@@ -185,7 +143,7 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
     }
 
     fun showNotInternetMsg(context: Context?) {
-        showMsg(context, "Internet is Not available.")
+        showMsg(context, context?.getString(R.string.internet_not_available))
     }
 
     fun appInstalledOrNot(context: Context, uri: String?): Boolean {
@@ -203,7 +161,7 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
     @JvmOverloads
     fun whatsapp(context: Context, msg: String?, mobile: String = "") {
         if (!appInstalledOrNot(context, "com.whatsapp")) {
-            showMsg(context, "Whatsapp is not Installed")
+            showMsg(context, context.getString(R.string.whatsapp_not_installed))
             return
         }
         val formattedNumber = mobile.replace("[\\s+-]".toRegex(), "")
@@ -221,33 +179,11 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
             try {
                 context.startActivity(sendIntent)
             } catch (e: ActivityNotFoundException) {
-                showMsg(context, "Failed to send whatsapp")
+                showMsg(context, context.getString(R.string.failed_to_send_whatsapp))
             }
         } catch (e: Exception) {
-            showMsg(context, "Failed to send whatsapp")
+            showMsg(context, context.getString(R.string.failed_to_send_whatsapp))
         }
-    }
-
-    fun sharingUrl(context: Context): String {
-        return "https://play.google.com/store/apps/details?id=" + context.packageName
-    }
-
-    fun shareApp(context: Context) {
-        val shareIntent = Intent()
-        shareIntent.action = Intent.ACTION_SEND
-        shareIntent.putExtra(
-            Intent.EXTRA_TEXT,
-            """
-                Billin is a complete solution for your business. It involves handling multiple branches, employees, sale and purchase record tracking, report generation and much more. 
-                
-                And after all it is completely free for a month. 
-                
-                Grow your business with billin now!
-                ${sharingUrl(context)}
-                """.trimIndent()
-        )
-        shareIntent.type = "text/plain"
-        context.startActivity(shareIntent)
     }
 
     fun handlePhoneCallLink(context: Context, url: String?) {
@@ -334,7 +270,7 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
                 // Finally, open the mail client activity
                 context.startActivity(intent)
             } catch (e: ActivityNotFoundException) {
-                Toast.makeText(context, Constant.NO_EMAIL_CLIENT_MSG, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.no_email_app_found), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -348,7 +284,7 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(
                     context,
-                    "App is not installed to handle this request",
+                    context.getString(R.string.app_not_installed),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -411,7 +347,7 @@ Display: ${dm.widthPixels} X ${dm.heightPixels}"""
         try {
             context?.startActivity(intent)
         } catch (ex: ActivityNotFoundException) {
-            Toast.makeText(context, "No App is available to Handle this request", Toast.LENGTH_LONG)
+            Toast.makeText(context, context?.getString(R.string.app_not_installed), Toast.LENGTH_LONG)
                 .show()
         }
     }

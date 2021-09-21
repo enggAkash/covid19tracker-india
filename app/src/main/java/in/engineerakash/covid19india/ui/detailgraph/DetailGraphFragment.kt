@@ -83,28 +83,28 @@ class DetailGraphFragment : Fragment() {
 
         when (currentChartType) {
             ChartType.TOTAL_CONFIRMED -> {
-                (activity as AppCompatActivity?)?.supportActionBar?.title = "Total Confirmed Cases"
-                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("in " + Constant.userSelectedCountry)
+                (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.total_confirmed_cases)
+                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.`in`) + context?.getString(R.string.india))
             }
             ChartType.TOTAL_DECEASED -> {
-                (activity as AppCompatActivity?)?.supportActionBar?.title = "Total Death Cases"
-                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("in " + Constant.userSelectedCountry)
+                (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.total_death_cases)
+                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.`in`) + context?.getString(R.string.india))
             }
             ChartType.TOTAL_RECOVERED -> {
-                (activity as AppCompatActivity?)?.supportActionBar?.title = "Total Recovered Cases"
-                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("in " + Constant.userSelectedCountry)
+                (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.total_recovered_cases)
+                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.`in`) + context?.getString(R.string.india))
             }
             ChartType.DAILY_CONFIRMED -> {
-                (activity as AppCompatActivity?)?.supportActionBar?.title = "Daily Confirmed Cases"
-                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("in " + Constant.userSelectedCountry)
+                (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.daily_confirmed_cases)
+                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.`in`) + context?.getString(R.string.india))
             }
             ChartType.DAILY_DECEASED -> {
-                (activity as AppCompatActivity?)?.supportActionBar?.title = "Daily Death Cases"
-                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("in " + Constant.userSelectedCountry)
+                (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.daily_death_cases)
+                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.`in`) + context?.getString(R.string.india))
             }
             ChartType.DAILY_RECOVERED -> {
-                (activity as AppCompatActivity?)?.supportActionBar?.title = "Daily Recovered Cases"
-                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("in " + Constant.userSelectedCountry)
+                (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.daily_recovered_cases)
+                (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.`in`) + context?.getString(R.string.india))
             }
         }
     }

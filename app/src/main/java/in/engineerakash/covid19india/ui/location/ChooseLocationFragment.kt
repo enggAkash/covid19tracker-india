@@ -182,12 +182,12 @@ class ChooseLocationFragment : Fragment() {
         binding.saveBtn.setOnClickListener {
 
             if (selectedState.isEmpty()) {
-                binding.stateAutoCompleteTv.error = "Please Select State"
+                binding.stateAutoCompleteTv.error = getString(R.string.please_select_state)
                 return@setOnClickListener
             }
 
             if (selectedDistrict.isEmpty()) {
-                binding.districtAutoCompleteTv.error = "Please Select District"
+                binding.districtAutoCompleteTv.error = getString(R.string.please_select_place)
                 return@setOnClickListener
             }
 

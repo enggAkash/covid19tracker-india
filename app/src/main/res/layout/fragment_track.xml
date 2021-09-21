@@ -227,7 +227,7 @@
                                 android:layout_height="wrap_content"
                                 android:foreground="?android:selectableItemBackground"
                                 android:padding="@dimen/margin_smallest"
-                                android:text="Change Location" />
+                                android:text="@string/change_location" />
 
                             <TextView
                                 android:id="@+id/dashBoardStatsLastUpdateTime"

@@ -97,10 +97,105 @@
     <!--Demo Admob Account-->
     <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="your_place">(Your Place)</string>
+    <string name="no_record_found">No Record Found!</string>
+    <string name="state">State</string>
+    <string name="your_state">(Your State)</string>
 
     <!--Live Admob Account-->
     <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
     <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
 
     <!--END About Covid19IndiaOrg Q&A-->
+
+    <string name="app_version">App Version %s</string>
+    <string name="please_select_state">Please Select State</string>
+    <string name="please_select_place">Please Select Place</string>
+    <string name="no_email_app_found">No email app found.</string>
+
+    <string name="india">India</string>
+    <string name="total">Total</string>
+    <string name="total_confirmed_cases">Total Confirmed Cases</string>
+    <string name="total_death_cases">Total Death Cases</string>
+    <string name="total_recovered_cases">Total Recovered Cases</string>
+    <string name="daily_confirmed_cases">Daily Confirmed Cases</string>
+    <string name="daily_death_cases">Daily Death Cases</string>
+    <string name="daily_recovered_cases">Daily Recovered Cases</string>
+    <string name="in">in </string>
+    <string name="most_affected_district">Most affected Places</string>
+    <string name="most_affected_states">Most affected States</string>
+    <string name="apostrophy_text">\'s</string>
+    <string name="get_report_about_covid_cases_in_your_area">Get report about Covid cases in your area</string>
+    <string name="daily">Daily</string>
+    <string name="never">Never</string>
+    <string name="change_location">Change Location</string>
+    <string name="share_app">Share App</string>
+    <string name="contact_app_developer">Contact App Developer</string>
+    <string name="something_went_wrong">Something Went Wrong while processing your request</string>
+    <string name="internet_not_available">Internet is Not available.</string>
+    <string name="whatsapp_not_installed">Whatsapp is not Installed</string>
+    <string name="failed_to_send_whatsapp">Failed to send whatsapp</string>
+    <string name="app_not_installed">NO app is not installed to handle this request</string>
+    <string name="choose_one">choose one</string>
+    <string name="select_email_app">Select Email App</string>
+    <string name="app_support">App Support</string>
+    <string name="below_info_help_us_to_support_better">-- Below Information will help us to give you better support. --</string>
+    <string name="device_id">Device ID : %s</string>
+    <string name="display_pixel">Display: %d X %d</string>
+    <string name="android_version">Android Version: %s</string>
+    <string name="android_product">Product Name : %s</string>
+    <string name="reach_out_to_developer">Reach out to developer via email</string>
+    <string name="daily_covid_report_notif_title">Daily Covid Report</string>
+    <string name="new_update_available_dialog_title">New update available 😊</string>
+    <string name="flexible_update_description">We have a new app update, please update you app.</string>
+    <string name="critical_update_description">We have a critical app update, please update you app.</string>
+    <string name="close_btn">Close</string>
+    <string name="exit_btn">Exit</string>
+    <string name="update_btn">Update</string>
+    <string name="please_check_internet">Please check your internet connection</string>
+
+    <string name="total_confirmed_cases_in_country">#Total Confirmed Cases in %s Timeline</string>
+    <string name="total_death_cases_in_country">#Total Death Cases in %s Timeline</string>
+    <string name="total_recovered_cases_in_country">#Total Recovered Cases in %s Timeline</string>
+
+    <string name="daily_confirmed_cases_in_country">#Daily Confirmed Cases in %s Timeline</string>
+    <string name="daily_death_cases_in_country">#Daily Death Cases in %s Timeline</string>
+    <string name="daily_recovered_cases_in_country">#Daily Recovered Cases in %s Timeline</string>
+
+    <string name="cases_in_state">#Cases in %s</string>
+    <string name="last_updated_date">Last Updated: %s</string>
+    <string name="most_affected_district_in_state">#Most Affected District in %s</string>
+    <string name="most_affected_state_in_india">#Most Affected States &amp; UT in %s</string>
+
+    <!--Precaution-->
+    <string name="wash_your_hands_often">Wash your hands often with Soap and Water</string>
+    <string name="scrub_for_20_sec">Scrub for at least 20 seconds. If Soap and Water are not available, use an Alcohol-Based Sanitizer.</string>
+    <string name="buy_soap">Buy Soap</string>
+    <string name="buy_sanitizer">Buy Sanitizer</string>
+    <string name="avoid_close_contact">Avoid Close Contact with people who are sick</string>
+    <string name="person_with_corona_can_spread">A person with Coronavirus can spread it to others who are up to about 6 feet away.</string>
+    <string name="clean_surface">Clean and Disinfect commonly used surfaces</string>
+    <string name="wipe_surface_door">Wipe Down door knobs, tables, light switches, keyboards, and remote controls.</string>
+    <string name="buy_surface_cleaner">Buy Surface Cleaner</string>
+    <string name="buy_keyboard_cleaner">Buy Keyboard Cleaner</string>
+    <string name="dont_touch_eyes">Don’t touch your eyes, nose or mouth</string>
+    <string name="virus_can_enter_your_body">A virus can enter your body this way.</string>
+    <string name="cover_nose_mouth_with_mask">Cover your nose and mouth with a mask when around others</string>
+    <string name="reduce_airborn_transmission">This helps reduce the risk of spread both by close contact and by airborne transmission.</string>
+    <string name="buy_safest_mask">Buy Safest Mask</string>
+    <string name="stay_home_if_sick">Stay home if you are sick</string>
+    <string name="ambulance_number">tel:102</string>
+    <string name="stay_home_if_have_symptoms">If you have coronavirus symptoms, stay home except to get medical care.</string>
+    <string name="call_ambulance">Call Ambulance</string>
+    <string name="cure">CURE</string>
+    <string name="at_home">At Home:</string>
+    <string name="be_in_touch_with_physician">Be in Touch with treating physician</string>
+    <string name="continue_other_medications">Continue the medications for other comorbid illness after consulting the physician</string>
+    <string name="perform_warm_gargles">Perform warm water gargles or take steam inhalation twice a day</string>
+    <string name="rush_for_medical_attention">Rush for Medical Attention:</string>
+    <string name="difficulty_in_breathing">If you find Difficulty in breathing</string>
+    <string name="dip_in_oxygen"><![CDATA[Dip in oxygen saturation (SpO2 < 94% on room air)]]></string>
+    <string name="pain_in_chest">Persistent pain/pressure in the chest</string>
+    <string name="mental_confusion">Mental confusion or inability to arouse</string>
+
 </resources>

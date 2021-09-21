@@ -44,74 +44,93 @@ class PrecautionFragment : Fragment() {
         val precautionList = arrayListOf<Precaution>(
             Precaution("PREVENTION"),
             Precaution(
-                "", "", R.drawable.hand_washing,
-                "Wash your hands often with Soap and Water",
-                "Scrub for at least 20 seconds. If Soap and Water are not available, use an Alcohol-Based Sanitizer.",
-                "Buy Soap", "", "Buy Sanitizer", ""
+                "",
+                "",
+                R.drawable.hand_washing,
+                getString(R.string.wash_your_hands_often),
+                getString(R.string.scrub_for_20_sec),
+                getString(R.string.buy_soap),
+                "",
+                getString(R.string.buy_sanitizer),
+                ""
             ),
             Precaution(
-                "", "", R.drawable.avoid_close_contact,
-                "Avoid Close Contact with people who are sick",
-                "A person with Coronavirus can spread it to others who are up to about 6 feet away."
+                "",
+                "",
+                R.drawable.avoid_close_contact,
+                getString(R.string.avoid_close_contact),
+                getString(R.string.person_with_corona_can_spread)
             ),
             Precaution(
-                "", "", R.drawable.wiping,
-                "Clean and Disinfect commonly used surfaces",
-                "Wipe Down door knobs, tables, light switches, keyboards, and remote controls.",
-                "Buy Surface Cleaner", "", "Buy Keyboard Cleaner", ""
+                "",
+                "",
+                R.drawable.wiping,
+                getString(R.string.clean_surface),
+                getString(R.string.wipe_surface_door),
+                getString(R.string.buy_surface_cleaner),
+                "",
+                getString(R.string.buy_keyboard_cleaner),
+                ""
             ),
             Precaution(
-                "", "", R.drawable.nose_touching,
-                "Don’t touch your eyes, nose or mouth",
-                "A virus can enter your body this way."
+                "",
+                "",
+                R.drawable.nose_touching,
+                getString(R.string.dont_touch_eyes),
+                getString(R.string.virus_can_enter_your_body)
             ),
             Precaution(
-                "", "", R.drawable.face_mask,
-                "Cover your nose and mouth with a mask when around others",
-                "This helps reduce the risk of spread both by close contact and by airborne transmission.",
-                "Buy Safest Mask"
+                "",
+                "",
+                R.drawable.face_mask,
+                getString(R.string.cover_nose_mouth_with_mask),
+                getString(R.string.reduce_airborn_transmission),
+                getString(R.string.buy_safest_mask)
             ),
             Precaution(
-                "", "", R.drawable.quarantine,
-                "Stay home if you are sick",
-                "If you have coronavirus symptoms, stay home except to get medical care.",
-                "Call Ambulance", "tel:102"
+                "",
+                "",
+                R.drawable.quarantine,
+                getString(R.string.stay_home_if_sick),
+                getString(R.string.stay_home_if_have_symptoms),
+                getString(R.string.call_ambulance),
+                getString(R.string.ambulance_number)
             )
         )
 
         val cureList = arrayListOf<Precaution>(
-            Precaution("CURE"),
-            Precaution("", "At Home:"),
+            Precaution(getString(R.string.cure)),
+            Precaution("", getString(R.string.at_home)),
             Precaution(
                 "", "", R.drawable.doctor,
-                "Be in Touch with treating physician"
+                getString(R.string.be_in_touch_with_physician)
             ),
             Precaution(
                 "", "", R.drawable.medications,
-                "Continue the medications for other comorbid illness after consulting the physician"
+                getString(R.string.continue_other_medications)
             ),
             Precaution(
                 "", "", R.drawable.hot_water,
-                "Perform warm water gargles or take steam inhalation twice a day"
+                getString(R.string.perform_warm_gargles)
             ),
             Precaution(
-                "", "Rush for Medical Attention:"
+                "", getString(R.string.rush_for_medical_attention)
             ),
             Precaution(
                 "", "", R.drawable.breath,
-                "If you find Difficulty in breathing"
+                getString(R.string.difficulty_in_breathing)
             ),
             Precaution(
                 "", "", R.drawable.oxygen_saturation,
-                "Dip in oxygen saturation (SpO2 < 94% on room air)"
+                getString(R.string.dip_in_oxygen)
             ),
             Precaution(
                 "", "", R.drawable.chest_pain_or_pressure,
-                "Persistent pain/pressure in the chest"
+                getString(R.string.pain_in_chest)
             ),
             Precaution(
                 "", "", R.drawable.confused,
-                "Mental confusion or inability to arouse"
+                getString(R.string.mental_confusion)
             )
         )
 

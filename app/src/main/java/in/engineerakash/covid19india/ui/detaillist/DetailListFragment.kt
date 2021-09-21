@@ -89,11 +89,11 @@ class DetailListFragment : Fragment() {
         }
 
         if (currentListType === ListType.DISTRICT) {
-            (activity as AppCompatActivity?)?.supportActionBar?.setTitle(Constant.userSelectedState.trim { it <= ' ' } + "'s")
-            (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("Most affected Districts")
+            (activity as AppCompatActivity?)?.supportActionBar?.setTitle(Constant.userSelectedState.trim { it <= ' ' } + getString(R.string.apostrophy_text))
+            (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.most_affected_district))
         } else {
-            (activity as AppCompatActivity?)?.supportActionBar?.setTitle(Constant.userSelectedCountry.trim { it <= ' ' } + "'s")
-            (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle("Most affected States")
+            (activity as AppCompatActivity?)?.supportActionBar?.setTitle(context?.getString(R.string.india)?.trim { it <= ' ' } + getString(R.string.apostrophy_text))
+            (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.most_affected_states))
         }
     }
 
@@ -175,11 +175,11 @@ class DetailListFragment : Fragment() {
 
         districtObjectTotal.add(
             District(
-                Constant.TOTAL_ITEM_NAME,
+                context?.getString(R.string.total) ?: "",
                 Delta(
-                    userSelectedState?.total?.confirmed,
-                    userSelectedState?.total?.deceased,
-                    userSelectedState?.total?.recovered,
+                    userSelectedState?.delta?.confirmed,
+                    userSelectedState?.delta?.deceased,
+                    userSelectedState?.delta?.recovered,
                 ),
                 Meta(
                     userSelectedState?.meta?.date, userSelectedState?.meta?.lastUpdated,
@@ -200,7 +200,7 @@ class DetailListFragment : Fragment() {
         // Remove Total if there is any
         for (i in stateWiseDataArrayList.indices) {
             if (stateWiseDataArrayList[i].code.equals(Constant.TOTAL_ITEM_CODE, ignoreCase = true) ||
-                stateWiseDataArrayList[i].name.equals(Constant.TOTAL_ITEM_NAME, ignoreCase = true)
+                stateWiseDataArrayList[i].name.equals(context?.getString(R.string.total) ?: "", ignoreCase = true)
             ) {
                 stateWiseDataArrayList.removeAt(i)
                 break
@@ -262,7 +262,7 @@ class DetailListFragment : Fragment() {
         var objectTotalOfMostAffectedState: StateDistrictWiseResponse? = null
         for (stateWiseData in stateWiseDataArrayList) {
             if (Constant.TOTAL_ITEM_CODE.equals(stateWiseData.code, ignoreCase = true) ||
-                Constant.TOTAL_ITEM_NAME.equals(stateWiseData.name, ignoreCase = true)
+                context?.getString(R.string.total).equals(stateWiseData.name, ignoreCase = true)
             ) {
                 objectTotalOfMostAffectedState = stateWiseData
             }
@@ -277,7 +277,7 @@ class DetailListFragment : Fragment() {
             var tested = 0
             var vaccinated1 = 0
             var vaccinated2 = 0
-            val state = Constant.TOTAL_ITEM_NAME
+            val state = context?.getString(R.string.total) ?: ""
             val stateCode = Constant.TOTAL_ITEM_CODE
 
             // if Object "Total" Does not found in the list, compute manually

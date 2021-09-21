@@ -4,8 +4,6 @@ object Constant {
 
     const val SUPPORT_EMAIL = "developer.akashkumar@gmail.com"
 
-    const val NO_EMAIL_CLIENT_MSG = "No email app found."
-
     /*will show top most affected states(which has large number of confirmed cases*/
     const val MOST_AFFECTED_STATES_COUNT = 5
 
@@ -19,9 +17,6 @@ object Constant {
     const val COVID_REPORT_MINUTE = 0 // 10:00AM
 
     val stateCodeNameMap = HashMap<String, String>()
-
-    @JvmField
-    var userSelectedCountry = "India"
 
     @JvmField
     var userSelectedState = "" //""Maharashtra" //""Delhi";

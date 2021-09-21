@@ -13,7 +13,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -93,22 +92,22 @@ class MainActivity : AppCompatActivity() {
 
                     val builder = AlertDialog.Builder(this)
 
-                    builder.setTitle("New update available \uD83D\uDE0A")
+                    builder.setTitle(getString(R.string.new_update_available_dialog_title))
                     if (updateType == AppUpdateType.FLEXIBLE) {
-                        builder.setMessage("We have a new app update, please update you app.")
+                        builder.setMessage(getString(R.string.flexible_update_description))
                         builder.setCancelable(true)
 
-                        builder.setNegativeButton("Close", object : DialogInterface.OnClickListener {
+                        builder.setNegativeButton(getString(R.string.close_btn), object : DialogInterface.OnClickListener {
                             override fun onClick(dialog: DialogInterface?, which: Int) {
                                 // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
                                 dialog?.dismiss()
                             }
                         })
                     } else {
-                        builder.setMessage("We have a critical app update, please update you app.")
+                        builder.setMessage(getString(R.string.critical_update_description))
                         builder.setCancelable(false)
 
-                        builder.setNegativeButton("Exit", object : DialogInterface.OnClickListener {
+                        builder.setNegativeButton(getString(R.string.exit_btn), object : DialogInterface.OnClickListener {
                             override fun onClick(dialog: DialogInterface?, which: Int) {
                                 // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
                                 finishAffinity()
@@ -116,7 +115,7 @@ class MainActivity : AppCompatActivity() {
                         })
                     }
 
-                    builder.setPositiveButton("Update", object : DialogInterface.OnClickListener {
+                    builder.setPositiveButton(getString(R.string.update_btn), object : DialogInterface.OnClickListener {
                         override fun onClick(dialog: DialogInterface?, which: Int) {
                             // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
                             dialog?.dismiss()
@@ -127,9 +126,9 @@ class MainActivity : AppCompatActivity() {
                     builder.show()
 
                 } else {
-                    Toast.makeText(
+                    /*Toast.makeText(
                         this, "Fetch failed", Toast.LENGTH_SHORT
-                    ).show()
+                    ).show()*/
                 }
                 //displayWelcomeMessage()
             }

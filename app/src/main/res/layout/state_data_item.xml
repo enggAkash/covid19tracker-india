@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
+        android:paddingTop="@dimen/dp_3"
+        android:paddingBottom="@dimen/dp_3"
         android:visibility="visible">
 
         <LinearLayout
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_2"
-                android:text="State"
+                android:text="@string/state"
                 android:textColor="@android:color/black" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_2"
-                android:text="(Your State)"
+                android:text="@string/your_state"
                 android:visibility="visible" />
 
         </LinearLayout>
@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/dp_3"
-        android:text="No Record Found!"
+        android:text="@string/no_record_found"
         android:visibility="gone"
         tools:visibility="visible" />
 
