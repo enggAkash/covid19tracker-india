@@ -60,6 +60,10 @@ class LanguageActivity : AppCompatActivity() {
             binding.localeEn.isChecked = true
         } else if (existingLocale == Constant.LOCAL_HI) {
             binding.localeHi.isChecked = true
+        } else if (existingLocale == Constant.LOCAL_ML) {
+            binding.localeMl.isChecked = true
+        } else if (existingLocale == Constant.LOCAL_MR) {
+            binding.localeMr.isChecked = true
         }
 
         if (languageSelectionStartedFrom == LanguageSelectionStartedFrom.SETTING_FRAG) {
@@ -71,6 +75,8 @@ class LanguageActivity : AppCompatActivity() {
         binding.localeEn.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 binding.localeHi.isChecked = false
+                binding.localeMl.isChecked = false
+                binding.localeMr.isChecked = false
                 showLocaleTemporarily(Constant.LOCAL_EN)
             }
         }
@@ -78,7 +84,27 @@ class LanguageActivity : AppCompatActivity() {
         binding.localeHi.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 binding.localeEn.isChecked = false
+                binding.localeMl.isChecked = false
+                binding.localeMr.isChecked = false
                 showLocaleTemporarily(Constant.LOCAL_HI)
+            }
+        }
+
+        binding.localeMl.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                binding.localeEn.isChecked = false
+                binding.localeHi.isChecked = false
+                binding.localeMr.isChecked = false
+                showLocaleTemporarily(Constant.LOCAL_ML)
+            }
+        }
+
+        binding.localeMr.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                binding.localeEn.isChecked = false
+                binding.localeHi.isChecked = false
+                binding.localeMl.isChecked = false
+                showLocaleTemporarily(Constant.LOCAL_MR)
             }
         }
 
@@ -96,6 +122,12 @@ class LanguageActivity : AppCompatActivity() {
 
             } else if (binding.localeHi.isChecked) {
                 locale = Constant.LOCAL_HI
+
+            } else if (binding.localeMl.isChecked) {
+                locale = Constant.LOCAL_ML
+
+            } else if (binding.localeMr.isChecked) {
+                locale = Constant.LOCAL_MR
 
             } else {
                 Toast.makeText(

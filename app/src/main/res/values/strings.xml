@@ -202,6 +202,8 @@
     <string name="select_language_title">Please select your preferred language</string>
     <string name="locale_en">English</string>
     <string name="locale_hi">हिन्दी</string>
+    <string name="locale_ml">മലയാളം</string>
+    <string name="locale_mr">मराठी</string>
     <string name="continue_btn_text">Continue</string>
     <string name="made_in_india">Made in 🇮🇳</string>
     <string name="change_language">Change Language</string>

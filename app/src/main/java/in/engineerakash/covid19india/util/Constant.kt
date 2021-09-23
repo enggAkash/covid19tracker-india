@@ -47,6 +47,16 @@ object Constant {
     val LOCAL_EN = "en"
     val LOCAL_HI = "hi"
 
+    /**
+     * Malayalam
+     */
+    val LOCAL_ML = "ml"
+
+    /**
+     * Marathi
+     */
+    val LOCAL_MR = "mr"
+
     const val SHOW_ADS = true // todo remove empty space when not showing ads
 
     //todo change in production
