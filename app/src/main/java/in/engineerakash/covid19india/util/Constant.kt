@@ -37,8 +37,15 @@ object Constant {
     const val PERIODIC_TASK_TAG_SP_KEY = "periodic_task_id_key"
     const val REPORT_FREQUENCY_SP_KEY = "report_frequency_sp_key"
 
+    const val LOCALE_NAME_SP_KEY = "locale_name_sp_key"
+    const val IS_LOCALE_NAME_IS_SET_SP_KEY = "is_locale_name_is_set_sp_key"
+
     const val TOTAL_ITEM_NAME = "Total"
     const val TOTAL_ITEM_CODE = "TT"
+
+    // Locale
+    val LOCAL_EN = "en"
+    val LOCAL_HI = "hi"
 
     const val SHOW_ADS = true // todo remove empty space when not showing ads
 
@@ -48,6 +55,10 @@ object Constant {
 
 enum class ChooseLocationStartedFrom {
     TRACK_FRAG, SETTING_FRAG
+}
+
+enum class LanguageSelectionStartedFrom {
+    SETTING_FRAG
 }
 
 object CovidReportFrequency {

@@ -24,4 +24,9 @@
 
     <color name="more_text_color">@color/colorAccentDefault</color>
     <color name="choose_fragment_bg_color">#801A1919</color>
+
+    <color name="et_border_color">#DEDEDE</color>
+    <color name="blackShade7">#b2b2b2</color>
+    <color name="grey_mid">#E1E1E1</color>
+    <color name="light_green">#D4FFD6</color>
 </resources>

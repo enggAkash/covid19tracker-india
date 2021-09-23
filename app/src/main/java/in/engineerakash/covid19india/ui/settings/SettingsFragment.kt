@@ -3,6 +3,7 @@ package `in`.engineerakash.covid19india.ui.settings
 import `in`.engineerakash.covid19india.R
 import `in`.engineerakash.covid19india.databinding.FragmentSettingsBinding
 import `in`.engineerakash.covid19india.ui.bg_process.CovidWorkManagerUtil
+import `in`.engineerakash.covid19india.ui.language.LanguageActivity
 import `in`.engineerakash.covid19india.util.*
 import `in`.engineerakash.covid19india.util.ViewUtil.isViewIsChangingProgrammatically
 import `in`.engineerakash.covid19india.util.ViewUtil.removeViewIsChangingProgrammatically
@@ -83,6 +84,18 @@ class SettingsFragment : Fragment() {
                 SettingsFragmentDirections.actionSettingsFragmentToChooseLocationFragment(
                     ChooseLocationStartedFrom.SETTING_FRAG
                 )
+            )
+        }
+
+        binding.changeLanguageTitleTv.setOnClickListener {
+            startActivity(
+                Intent(context, LanguageActivity::class.java)
+                    .apply {
+                        putExtra(
+                            "language_screen_started_from",
+                            LanguageSelectionStartedFrom.SETTING_FRAG
+                        )
+                    }
             )
         }
 
