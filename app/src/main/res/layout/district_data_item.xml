@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_2"
                 android:textColor="@android:color/black"
-                tools:text="District" />
+                tools:text="@string/district" />
 
             <TextView
                 android:id="@+id/userDistrictTv"

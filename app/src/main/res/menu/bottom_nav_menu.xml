@@ -5,16 +5,16 @@
     <item
         android:id="@+id/trackFragment"
         android:icon="@drawable/ic_chart"
-        android:title="Track" />
+        android:title="@string/track_tab" />
 
     <item
         android:id="@+id/precautionFragment"
         android:icon="@drawable/ic_precaution"
-        android:title="Precaution" />
+        android:title="@string/precaution_tab" />
 
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="@string/settings_tab" />
 
 </menu>

@@ -175,16 +175,31 @@ class LanguageActivity : AppCompatActivity() {
         val localeHi =
             AppUtil.getStringByLocal(this, R.string.locale_hi, locale)
 
+        val localeMl =
+            AppUtil.getStringByLocal(this, R.string.locale_ml, locale)
+
+        val localeMr =
+            AppUtil.getStringByLocal(this, R.string.locale_mr, locale)
+
         val saveBtnText =
             AppUtil.getStringByLocal(this, R.string.continue_btn_text, locale)
+
+        val skipBtnText =
+            AppUtil.getStringByLocal(this, R.string.skip, locale)
+
+        val madeInIndiaText =
+            AppUtil.getStringByLocal(this, R.string.made_in_india, locale)
 
         binding.logoIv.contentDescription = logoContentDesc
         binding.welcomeMsgTv.text = welcomeMsg
         binding.languageTitleTv.text = languageTitle
         binding.localeEn.text = localeEn
         binding.localeHi.text = localeHi
-        //binding.localeHin.text = localeHin
+        binding.localeMl.text = localeMl
+        binding.localeMr.text = localeMr
+        binding.skipLanguageBtn.text = skipBtnText
         binding.saveLanguageBtn.text = saveBtnText
+        binding.madeInIndia.text = madeInIndiaText
 
     }
 }

@@ -13,5 +13,5 @@
     app:layout_constraintEnd_toEndOf="@id/endGuide"
     app:layout_constraintStart_toStartOf="@id/startGuide"
     app:layout_constraintTop_toTopOf="@id/topGuide"
-    tools:text="PREVENTION" />
+    tools:text="@string/prevention" />
 

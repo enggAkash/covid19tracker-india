@@ -147,7 +147,7 @@
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/powered_by_shiprocket"
+        app:layout_constraintBottom_toTopOf="@id/madeInIndia"
         app:layout_constraintEnd_toStartOf="@id/save_language_btn"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
@@ -162,12 +162,12 @@
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginBottom="@dimen/margin_medium"
         android:text="@string/continue_btn_text"
-        app:layout_constraintBottom_toTopOf="@id/powered_by_shiprocket"
+        app:layout_constraintBottom_toTopOf="@id/madeInIndia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/skip_language_btn" />
 
     <TextView
-        android:id="@+id/powered_by_shiprocket"
+        android:id="@+id/madeInIndia"
         style="@style/NonHeadingTextSmallSizeRegularFont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

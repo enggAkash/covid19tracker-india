@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Covid19 Tracker 🇮🇳</string>
-    <string name="select_state_ut">Select State/UT:</string>
-    <string name="type_to_choose_state">Type to Choose State</string>
-    <string name="places_with_case">Place with cases:</string>
-    <string name="type_to_choose_place">Type to Choose Place</string>
-    <string name="skip">Skip</string>
-    <string name="save">Save</string>
+    <string name="select_state_ut">राज्य/केंद्रशासित प्रदेश निवडा:</string>
+    <string name="type_to_choose_state">राज्य निवडण्यासाठी टाइप करा</string>
+    <string name="places_with_case">ज्या ठिकाणी प्रकरणे आहेत:</string>
+    <string name="type_to_choose_place">ठिकाण निवडण्यासाठी टाइप करा</string>
+    <string name="skip">वगळा</string>
+    <string name="save">बचाव करणे</string>
 
     <!--Notification Channel Strings-->
     <string-array name="notification_channel_name_list">
@@ -40,172 +40,180 @@
         <item>2</item><!--IMPORTANCE_LOW-->
     </integer-array>
 
-    <string name="covid_report">There is %d new cases in %s, %d new cases in %s and %d new cases in %s. Be safe, be smart, be kind \uD83D\uDE37</string>
-    <string name="covid_report_india_only">There is %d new cases in %s. Be safe, be smart, be kind \uD83D\uDE37</string>
+    <string name="covid_report">%S मध्ये %d नवीन प्रकरणे, %s मध्ये %d नवीन प्रकरणे आणि %s मध्ये %d नवीन प्रकरणे आहेत. सुरक्षित रहा, स्मार्ट व्हा, दयाळू व्हा \uD83D\uDE37</string>
+    <string name="covid_report_india_only">%S मध्ये %d नवीन प्रकरणे आहेत. सुरक्षित रहा, स्मार्ट व्हा, दयाळू व्हा \uD83D\uDE37</string>
     <!--END: Notification Channel Strings-->
 
-    <string name="about_covid19india_title_text">We get our data from <u>covid19india.org</u></string>
+    <string name="about_covid19india_title_text">आम्हाला आमचा डेटा <u>covid19india.org</u> कडून मिळतो</string>
 
     <string name="app_desc_text">
-        This app helps you to track Covid19 in indian and it\'s different states and districts.
-        This app will give you report daily about covid cases in your nearby area.&lt;br&gt;
-        This app will tell you different way to prevent from covid and if unfortunately if you got covid, it will tell you different ways to cure.&lt;br&gt;&lt;br&gt;
-        The suggestion and guidelines is taken from Health Ministry, Government of India&lt;br&gt;
-        There is also a section to buy essential things if required from the comfort of your home.
+        हे ऐप आपल्याला भारतीय कोविड १ track चा मागोवा घेण्यास मदत करते आणि ते विविध राज्ये आणि जिल्हे.
+        हे ऐप तुम्हाला तुमच्या जवळच्या परिसरातील कोविड प्रकरणांबद्दल दररोज अहवाल देईल.&lt;br&gt;
+        हे ऐप तुम्हाला कोविडपासून बचाव करण्याचे वेगळे मार्ग सांगेल आणि दुर्दैवाने जर तुम्हाला कोविड झाला असेल तर ते तुम्हाला बरे करण्याचे वेगवेगळे मार्ग सांगतील.&lt;br&gt;&lt;br&gt;
+        सूचना आणि मार्गदर्शक तत्त्वे भारत सरकारच्या आरोग्य मंत्रालयाने घेतली आहेत&lt;br&gt;
+        आपल्या घराच्या आरामात आवश्यक असल्यास आवश्यक वस्तू खरेदी करण्यासाठी एक विभाग देखील आहे.
     </string>
 
-    <string name="share_app_description">Track Covid19 case in the india and stay updated.
-        Buy essentials from home. Get Daily Report about covid cases in your area.
-         Different ways to prevent and cure covid from official sources of Health Ministry, Government of India
-        \n\nDownload %s\n
-        %s
-    </string>
-    <string name="about_covid19india">About covid19india.org</string>
-    <string name="about_app">About App</string>
-    <string name="indian_map">Indian Map</string>
+    <string name="share_app_description">भारतातील कोविड १ case प्रकरणाचा मागोवा घ्या आणि अपडेट रहा.
+    जीवनावश्यक वस्तू घरूनच खरेदी करा. आपल्या क्षेत्रातील कोविड प्रकरणांबद्दल दररोज अहवाल मिळवा.
+    भारत सरकारच्या आरोग्य मंत्रालयाच्या अधिकृत स्रोतांकडून कोविड रोखण्यासाठी आणि बरे करण्याचे वेगवेगळे मार्ग
+    \n\n%s \n डाउनलोड करा %s\n</string>
+    <string name="about_covid19india">Covid19india.org बद्दल</string>
+    <string name="about_app">ऐप बद्दल</string>
+    <string name="indian_map">भारतीय नकाशा</string>
 
     <!--About Covid19IndiaOrg Q&A-->
     <string-array name="q_and_a_questions_list">
-        <item>Is covid19india.org official?</item>
-        <item>What are covid19india.org sources? How is the data gathered for this project?</item>
-        <item>Why does covid19india.org have difference in numbers compared to MOHFW website?</item>
-        <item>Where can I find the data for this?</item>
-        <item>What is covid19india.org?</item>
-        <item>Why are covid19india.org guys putting in time and resources to do this while not gaining a single penny from it?</item>
-        <item>Is this official app of covid19india.org</item>
+        <item>Covid19india.org अधिकृत आहे का?</item>
+        <item>Covid19india.org स्त्रोत काय आहेत? या प्रकल्पासाठी डेटा कसा गोळा केला जातो?</item>
+        <item>MOHFW वेबसाइटच्या तुलनेत covid19india.org मध्ये संख्येत फरक का आहे?</item>
+        <item>मी यासाठी डेटा कोठे शोधू शकतो?</item>
+        <item>Covid19india.org काय आहे?</item>
+        <item>Covid19india.org लोक हे करण्यासाठी एक वेळ आणि संसाधने का घालवत आहेत आणि त्यातून एक पैसाही मिळत नाही?</item>
+        <item>Covid19india.org चे हे अधिकृत ऐप आहे</item>
     </string-array>
 
     <string-array name="q_and_a_answers_list">
-        <item>No.</item>
-        <item>covid19india.org is using state bulletins and official handles to update our numbers.
-            The data is validated by a group of volunteers and published into a Google sheet and an API.
-            API is available for all at data.covid19india.org.
-            We would love it if you can use this data in the fight against this virus. The source list is here(https://telegra.ph/Covid-19-Sources-03-19).</item>
-        <item>MoHFW updates the data at a scheduled time. However, covid19india.org updates them based on state press bulletins,
-            official (CM, Health M) handles, PBI, Press Trust of India, ANI reports. These are generally more recent.</item>
-        <item>All the data is available through an API for further analysis and development here : data.covid19india.org</item>
-        <item>covid19india.org are a group of dedicated volunteers who curate and verify the data coming from several sources.
-            covid19india.org extracts the details, like a patient\'s relationship with other patients to identify local and community transmissions,
-            travel history and status. covid19india.org never collects or expose any personally identifiable data regarding the patients.</item>
-        <item>Because it affects all of us. Today it\'s someone else who is getting infected; tomorrow it could be us.
-            We need to prevent the spread of this virus.
-            We need to document the data so that people with knowledge can use this data to make informed decisions.</item>
-        <item>No, this app is only using it\'s api (data.covid19india.org)</item>
+        <item>नाही.</item>
+        <item>covid19india.org आमचे नंबर अपडेट करण्यासाठी राज्य बुलेटिन आणि अधिकृत हँडल वापरत आहे.
+             डेटा स्वयंसेवकांच्या गटाद्वारे सत्यापित केला जातो आणि Google शीट आणि API मध्ये प्रकाशित केला जातो.
+             Data.covid19india.org वर सर्वांसाठी API उपलब्ध आहे.
+             आपण या विषाणूविरूद्धच्या लढ्यात हा डेटा वापरू शकल्यास आम्हाला ते आवडेल. स्त्रोत यादी येथे आहे (https://telegra.ph/Covid-19-Sources-03-19).</item>
+        <item>MoHFW निर्धारित वेळेत डेटा अपडेट करते. तथापि, covid19india.org राज्य प्रेस बुलेटिनवर आधारित त्यांना अपडेट करते,
+             अधिकृत (CM, Health M) हाताळते, PBI, Press Trust of India, ANI अहवाल. हे साधारणपणे अधिक अलीकडील आहेत.</item>
+        <item>पुढील विश्लेषण आणि विकासासाठी येथे सर्व डेटा API द्वारे उपलब्ध आहे: data.covid19india.org</item>
+        <item>covid19india.org समर्पित स्वयंसेवकांचा एक गट आहे जो अनेक स्त्रोतांकडून येणारा डेटा क्युरेट आणि सत्यापित करतो.
+             covid19india.org स्थानिक आणि सामुदायिक प्रसार ओळखण्यासाठी रुग्णाच्या इतर रूग्णांशी असलेल्या नात्याप्रमाणे तपशील काढते,
+             प्रवास इतिहास आणि स्थिती. covid19india.org रुग्णांशी संबंधित वैयक्तिकरित्या ओळखण्यायोग्य डेटा कधीही गोळा किंवा उघड करत नाही.</item>
+        <item>कारण त्याचा परिणाम आपल्या सर्वांवर होतो. आज हे दुसरे कोणीतरी संक्रमित आहे; उद्या ते आपण असू शकतो.
+             आपल्याला या विषाणूचा प्रसार रोखण्याची गरज आहे.
+             आम्हाला डेटाचे दस्तऐवजीकरण करणे आवश्यक आहे जेणेकरून माहिती असलेले लोक माहितीचा निर्णय घेण्यासाठी या डेटाचा वापर करू शकतील.</item>
+        <item>नाही, हे ऐप फक्त त्याची api (data.covid19india.org) वापरत आहे</item>
     </string-array>
+
+    <!--END About Covid19IndiaOrg Q&A-->
 
     <!--TODO Change this at the time of Release-->
     <!--Demo Admob Account-->
     <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="your_place">(Your Place)</string>
-    <string name="no_record_found">No Record Found!</string>
-    <string name="state">State</string>
-    <string name="your_state">(Your State)</string>
 
     <!--Live Admob Account-->
     <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
     <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
 
-    <!--END About Covid19IndiaOrg Q&A-->
+    <string name="your_place">(तुमचे ठिकाण)</string>
+    <string name="no_record_found">कोणतेही रेकॉर्ड सापडले नाही!</string>
+    <string name="state">राज्य</string>
+    <string name="your_state">(आपले राज्य)</string>
 
-    <string name="app_version">App Version %s</string>
-    <string name="please_select_state">Please Select State</string>
-    <string name="please_select_place">Please Select Place</string>
-    <string name="no_email_app_found">No email app found.</string>
+    <string name="app_version">ऐप आवृत्ती %s</string>
+    <string name="please_select_state">कृपया राज्य निवडा</string>
+    <string name="please_select_place">कृपया ठिकाण निवडा</string>
+    <string name="no_email_app_found">कोणतेही ईमेल ऐप आढळले नाही.</string>
 
-    <string name="india">India</string>
-    <string name="total">Total</string>
-    <string name="total_confirmed_cases">Total Confirmed Cases</string>
-    <string name="total_death_cases">Total Death Cases</string>
-    <string name="total_recovered_cases">Total Recovered Cases</string>
-    <string name="daily_confirmed_cases">Daily Confirmed Cases</string>
-    <string name="daily_death_cases">Daily Death Cases</string>
-    <string name="daily_recovered_cases">Daily Recovered Cases</string>
-    <string name="in">in </string>
-    <string name="most_affected_district">Most affected Places</string>
-    <string name="most_affected_states">Most affected States</string>
-    <string name="apostrophy_text">\'s</string>
-    <string name="get_report_about_covid_cases_in_your_area">Get report about Covid cases in your area</string>
-    <string name="daily">Daily</string>
-    <string name="never">Never</string>
-    <string name="change_location">Change Location</string>
-    <string name="share_app">Share App</string>
-    <string name="contact_app_developer">Contact App Developer</string>
-    <string name="something_went_wrong">Something Went Wrong while processing your request</string>
-    <string name="internet_not_available">Internet is Not available.</string>
-    <string name="whatsapp_not_installed">Whatsapp is not Installed</string>
-    <string name="failed_to_send_whatsapp">Failed to send whatsapp</string>
-    <string name="app_not_installed">NO app is not installed to handle this request</string>
-    <string name="choose_one">choose one</string>
-    <string name="select_email_app">Select Email App</string>
+    <string name="india">भारत</string>
+    <string name="total">एकूण</string>
+    <string name="total_confirmed_cases">एकूण पुष्टीकृत प्रकरणे</string>
+    <string name="total_death_cases">एकूण मृत्यू प्रकरणे</string>
+    <string name="total_recovered_cases">एकूण बरे झालेले रुग्ण</string>
+    <string name="daily_confirmed_cases">दैनिक पुष्टीकृत प्रकरणे</string>
+    <string name="daily_death_cases">दैनंदिन मृत्यूची प्रकरणे</string>
+    <string name="daily_recovered_cases">दररोज बरे झालेले रुग्ण</string>
+    <string name="most_affected_district">सर्वाधिक प्रभावित ठिकाणे</string>
+    <string name="most_affected_states">सर्वाधिक प्रभावित राज्ये</string>
+    <string name="get_report_about_covid_cases_in_your_area">आपल्या क्षेत्रातील कोविड प्रकरणांबद्दल अहवाल मिळवा</string>
+    <string name="daily">रोज</string>
+    <string name="never">कधीच नाही</string>
+    <string name="change_location">स्थान बदला</string>
+    <string name="share_app">ऐप शेअर करा</string>
+    <string name="contact_app_developer">ऐप डेव्हलपरशी संपर्क साधा</string>
+    <string name="something_went_wrong">आपल्या विनंतीवर प्रक्रिया करताना काहीतरी चूक झाली</string>
+    <string name="internet_not_available">इंटरनेट उपलब्ध नाही.</string>
+    <string name="whatsapp_not_installed">व्हॉट्सऐप इन्स्टॉल केलेले नाही</string>
+    <string name="failed_to_send_whatsapp">व्हॉट्सऐप पाठवण्यात अयशस्वी</string>
+    <string name="app_not_installed">ही विनंती हाताळण्यासाठी कोणतेही ऐप स्थापित केलेले नाही</string>
+    <string name="choose_one">एक निवडा</string>
+    <string name="select_email_app">ईमेल ऐप निवडा</string>
     <string name="app_support">App Support</string>
     <string name="below_info_help_us_to_support_better">-- Below Information will help us to give you better support. --</string>
     <string name="device_id">Device ID : %s</string>
     <string name="display_pixel">Display: %d X %d</string>
     <string name="android_version">Android Version: %s</string>
     <string name="android_product">Product Name : %s</string>
-    <string name="reach_out_to_developer">Reach out to developer via email</string>
-    <string name="daily_covid_report_notif_title">Daily Covid Report</string>
-    <string name="new_update_available_dialog_title">New update available 😊</string>
-    <string name="flexible_update_description">We have a new app update, please update you app.</string>
-    <string name="critical_update_description">We have a critical app update, please update you app.</string>
-    <string name="close_btn">Close</string>
-    <string name="exit_btn">Exit</string>
-    <string name="update_btn">Update</string>
-    <string name="please_check_internet">Please check your internet connection</string>
+    <string name="reach_out_to_developer">ईमेलद्वारे विकासकाशी संपर्क साधा</string>
+    <string name="daily_covid_report_notif_title">दैनिक कोविड अहवाल</string>
+    <string name="new_update_available_dialog_title">नवीन अपडेट उपलब्ध आहे 😊</string>
+    <string name="flexible_update_description">आमच्याकडे नवीन ऐप अपडेट आहे, कृपया तुमचे ऐप अपडेट करा.</string>
+    <string name="critical_update_description">आमच्याकडे एक गंभीर ऐप अपडेट आहे, कृपया तुमचे ऐप अपडेट करा.</string>
+    <string name="close_btn">बंद</string>
+    <string name="exit_btn">बाहेर पडा</string>
+    <string name="update_btn">अपडेट करा</string>
+    <string name="please_check_internet">कृपया तुमचे इंटरनेट कनेक्शन तपासा</string>
 
-    <string name="total_confirmed_cases_in_country">#Total Confirmed Cases in %s Timeline</string>
-    <string name="total_death_cases_in_country">#Total Death Cases in %s Timeline</string>
-    <string name="total_recovered_cases_in_country">#Total Recovered Cases in %s Timeline</string>
+    <string name="total_confirmed_cases_in_country">#%S मध्ये एकूण पुष्टीकृत प्रकरणे</string>
+    <string name="total_death_cases_in_country">#एकूण मृत्यू प्रकरण %s मध्ये</string>
+    <string name="total_recovered_cases_in_country">#%S मध्ये एकूण बरे झालेले रुग्ण</string>
 
-    <string name="daily_confirmed_cases_in_country">#Daily Confirmed Cases in %s Timeline</string>
-    <string name="daily_death_cases_in_country">#Daily Death Cases in %s Timeline</string>
-    <string name="daily_recovered_cases_in_country">#Daily Recovered Cases in %s Timeline</string>
+    <string name="daily_confirmed_cases_in_country">#%S मध्ये दैनिक पुष्टीकृत प्रकरणे</string>
+    <string name="daily_death_cases_in_country">#दैनिक मृत्यू प्रकरणे %s मध्ये</string>
+    <string name="daily_recovered_cases_in_country">#%S मध्ये दैनिक बरे झालेले रुग्ण</string>
 
-    <string name="cases_in_state">#Cases in %s</string>
-    <string name="last_updated_date">Last Updated: %s</string>
-    <string name="most_affected_district_in_state">#Most Affected District in %s</string>
-    <string name="most_affected_state_in_india">#Most Affected States &amp; UT in %s</string>
+    <string name="cases_in_state">#%S मधील प्रकरणे</string>
+    <string name="last_updated_date">शेवटची अपडेट केलेली वेळ: %s</string>
+    <string name="most_affected_district_in_state">#%S मधील सर्वाधिक प्रभावित जिल्हा</string>
+    <string name="most_affected_state_in_india">#सर्वाधिक प्रभावित राज्ये आणि केंद्रशासित प्रदेश %s मध्ये</string>
 
     <!--Precaution-->
-    <string name="wash_your_hands_often">Wash your hands often with Soap and Water</string>
-    <string name="scrub_for_20_sec">Scrub for at least 20 seconds. If Soap and Water are not available, use an Alcohol-Based Sanitizer.</string>
-    <string name="buy_soap">Buy Soap</string>
-    <string name="buy_sanitizer">Buy Sanitizer</string>
-    <string name="avoid_close_contact">Avoid Close Contact with people who are sick</string>
-    <string name="person_with_corona_can_spread">A person with Coronavirus can spread it to others who are up to about 6 feet away.</string>
-    <string name="clean_surface">Clean and Disinfect commonly used surfaces</string>
-    <string name="wipe_surface_door">Wipe Down door knobs, tables, light switches, keyboards, and remote controls.</string>
-    <string name="buy_surface_cleaner">Buy Surface Cleaner</string>
-    <string name="buy_keyboard_cleaner">Buy Keyboard Cleaner</string>
-    <string name="dont_touch_eyes">Don’t touch your eyes, nose or mouth</string>
-    <string name="virus_can_enter_your_body">A virus can enter your body this way.</string>
-    <string name="cover_nose_mouth_with_mask">Cover your nose and mouth with a mask when around others</string>
-    <string name="reduce_airborn_transmission">This helps reduce the risk of spread both by close contact and by airborne transmission.</string>
-    <string name="buy_safest_mask">Buy Safest Mask</string>
-    <string name="stay_home_if_sick">Stay home if you are sick</string>
+    <string name="wash_your_hands_often">आपले हात साबण आणि पाण्याने वारंवार धुवा</string>
+    <string name="scrub_for_20_sec">किमान 20 सेकंद स्क्रब करा. जर साबण आणि पाणी उपलब्ध नसेल तर अल्कोहोल-आधारित सॅनिटायझर वापरा.</string>
+    <string name="buy_soap">साबण खरेदी करा</string>
+    <string name="buy_sanitizer">सॅनिटायझर खरेदी करा</string>
+    <string name="avoid_close_contact">आजारी असलेल्या लोकांशी जवळचा संपर्क टाळा</string>
+    <string name="person_with_corona_can_spread">कोरोनाव्हायरस असलेली व्यक्ती इतरांना पसरवू शकते जे सुमारे 6 फूट दूर आहेत.</string>
+    <string name="clean_surface">सामान्यतः वापरल्या जाणार्या पृष्ठभाग स्वच्छ आणि निर्जंतुक करा</string>
+    <string name="wipe_surface_door">खाली दरवाजाचे नॉब, टेबल, लाईट स्विच, कीबोर्ड आणि रिमोट कंट्रोल पुसून टाका.</string>
+    <string name="buy_surface_cleaner">सरफेस क्लीनर खरेदी करा</string>
+    <string name="buy_keyboard_cleaner">कीबोर्ड क्लीनर खरेदी करा</string>
+    <string name="dont_touch_eyes">डोळे, नाक किंवा तोंडाला स्पर्श करू नका</string>
+    <string name="virus_can_enter_your_body">व्हायरस तुमच्या शरीरात अशा प्रकारे प्रवेश करू शकतो.</string>
+    <string name="cover_nose_mouth_with_mask">इतरांच्या आसपास असताना आपले नाक आणि तोंड मास्कने झाकून ठेवा</string>
+    <string name="reduce_airborn_transmission">हे जवळच्या संपर्काद्वारे आणि हवेद्वारे प्रसारित होण्याद्वारे पसरण्याचा धोका कमी करण्यास मदत करते.</string>
+    <string name="buy_safest_mask">सर्वात सुरक्षित मास्क खरेदी करा</string>
+    <string name="stay_home_if_sick">तुम्ही आजारी असाल तर घरी रहा</string>
     <string name="ambulance_number">tel:102</string>
-    <string name="stay_home_if_have_symptoms">If you have coronavirus symptoms, stay home except to get medical care.</string>
-    <string name="call_ambulance">Call Ambulance</string>
-    <string name="cure">CURE</string>
-    <string name="at_home">At Home:</string>
-    <string name="be_in_touch_with_physician">Be in Touch with treating physician</string>
-    <string name="continue_other_medications">Continue the medications for other comorbid illness after consulting the physician</string>
-    <string name="perform_warm_gargles">Perform warm water gargles or take steam inhalation twice a day</string>
-    <string name="rush_for_medical_attention">Rush for Medical Attention:</string>
-    <string name="difficulty_in_breathing">If you find Difficulty in breathing</string>
-    <string name="dip_in_oxygen"><![CDATA[Dip in oxygen saturation (SpO2 < 94% on room air)]]></string>
-    <string name="pain_in_chest">Persistent pain/pressure in the chest</string>
-    <string name="mental_confusion">Mental confusion or inability to arouse</string>
-    <string name="logo_content_description">logo</string>
-    <string name="welcome_msg">Welcome to Covid19 Tracker 🇮🇳</string>
+    <string name="stay_home_if_have_symptoms">जर तुमच्याकडे कोरोनाव्हायरसची लक्षणे असतील तर वैद्यकीय सेवा घेण्याशिवाय घरी रहा.</string>
+    <string name="call_ambulance">रुग्णवाहिका बोलवा</string>
+    <string name="cure">बरा</string>
+    <string name="at_home">घरी:</string>
+    <string name="be_in_touch_with_physician">उपचार करणाऱ्या डॉक्टरांच्या संपर्कात रहा</string>
+    <string name="continue_other_medications">डॉक्टरांचा सल्ला घेतल्यानंतर इतर कॉमोरबिड आजारासाठी औषधे सुरू ठेवा</string>
+    <string name="perform_warm_gargles">उबदार पाण्याचे गारगळे करा किंवा दिवसातून दोनदा स्टीम इनहेलेशन घ्या</string>
+    <string name="rush_for_medical_attention">वैद्यकीय लक्ष्यासाठी गर्दी:</string>
+    <string name="difficulty_in_breathing">जर तुम्हाला श्वास घेण्यात अडचण येत असेल तर</string>
+    <string name="dip_in_oxygen"><![CDATA[ऑक्सिजन संपृक्तता मध्ये बुडवा (खोलीच्या हवेवर SpO2 <94%)]]></string>
+    <string name="pain_in_chest">छातीत सतत वेदना/दाब</string>
+    <string name="mental_confusion">मानसिक गोंधळ किंवा जागृत करण्यात असमर्थता</string>
+    <string name="logo_content_description">लोगो</string>
+    <string name="welcome_msg">कोविड 19 ट्रॅकरमध्ये आपले स्वागत आहे 🇮🇳</string>
     <string name="select_language_title">कृपया तुमची पसंतीची भाषा निवडा</string>
     <string name="locale_en">English</string>
     <string name="locale_hi">हिन्दी</string>
     <string name="locale_ml">മലയാളം</string>
     <string name="locale_mr">मराठी</string>
-    <string name="continue_btn_text">Continue</string>
-    <string name="made_in_india">Made in 🇮🇳</string>
-    <string name="change_language">Change Language</string>
-
+    <string name="continue_btn_text">सुरू</string>
+    <string name="made_in_india">"🇮🇳 बनवलेले "</string>
+    <string name="change_language">भाषा बदला</string>
+    <string name="in_india">भारतात</string>
+    <string name="in_state">%s मध्ये</string>
+    <string name="more">तपशील</string>
+    <string name="district">जिल्हा</string>
+    <string name="confirmed">पुष्टी केली</string>
+    <string name="recovered">पुनर्प्राप्त</string>
+    <string name="death">मृत्यू</string>
+    <string name="track_tab">छाननी करणे</string>
+    <string name="precaution_tab">खबरदारी</string>
+    <string name="settings_tab">सेटिंग्ज</string>
+    <string name="prevention">प्रतिबंध</string>
+    <string name="see_health_ministry_government_of_india_guidelines">आरोग्य मंत्रालय, भारत सरकारच्या मार्गदर्शक सूचना पहा ( https://www.mohfw.gov.in/pdf/RevisedguidelinesforHomeIsolationofmildasymptomaticCOVID19cases.pdf )</string>
 </resources>

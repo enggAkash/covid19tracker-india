@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="State"
+        android:text="@string/state"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Confirmed"
+        android:text="@string/confirmed"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Recovered"
+        android:text="@string/recovered"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Death"
+        android:text="@string/death"
         android:textColor="@android:color/black"
         android:textStyle="bold" />
 

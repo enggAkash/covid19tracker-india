@@ -42,7 +42,7 @@ class PrecautionFragment : Fragment() {
         //todo add affiliate marketing links
 
         val precautionList = arrayListOf<Precaution>(
-            Precaution("PREVENTION"),
+            Precaution(getString(R.string.prevention)),
             Precaution(
                 "",
                 "",

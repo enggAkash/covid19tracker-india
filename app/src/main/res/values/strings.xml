@@ -93,20 +93,21 @@
         <item>No, this app is only using it\'s api (data.covid19india.org)</item>
     </string-array>
 
+    <!--END About Covid19IndiaOrg Q&A-->
+
     <!--TODO Change this at the time of Release-->
     <!--Demo Admob Account-->
     <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="your_place">(Your Place)</string>
-    <string name="no_record_found">No Record Found!</string>
-    <string name="state">State</string>
-    <string name="your_state">(Your State)</string>
 
     <!--Live Admob Account-->
     <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
     <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
 
-    <!--END About Covid19IndiaOrg Q&A-->
+    <string name="your_place">(Your Place)</string>
+    <string name="no_record_found">No Record Found!</string>
+    <string name="state">State</string>
+    <string name="your_state">(Your State)</string>
 
     <string name="app_version">App Version %s</string>
     <string name="please_select_state">Please Select State</string>
@@ -121,10 +122,8 @@
     <string name="daily_confirmed_cases">Daily Confirmed Cases</string>
     <string name="daily_death_cases">Daily Death Cases</string>
     <string name="daily_recovered_cases">Daily Recovered Cases</string>
-    <string name="in">in </string>
     <string name="most_affected_district">Most affected Places</string>
     <string name="most_affected_states">Most affected States</string>
-    <string name="apostrophy_text">\'s</string>
     <string name="get_report_about_covid_cases_in_your_area">Get report about Covid cases in your area</string>
     <string name="daily">Daily</string>
     <string name="never">Never</string>
@@ -135,7 +134,7 @@
     <string name="internet_not_available">Internet is Not available.</string>
     <string name="whatsapp_not_installed">Whatsapp is not Installed</string>
     <string name="failed_to_send_whatsapp">Failed to send whatsapp</string>
-    <string name="app_not_installed">NO app is not installed to handle this request</string>
+    <string name="app_not_installed">No app is not installed to handle this request</string>
     <string name="choose_one">choose one</string>
     <string name="select_email_app">Select Email App</string>
     <string name="app_support">App Support</string>
@@ -207,5 +206,16 @@
     <string name="continue_btn_text">Continue</string>
     <string name="made_in_india">Made in 🇮🇳</string>
     <string name="change_language">Change Language</string>
-
+    <string name="in_india">in India</string>
+    <string name="in_state">%s\'s</string>
+    <string name="more">More</string>
+    <string name="district">District</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="recovered">Recovered</string>
+    <string name="death">Death</string>
+    <string name="track_tab">Track</string>
+    <string name="precaution_tab">Precaution</string>
+    <string name="settings_tab">Settings</string>
+    <string name="prevention">Prevention</string>
+    <string name="see_health_ministry_government_of_india_guidelines">See Health Ministry, Government of India Guidelines ( https://www.mohfw.gov.in/pdf/RevisedguidelinesforHomeIsolationofmildasymptomaticCOVID19cases.pdf )</string>
 </resources>

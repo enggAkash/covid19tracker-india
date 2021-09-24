@@ -89,10 +89,11 @@ class DetailListFragment : Fragment() {
         }
 
         if (currentListType === ListType.DISTRICT) {
-            (activity as AppCompatActivity?)?.supportActionBar?.setTitle(Constant.userSelectedState.trim { it <= ' ' } + getString(R.string.apostrophy_text))
+            (activity as AppCompatActivity?)?.supportActionBar?.title = getString(R.string.in_state, Constant.userSelectedState.trim())
             (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.most_affected_district))
         } else {
-            (activity as AppCompatActivity?)?.supportActionBar?.setTitle(context?.getString(R.string.india)?.trim { it <= ' ' } + getString(R.string.apostrophy_text))
+            (activity as AppCompatActivity?)?.supportActionBar?.title =
+                context?.getString(R.string.in_india)?.trim { it <= ' ' }
             (activity as AppCompatActivity?)?.supportActionBar?.setSubtitle(getString(R.string.most_affected_states))
         }
     }
@@ -199,8 +200,14 @@ class DetailListFragment : Fragment() {
 
         // Remove Total if there is any
         for (i in stateWiseDataArrayList.indices) {
-            if (stateWiseDataArrayList[i].code.equals(Constant.TOTAL_ITEM_CODE, ignoreCase = true) ||
-                stateWiseDataArrayList[i].name.equals(context?.getString(R.string.total) ?: "", ignoreCase = true)
+            if (stateWiseDataArrayList[i].code.equals(
+                    Constant.TOTAL_ITEM_CODE,
+                    ignoreCase = true
+                ) ||
+                stateWiseDataArrayList[i].name.equals(
+                    context?.getString(R.string.total) ?: "",
+                    ignoreCase = true
+                )
             ) {
                 stateWiseDataArrayList.removeAt(i)
                 break
