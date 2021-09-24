@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/trackFragment"
-        android:name="in.engineerakash.covid19india.ui.track.TrackFragment"
+        android:name="online.engineerakash.covid19india.ui.track.TrackFragment"
         android:label="fragment_track"
         app:enterAnim="@anim/enter_from_right"
         app:exitAnim="@anim/exit_to_left"
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/detailGraphFragment"
-        android:name="in.engineerakash.covid19india.ui.detailgraph.DetailGraphFragment"
+        android:name="online.engineerakash.covid19india.ui.detailgraph.DetailGraphFragment"
         android:label="fragment_detail_graph"
         app:enterAnim="@anim/enter_from_right"
         app:exitAnim="@anim/exit_to_left"
@@ -52,21 +52,21 @@
 
         <argument
             android:name="chartType"
-            app:argType="in.engineerakash.covid19india.enums.ChartType" />
+            app:argType="online.engineerakash.covid19india.enums.ChartType" />
 
         <argument
             android:name="timeSeriesDateWiseResponse"
-            app:argType="in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse" />
+            app:argType="online.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse" />
 
         <argument
             android:name="stateDistrictWiseResponse"
-            app:argType="in.engineerakash.covid19india.pojo.StateDistrictWiseResponse[]" />
+            app:argType="online.engineerakash.covid19india.pojo.StateDistrictWiseResponse[]" />
 
     </fragment>
 
     <fragment
         android:id="@+id/detailListFragment"
-        android:name="in.engineerakash.covid19india.ui.detaillist.DetailListFragment"
+        android:name="online.engineerakash.covid19india.ui.detaillist.DetailListFragment"
         android:label="fragment_detail_list"
         app:enterAnim="@anim/enter_from_right"
         app:exitAnim="@anim/exit_to_left"
@@ -76,21 +76,21 @@
 
         <argument
             android:name="listType"
-            app:argType="in.engineerakash.covid19india.enums.ListType" />
+            app:argType="online.engineerakash.covid19india.enums.ListType" />
 
         <argument
             android:name="timeSeriesDateWiseResponse"
-            app:argType="in.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse" />
+            app:argType="online.engineerakash.covid19india.pojo.TimeSeriesStateWiseResponse" />
 
         <argument
             android:name="stateDistrictWiseResponse"
-            app:argType="in.engineerakash.covid19india.pojo.StateDistrictWiseResponse[]" />
+            app:argType="online.engineerakash.covid19india.pojo.StateDistrictWiseResponse[]" />
 
     </fragment>
 
     <fragment
         android:id="@+id/precautionFragment"
-        android:name="in.engineerakash.covid19india.ui.precaution.PrecautionFragment"
+        android:name="online.engineerakash.covid19india.ui.precaution.PrecautionFragment"
         android:label="fragment_precaution"
         app:enterAnim="@anim/enter_from_right"
         app:exitAnim="@anim/exit_to_left"
@@ -100,7 +100,7 @@
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="in.engineerakash.covid19india.ui.settings.SettingsFragment"
+        android:name="online.engineerakash.covid19india.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         app:enterAnim="@anim/enter_from_right"
         app:exitAnim="@anim/exit_to_left"
@@ -114,14 +114,14 @@
 
     <fragment
         android:id="@+id/chooseLocationFragment"
-        android:name="in.engineerakash.covid19india.ui.location.ChooseLocationFragment"
+        android:name="online.engineerakash.covid19india.ui.location.ChooseLocationFragment"
         android:label="fragment_choose_location"
         tools:layout="@layout/fragment_choose_location">
 
         <argument
             app:nullable="false"
             android:name="choose_location_started_from"
-            app:argType="in.engineerakash.covid19india.util.ChooseLocationStartedFrom" />
+            app:argType="online.engineerakash.covid19india.util.ChooseLocationStartedFrom" />
 
         <action
             android:id="@+id/action_chooseLocationFragment_to_trackFragment"

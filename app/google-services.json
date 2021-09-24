@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:527030682387:android:9de458293b68fc0c5710e6",
+        "mobilesdk_app_id": "1:527030682387:android:97c06dd774f1ee395710e6",
         "android_client_info": {
-          "package_name": "in.engineerakash.covid19india"
+          "package_name": "online.engineerakash.covid19india"
         }
       },
       "oauth_client": [

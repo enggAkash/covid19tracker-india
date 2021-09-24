@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "in.engineerakash.covid19india"
+        applicationId "online.engineerakash.covid19india"
         minSdkVersion 21 // todo changed to 19
         targetSdkVersion 31
         versionCode 1
