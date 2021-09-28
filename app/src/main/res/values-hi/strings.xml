@@ -57,7 +57,9 @@
     <string name="share_app_description">भारत में Covid19 मामले को ट्रैक करें और अपडेट रहें।
     घर से जरूरी सामान खरीदें। अपने क्षेत्र में कोविड मामलों के बारे में दैनिक रिपोर्ट प्राप्त करें।
     स्वास्थ्य मंत्रालय, भारत सरकार के आधिकारिक स्रोतों से कोविड को रोकने और ठीक करने के विभिन्न तरीके
-    \n\n%s डाउनलोड करें\n</string>
+    \n\n%s डाउनलोड करें\n
+    %s
+    </string>
     <string name="about_covid19india">covid19india.org के बारे में</string>
     <string name="about_app">ऐप के बारे में</string>
     <string name="indian_map">भारत का नक्शा</string>
@@ -92,15 +94,6 @@
     </string-array>
 
     <!--END About Covid19IndiaOrg Q&A-->
-
-    <!--TODO Change this at the time of Release-->
-    <!--Demo Admob Account-->
-    <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
-
-    <!--Live Admob Account-->
-    <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
-    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
 
     <string name="your_place">(आपकी जगह)</string>
     <string name="no_record_found">कोई रिकॉर्ड नहीं मिला!</string>

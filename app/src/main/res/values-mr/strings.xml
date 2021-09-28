@@ -57,7 +57,8 @@
     <string name="share_app_description">भारतातील कोविड १ case प्रकरणाचा मागोवा घ्या आणि अपडेट रहा.
     जीवनावश्यक वस्तू घरूनच खरेदी करा. आपल्या क्षेत्रातील कोविड प्रकरणांबद्दल दररोज अहवाल मिळवा.
     भारत सरकारच्या आरोग्य मंत्रालयाच्या अधिकृत स्रोतांकडून कोविड रोखण्यासाठी आणि बरे करण्याचे वेगवेगळे मार्ग
-    \n\n%s \n डाउनलोड करा %s\n</string>
+    \n\n%s \n डाउनलोड करा \n%s
+    </string>
     <string name="about_covid19india">Covid19india.org बद्दल</string>
     <string name="about_app">ऐप बद्दल</string>
     <string name="indian_map">भारतीय नकाशा</string>
@@ -92,15 +93,6 @@
     </string-array>
 
     <!--END About Covid19IndiaOrg Q&A-->
-
-    <!--TODO Change this at the time of Release-->
-    <!--Demo Admob Account-->
-    <string name="admob_tracking_screen_banner_app_id">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
-
-    <!--Live Admob Account-->
-    <!--<string name="admob_tracking_screen_banner_app_id">ca-app-pub-5354242864643274~7149753434</string>
-    <string name="admob_tracking_screen_banner_ad_id">ca-app-pub-5354242864643274/6595026148</string>-->
 
     <string name="your_place">(तुमचे ठिकाण)</string>
     <string name="no_record_found">कोणतेही रेकॉर्ड सापडले नाही!</string>
