@@ -26,6 +26,8 @@ object IntentUtil {
                     AppStoreDefaultUrl.AMAZON_APP_STORE
                 } else if (Constant.THIS_BUILD_IS_FOR == AppStore.APK_PURE) {
                     AppStoreDefaultUrl.APK_PURE
+                } else if (Constant.THIS_BUILD_IS_FOR == AppStore.MI_APP_STORE) {
+                    AppStoreDefaultUrl.MI_APP_STORE
                 } else {
                     // google play store
                     AppStoreDefaultUrl.GOOGLE_PLAY_STORE

@@ -60,7 +60,7 @@ object Constant {
     const val SHOW_ADS = true // todo remove empty space when not showing ads
 
     //todo change in production
-    val THIS_BUILD_IS_FOR = AppStore.AMAZON_APP_STORE
+    val THIS_BUILD_IS_FOR = AppStore.MI_APP_STORE
 }
 
 enum class ChooseLocationStartedFrom {
@@ -82,7 +82,7 @@ object AppUpdateType {
 }
 
 enum class AppStore {
-    APK_PURE, AMAZON_APP_STORE, GOOGLE_PLAY_STORE
+    APK_PURE, AMAZON_APP_STORE, MI_APP_STORE, GOOGLE_PLAY_STORE
 }
 
 object AppStoreDefaultUrl {
@@ -91,4 +91,6 @@ object AppStoreDefaultUrl {
         "http://www.amazon.com/gp/mas/dl/android?p=online.engineerakash.covid19india"
     val GOOGLE_PLAY_STORE =
         "https://play.google.com/store/apps/details?id=online.engineerakash.covid19india"
+    val MI_APP_STORE =
+        "mimarket://details?id=online.engineerakash.covid19india"
 }

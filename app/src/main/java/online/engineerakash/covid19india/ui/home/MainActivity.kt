@@ -67,15 +67,19 @@ class MainActivity : AppCompatActivity() {
 
                     val appStoreUrlJsonString = remoteConfig.getValue("app_store_url").asString()
 
-                    /*{
-                     "apk_pure_url": "https://apkpure.com/p/online.engineerakash.covid19india",
-                    "amazon_app_store_url": "http://www.amazon.com/gp/mas/dl/android?p=online.engineerakash.covid19india",
-                    "google_play_store_url": "https://play.google.com/store/apps/details?id=online.engineerakash.covid19india"
-                    }*/
+                    /*
+                    {
+                      "apk_pure_url": "https://apkpure.com/p/online.engineerakash.covid19india",
+                      "amazon_app_store_url": "http://www.amazon.com/gp/mas/dl/android?p=online.engineerakash.covid19india",
+                      "google_play_store_url": "https://play.google.com/store/apps/details?id=online.engineerakash.covid19india",
+                      "mi_app_store_url": "mimarket://details?id=online.engineerakash.covid19india"
+                    }
+                     */
 
                     val rootJo = JSONObject(appStoreUrlJsonString)
                     val apkPureUrl = rootJo.optString("apk_pure_url")
                     val amazonAppStoreUrl = rootJo.optString("amazon_app_store_url")
+                    val miStoreStoreUrl = rootJo.optString("mi_app_store_url")
                     val googlePlayStoreUrl = rootJo.optString("google_play_store_url")
 
 
@@ -84,6 +88,8 @@ class MainActivity : AppCompatActivity() {
                             amazonAppStoreUrl
                         } else if (Constant.THIS_BUILD_IS_FOR == AppStore.APK_PURE) {
                             apkPureUrl
+                        } else if (Constant.THIS_BUILD_IS_FOR == AppStore.MI_APP_STORE) {
+                            miStoreStoreUrl
                         } else {
                             // google play store
                             googlePlayStoreUrl
