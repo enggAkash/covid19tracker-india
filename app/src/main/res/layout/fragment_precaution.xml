@@ -10,38 +10,56 @@
     android:clipToPadding="false"
     tools:context=".ui.precaution.PrecautionFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/precautionRv"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layoutAnimation="@anim/precaution_recycler_layout_anim"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/bottomSeparator"
         app:layout_constraintEnd_toEndOf="@id/endGuide"
         app:layout_constraintStart_toStartOf="@id/startGuide"
-        app:layout_constraintTop_toTopOf="@id/topGuide"
-        tools:listitem="@layout/item_precaution" />
+        app:layout_constraintTop_toTopOf="@id/topGuide">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/precautionRv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layoutAnimation="@anim/precaution_recycler_layout_anim"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_precaution" />
+
+            <TextView
+                android:id="@+id/goiGuidelinesTv"
+                style="@style/NonHeadingTextSmallSizeSemiBoldFont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:autoLink="web"
+                android:background="@android:color/white"
+                android:padding="@dimen/margin_smallest"
+                android:text="@string/see_health_ministry_government_of_india_guidelines"
+                android:textColorLink="@android:color/holo_blue_dark" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <View
         android:id="@+id/bottomSeparator"
         android:layout_width="0dp"
         android:layout_height="@dimen/dp_1"
         android:background="@color/colorLightGrey"
-        app:layout_constraintBottom_toTopOf="@id/goiGuidelinesTv"
-        app:layout_constraintEnd_toEndOf="@id/endGuide"
-        app:layout_constraintStart_toStartOf="@id/startGuide" />
-
-    <TextView
-        android:id="@+id/goiGuidelinesTv"
-        style="@style/NonHeadingTextSmallSizeSemiBoldFont"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:autoLink="web"
-        android:background="@android:color/white"
-        android:padding="@dimen/margin_smallest"
-        android:text="@string/see_health_ministry_government_of_india_guidelines"
-        android:textColorLink="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toTopOf="@id/adView"
         app:layout_constraintEnd_toEndOf="@id/endGuide"
         app:layout_constraintStart_toStartOf="@id/startGuide" />
