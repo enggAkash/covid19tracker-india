@@ -7,9 +7,9 @@ import android.content.res.Configuration
 import android.os.Build
 import android.text.TextUtils
 import android.util.Log
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
+
 
 object AppUtil {
     private const val TAG = "AppUtil"
@@ -90,16 +90,23 @@ object AppUtil {
     }
 
     /**
-     * Whenever API fails hide all views except Error View<br>
-     * Whenever API respond successfully show all views except Error View<br>
+     * s: 1234
+     * formatted = 1
+     * s = 234
      */
-    @Deprecated("Use 2 Layout for Data and Error instead")
-    fun changeVisibilityOfAllView(context: Context, visibility: Int) {
 
-        val rootView = (context as Activity).window.decorView.rootView as ViewGroup
-
-        for (i in 0 until rootView.childCount - 1) {
-            rootView.getChildAt(i).visibility = visibility
+    fun String?.formatToIndianNumber(): String {
+        var s = this ?: ""
+        var formatted = ""
+        if (s.length > 1) {
+            formatted = s.substring(0, 1)
+            s = s.substring(1)
         }
+
+        while (s.length > 3) {
+            formatted += "," + s.substring(0, 2)
+            s = s.substring(2)
+        }
+        return "$formatted,$s"
     }
 }
