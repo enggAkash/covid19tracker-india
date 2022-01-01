@@ -23,9 +23,32 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [
+                    admob_tracking_screen_banner_app_id: 'ca-app-pub-3940256099942544~3347511713'
+            ]
+
+            // Read the API key from ./secure.properties into R.string.admob_tracking_screen_banner_ad_id
+            def secureProps = new Properties()
+            if (file("./secure.properties").exists()) {
+                file("./secure.properties")?.withInputStream { secureProps.load(it) }
+            }
+            resValue "string", "admob_tracking_screen_banner_ad_id", (secureProps.getProperty("ADMOB_TRACKING_SCREEN_BANNER_AD_ID_DEBUG") ?: "")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            manifestPlaceholders = [
+                    admob_tracking_screen_banner_app_id: 'ca-app-pub-5354242864643274~7149753434'
+            ]
+
+            // Read the API key from ./secure.properties into R.string.admob_tracking_screen_banner_ad_id
+            def secureProps = new Properties()
+            if (file("./secure.properties").exists()) {
+                file("./secure.properties")?.withInputStream { secureProps.load(it) }
+            }
+            resValue "string", "admob_tracking_screen_banner_ad_id", (secureProps.getProperty("ADMOB_TRACKING_SCREEN_BANNER_AD_ID_LIVE") ?: "")
         }
     }
 
