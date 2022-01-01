@@ -21,17 +21,7 @@ object IntentUtil {
 
             val appName = context?.getString(R.string.app_name)
 
-            val playStoreUrl =
-                if (Constant.THIS_BUILD_IS_FOR == AppStore.AMAZON_APP_STORE) {
-                    AppStoreDefaultUrl.AMAZON_APP_STORE
-                } else if (Constant.THIS_BUILD_IS_FOR == AppStore.APK_PURE) {
-                    AppStoreDefaultUrl.APK_PURE
-                } else if (Constant.THIS_BUILD_IS_FOR == AppStore.MI_APP_STORE) {
-                    AppStoreDefaultUrl.MI_APP_STORE
-                } else {
-                    // google play store
-                    AppStoreDefaultUrl.GOOGLE_PLAY_STORE
-                }
+            val playStoreUrl = BuildConfig.APP_STORE_URL
 
             val shareMessage =
                 context?.getString(R.string.share_app_description, appName, playStoreUrl)

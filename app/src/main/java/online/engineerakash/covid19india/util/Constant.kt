@@ -58,9 +58,6 @@ object Constant {
     val LOCAL_MR = "mr"
 
     const val SHOW_ADS = true // todo remove empty space when not showing ads
-
-    //todo change in production
-    val THIS_BUILD_IS_FOR = AppStore.MI_APP_STORE
 }
 
 enum class ChooseLocationStartedFrom {

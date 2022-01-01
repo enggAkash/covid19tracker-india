@@ -24,9 +24,6 @@ android {
 
     buildTypes {
         debug {
-            manifestPlaceholders = [
-                    admob_tracking_screen_banner_app_id: 'ca-app-pub-3940256099942544~3347511713'
-            ]
 
             // Read the API key from ./secure.properties into R.string.admob_tracking_screen_banner_ad_id
             def secureProps = new Properties()
@@ -34,14 +31,14 @@ android {
                 file("./secure.properties")?.withInputStream { secureProps.load(it) }
             }
             resValue "string", "admob_tracking_screen_banner_ad_id", (secureProps.getProperty("ADMOB_TRACKING_SCREEN_BANNER_AD_ID_DEBUG") ?: "")
-        }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             manifestPlaceholders = [
-                    admob_tracking_screen_banner_app_id: 'ca-app-pub-5354242864643274~7149753434'
+                    admob_tracking_screen_banner_app_id: (secureProps.getProperty("ADMOB_TRACKING_SCREEN_BANNER_APP_ID_DEBUG") ?: "")
             ]
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             // Read the API key from ./secure.properties into R.string.admob_tracking_screen_banner_ad_id
             def secureProps = new Properties()
@@ -49,6 +46,38 @@ android {
                 file("./secure.properties")?.withInputStream { secureProps.load(it) }
             }
             resValue "string", "admob_tracking_screen_banner_ad_id", (secureProps.getProperty("ADMOB_TRACKING_SCREEN_BANNER_AD_ID_LIVE") ?: "")
+
+            manifestPlaceholders = [
+                    admob_tracking_screen_banner_app_id: (secureProps.getProperty("ADMOB_TRACKING_SCREEN_BANNER_APP_ID_LIVE") ?: "")
+            ]
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+
+        apk_pure {
+            flavorDimensions("default")
+            buildConfigField "online.engineerakash.covid19india.util.AppStore", "APP_STORE_NAME", "online.engineerakash.covid19india.util.AppStore.APK_PURE"
+            buildConfigField "String", "APP_STORE_URL", "\"https://apkpure.com/p/online.engineerakash.covid19india\""
+        }
+
+        amazon_app_store {
+            flavorDimensions("default")
+            buildConfigField "online.engineerakash.covid19india.util.AppStore", "APP_STORE_NAME", "online.engineerakash.covid19india.util.AppStore.AMAZON_APP_STORE"
+            buildConfigField "String", "APP_STORE_URL", "\"http://www.amazon.com/gp/mas/dl/android?p=online.engineerakash.covid19india\""
+        }
+
+        google_play_store {
+            flavorDimensions("default")
+            buildConfigField "online.engineerakash.covid19india.util.AppStore", "APP_STORE_NAME", "online.engineerakash.covid19india.util.AppStore.GOOGLE_PLAY_STORE"
+            buildConfigField "String", "APP_STORE_URL", "\"https://play.google.com/store/apps/details?id=online.engineerakash.covid19india\""
+        }
+
+        mi_app_store {
+            flavorDimensions("default")
+            buildConfigField "online.engineerakash.covid19india.util.AppStore", "APP_STORE_NAME", "online.engineerakash.covid19india.util.AppStore.MI_APP_STORE"
+            buildConfigField "String", "APP_STORE_URL", "\"mimarket://details?id=online.engineerakash.covid19india\""
         }
     }
 

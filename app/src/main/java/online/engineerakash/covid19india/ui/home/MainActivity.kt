@@ -1,12 +1,5 @@
 package online.engineerakash.covid19india.ui.home
 
-import online.engineerakash.covid19india.BuildConfig
-import online.engineerakash.covid19india.R
-import online.engineerakash.covid19india.databinding.ActivityMainBinding
-import online.engineerakash.covid19india.util.AppStore
-import online.engineerakash.covid19india.util.AppUpdateType
-import online.engineerakash.covid19india.util.Constant
-import online.engineerakash.covid19india.util.Helper
 import android.content.DialogInterface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -24,7 +17,11 @@ import androidx.navigation.ui.NavigationUI
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
-import org.json.JSONObject
+import online.engineerakash.covid19india.BuildConfig
+import online.engineerakash.covid19india.R
+import online.engineerakash.covid19india.databinding.ActivityMainBinding
+import online.engineerakash.covid19india.util.AppUpdateType
+import online.engineerakash.covid19india.util.Helper
 
 private const val TAG = "MainActivity"
 
@@ -65,37 +62,6 @@ class MainActivity : AppCompatActivity() {
                     if (BuildConfig.VERSION_CODE >= latestVersionCode)
                         return@addOnCompleteListener
 
-                    val appStoreUrlJsonString = remoteConfig.getValue("app_store_url").asString()
-
-                    /*
-                    {
-                      "apk_pure_url": "https://apkpure.com/p/online.engineerakash.covid19india",
-                      "amazon_app_store_url": "http://www.amazon.com/gp/mas/dl/android?p=online.engineerakash.covid19india",
-                      "google_play_store_url": "https://play.google.com/store/apps/details?id=online.engineerakash.covid19india",
-                      "mi_app_store_url": "mimarket://details?id=online.engineerakash.covid19india"
-                    }
-                     */
-
-                    val rootJo = JSONObject(appStoreUrlJsonString)
-                    val apkPureUrl = rootJo.optString("apk_pure_url")
-                    val amazonAppStoreUrl = rootJo.optString("amazon_app_store_url")
-                    val miStoreStoreUrl = rootJo.optString("mi_app_store_url")
-                    val googlePlayStoreUrl = rootJo.optString("google_play_store_url")
-
-
-                    val playStoreUrl =
-                        if (Constant.THIS_BUILD_IS_FOR == AppStore.AMAZON_APP_STORE) {
-                            amazonAppStoreUrl
-                        } else if (Constant.THIS_BUILD_IS_FOR == AppStore.APK_PURE) {
-                            apkPureUrl
-                        } else if (Constant.THIS_BUILD_IS_FOR == AppStore.MI_APP_STORE) {
-                            miStoreStoreUrl
-                        } else {
-                            // google play store
-                            googlePlayStoreUrl
-                        }
-
-
                     val builder = AlertDialog.Builder(this)
 
                     builder.setTitle(getString(R.string.new_update_available_dialog_title))
@@ -103,31 +69,37 @@ class MainActivity : AppCompatActivity() {
                         builder.setMessage(getString(R.string.flexible_update_description))
                         builder.setCancelable(true)
 
-                        builder.setNegativeButton(getString(R.string.close_btn), object : DialogInterface.OnClickListener {
-                            override fun onClick(dialog: DialogInterface?, which: Int) {
-                                // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
-                                dialog?.dismiss()
-                            }
-                        })
+                        builder.setNegativeButton(
+                            getString(R.string.close_btn),
+                            object : DialogInterface.OnClickListener {
+                                override fun onClick(dialog: DialogInterface?, which: Int) {
+                                    // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
+                                    dialog?.dismiss()
+                                }
+                            })
                     } else {
                         builder.setMessage(getString(R.string.critical_update_description))
                         builder.setCancelable(false)
 
-                        builder.setNegativeButton(getString(R.string.exit_btn), object : DialogInterface.OnClickListener {
-                            override fun onClick(dialog: DialogInterface?, which: Int) {
-                                // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
-                                finishAffinity()
-                            }
-                        })
+                        builder.setNegativeButton(
+                            getString(R.string.exit_btn),
+                            object : DialogInterface.OnClickListener {
+                                override fun onClick(dialog: DialogInterface?, which: Int) {
+                                    // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
+                                    finishAffinity()
+                                }
+                            })
                     }
 
-                    builder.setPositiveButton(getString(R.string.update_btn), object : DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, which: Int) {
-                            // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
-                            dialog?.dismiss()
-                            Helper.openUrl(this@MainActivity, playStoreUrl)
-                        }
-                    })
+                    builder.setPositiveButton(
+                        getString(R.string.update_btn),
+                        object : DialogInterface.OnClickListener {
+                            override fun onClick(dialog: DialogInterface?, which: Int) {
+                                // which(int) the button that was clicked (ex. DialogInterface#BUTTON_POSITIVE) or the position of the item clicked
+                                dialog?.dismiss()
+                                Helper.openUrl(this@MainActivity, BuildConfig.APP_STORE_URL)
+                            }
+                        })
 
                     builder.show()
 
