@@ -68,7 +68,7 @@
 
 
         <TextView
-            android:id="@+id/aboutCovid19IndiaTitleTv"
+            android:id="@+id/aboutInCovid19TitleTv"
             style="@style/HeadingTextMediumSizeSemiBoldFont"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -82,13 +82,13 @@
             ads:drawableEndCompat="@drawable/ic_setting_arrow_forward" />
 
         <View
-            android:id="@+id/aboutCovid19IndiaDivider"
+            android:id="@+id/aboutInCovid19Divider"
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_1"
             android:background="@color/colorLightGrey"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaTitleTv" />
+            app:layout_constraintTop_toBottomOf="@id/aboutInCovid19TitleTv" />
 
         <TextView
             android:id="@+id/changeLocationTitleTv"
@@ -101,7 +101,7 @@
             android:text="@string/change_location"
             app:layout_constraintEnd_toEndOf="@id/endGuide"
             app:layout_constraintStart_toStartOf="@id/startGuide"
-            app:layout_constraintTop_toBottomOf="@id/aboutCovid19IndiaDivider"
+            app:layout_constraintTop_toBottomOf="@id/aboutInCovid19Divider"
             ads:drawableEndCompat="@drawable/ic_setting_arrow_forward" />
 
         <View

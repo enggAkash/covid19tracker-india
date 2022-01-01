@@ -16,10 +16,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.settings.AboutCovid19OrgActivity"
+            android:name=".ui.settings.AboutInCovid19OrgActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
-            android:label="@string/about_covid19india" />
+            android:label="@string/about_in_covid19" />
         <activity
             android:name=".ui.settings.AboutAppActivity"
             android:exported="true"

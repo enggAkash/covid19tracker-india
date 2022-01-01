@@ -44,7 +44,7 @@
     <string name="covid_report_india_only">%S ൽ %d പുതിയ കേസുകൾ ഉണ്ട്. സുരക്ഷിതമായിരിക്കുക, മിടുക്കനായിരിക്കുക, ദയ കാണിക്കുക \uD83D\uDE37</string>
     <!--END: Notification Channel Strings-->
 
-    <string name="about_covid19india_title_text">ഞങ്ങളുടെ ഡാറ്റ <u>covid19india.org</u> ൽ നിന്ന് ലഭിക്കും</string>
+    <string name="about_covid19india_title_text">ഞങ്ങളുടെ ഡാറ്റ <u>incovid19.org</u> ൽ നിന്ന് ലഭിക്കും</string>
 
     <string name="app_desc_text">
         കോവിഡ് 19 ഇന്ത്യയിൽ ട്രാക്കുചെയ്യാൻ ഈ ആപ്പ് നിങ്ങളെ സഹായിക്കുന്നു, അത് വിവിധ സംസ്ഥാനങ്ങളിലും ജില്ലകളിലും ആണ്.
@@ -60,37 +60,37 @@
     \n\n%s \n ഡൗൺലോഡ് ചെയ്യുക\n
     %s
     </string>
-    <string name="about_covid19india">Covid19india.org നെ കുറിച്ച്</string>
+    <string name="about_in_covid19">incovid19.org നെ കുറിച്ച്</string>
     <string name="about_app">ആപ്പിനെ കുറിച്ച്</string>
     <string name="indian_map">ഇന്ത്യൻ ഭൂപടം</string>
 
     <!--About Covid19IndiaOrg Q&A-->
     <string-array name="q_and_a_questions_list">
-        <item>Covid19india.org officialദ്യോഗികമാണോ?</item>
-        <item>എന്താണ് covid19india.org ഉറവിടങ്ങൾ? ഈ പ്രോജക്റ്റിനായി ഡാറ്റ ശേഖരിച്ചത് എങ്ങനെയാണ്?</item>
-        <item>MOHFW വെബ്‌സൈറ്റിനെ അപേക്ഷിച്ച് covid19india.org- ന് സംഖ്യകളിൽ വ്യത്യാസം ഉള്ളത് എന്തുകൊണ്ട്?</item>
-        <item>ഇതിനുള്ള ഡാറ്റ എനിക്ക് എവിടെ കണ്ടെത്താനാകും?</item>
-        <item>എന്താണ് covid19india.org?</item>
-        <item>എന്തുകൊണ്ടാണ് covid19india.org ആളുകൾ ഇത് ചെയ്യാൻ സമയവും വിഭവങ്ങളും ചെലവഴിക്കുന്നത്, അതേസമയം അതിൽ നിന്ന് ഒരു പൈസ പോലും നേടുന്നില്ല?</item>
-        <item>ഇത് covid19india.org- ന്റെ officialദ്യോഗിക ആപ്പാണോ?</item>
+        <item>Who are the collaborators for this initiative?</item>
+        <item>About the Initiative</item>
+        <item>What are the objectives of this initiative?</item>
+        <item>Will data availability exactly match the Covid19India efforts ?</item>
+        <item>How should I report a bug / error I have found?</item>
+        <item>Is this official app of incovid19.org</item>
+        <item>What is the process for the daily updates to the portal?</item>
+        <item>What is the frequency of updates to the portal?</item>
+        <item>What is the source of covid19 data for the portal?</item>
+        <item>Acknowledgements</item>
+        <item>Disclaimer</item>
     </string-array>
 
     <string-array name="q_and_a_answers_list">
-        <item>ഇല്ല</item>
-        <item>covid19india.org ഞങ്ങളുടെ നമ്പറുകൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിന് സംസ്ഥാന ബുള്ളറ്റിനുകളും handദ്യോഗിക ഹാൻഡിലുകളും ഉപയോഗിക്കുന്നു.
-             ഒരു കൂട്ടം സന്നദ്ധപ്രവർത്തകർ ഡാറ്റ സാധൂകരിക്കുകയും ഒരു Google ഷീറ്റിലും ഒരു API- ലും പ്രസിദ്ധീകരിക്കുകയും ചെയ്യുന്നു.
-             ഡാറ്റ. Covid19india.org- ൽ എല്ലാവർക്കും API ലഭ്യമാണ്.
-             ഈ വൈറസിനെതിരായ പോരാട്ടത്തിൽ നിങ്ങൾക്ക് ഈ ഡാറ്റ ഉപയോഗിക്കാൻ കഴിയുമെങ്കിൽ ഞങ്ങൾ ഇത് ഇഷ്ടപ്പെടും. ഉറവിട പട്ടിക ഇവിടെയുണ്ട് (https://telegra.ph/Covid-19-Sources-03-19).</item>
-        <item>MoHFW ഒരു നിശ്ചിത സമയത്ത് ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു. എന്നിരുന്നാലും, covid19india.org സംസ്ഥാന പ്രസ് ബുള്ളറ്റിനുകളെ അടിസ്ഥാനമാക്കി അവ അപ്‌ഡേറ്റ് ചെയ്യുന്നു,
-             (ദ്യോഗിക (CM, Health M) കൈകാര്യം ചെയ്യുന്നു, PBI, പ്രസ് ട്രസ്റ്റ് ഓഫ് ഇന്ത്യ, ANI റിപ്പോർട്ട് ചെയ്യുന്നു. ഇവ പൊതുവെ ഏറ്റവും പുതിയതാണ്.</item>
-        <item>കൂടുതൽ വിശകലനത്തിനും വികസനത്തിനുമായി എല്ലാ ഡാറ്റയും ഒരു API വഴി ലഭ്യമാണ്: data.covid19india.org</item>
-        <item>covid19india.org എന്നത് പല സ്രോതസ്സുകളിൽ നിന്നും വരുന്ന ഡാറ്റ ക്യൂറേറ്റ് ചെയ്യുകയും പരിശോധിക്കുകയും ചെയ്യുന്ന സമർപ്പിത സന്നദ്ധപ്രവർത്തകരുടെ ഒരു കൂട്ടമാണ്.
-             covid19india.org പ്രാദേശിക, സാമൂഹിക പ്രസരണങ്ങൾ തിരിച്ചറിയാൻ മറ്റ് രോഗികളുമായുള്ള ഒരു രോഗിയുടെ ബന്ധം പോലെ വിശദാംശങ്ങൾ വേർതിരിച്ചെടുക്കുന്നു,
-             യാത്രാ ചരിത്രവും പദവിയും. covid19india.org ഒരിക്കലും രോഗികളെ സംബന്ധിച്ച് വ്യക്തിപരമായി തിരിച്ചറിയാവുന്ന ഡാറ്റ ശേഖരിക്കുകയോ വെളിപ്പെടുത്തുകയോ ചെയ്യുന്നില്ല.</item>
-        <item>കാരണം അത് നമ്മെയെല്ലാം ബാധിക്കുന്നു. ഇന്ന് രോഗം ബാധിക്കുന്നത് മറ്റൊരാളാണ്; നാളെ അത് നമ്മളാകാം.
-             ഈ വൈറസിന്റെ വ്യാപനം നമ്മൾ തടയേണ്ടതുണ്ട്.
-             അറിവുള്ള ആളുകൾക്ക് ഈ ഡാറ്റ ഉപയോഗിച്ച് വിവരമുള്ള തീരുമാനങ്ങൾ എടുക്കാൻ കഴിയുന്ന തരത്തിൽ ഞങ്ങൾ ഡാറ്റ രേഖപ്പെടുത്തേണ്ടതുണ്ട്.</item>
-        <item>ഇല്ല, ഈ ആപ്പ് അതിന്റെ api (data.covid19india.org) മാത്രമാണ് ഉപയോഗിക്കുന്നത്</item>
+        <item>inCovid19 is a collaborative initiative involving the Indian Institute of Technology Madras(https://www.iitm.ac.in),the Centre for Networked Intelligence(https://cni.iisc.ac.in/) at the Indian Institute of Science (IISc)(https://iisc.ac.in/), the Indian Statistical Institute (ISI)(https://www.isical.ac.in/) and Semantic Web India(http://www.semanticwebindia.com/index.html#extHeader5-6i), a private technology firm based in Bangalore.</item>
+        <item>www.covid19india.org offered a comprehensive view of the COVID-19 pandemic across India by providing data on confirmed, active and recovered cases, tests and fatalities. The organisers recently announced that they would stop updating their website and APIs after 31st October 2021. This new initiative - inCovid19 - will continue the efforts of Covid19India volunteers beyond 31st October 2021 and will make the data available at www.incovid19.org using similar data APIs.</item>
+        <item>The main objective of inCovid19 is to maintain the data availability post October 31 2021, using similar API endpoints as data.covid19india.org. This will ensure that downstream applications designed using these APIs can continue to function with minimal disruption using the data APIs at data.incovid19.org. This initiative also plans to harness the available historical data to present valuable insights and added functionality for enhanced search and analysis.</item>
+        <item>While statewise numbers are made available centrally and regularly updated by MOHFW, district-wise numbers are published by different states in different venues and formats, with differing levels of granularity. Collecting and collating data from these diverse sources is the primary challenge we face. The granularity of the data provided by www.covid19india.org extended to the district level for most States. The Covid19India team accomplished this through a team of volunteers who diligently collated, validated and published the data using a combination of processes. The inCovid19 initiative uses a largely automated process that relies on the published numbers on state government portals and official sources. Though the workflow is not a replica of the process used by the Covid19India team, we hope to continuously update the data to reflect as accurate and granular data as possible, using data published on state government and other official portals.</item>
+        <item>We do expect teething challenges in the initial phase when we get this running. If you spot any bugs or data errors, please send an email to contact@incovid19.org. Specifically for data transcription errors, the most likely reason is that a source file has not been transcribed properly into text. In such cases, it would be very helpful if you can identify the specific source</item>
+        <item>No, this app is only using it\'s api (data.incovid19.org)</item>
+        <item>We took over the project of continuing Covid19India.org in the last week of October 2021. We have stabilized on the following strategy for updating the portal after trying out multiple options. Our data sources for covid19 data at the national level is https://www.mygov.in/covid-19 and the respective state government portals for the state and district level covid19 data. Currently about 19 states regularly provide district level covid 19 data. The rest of the 17 states either do not provide district level updates or updates are received on their portals in a delayed schedule ranging from a few days to a week. We are putting in our best efforts to keep the portal current matching the schedules of the state level updates as and when we receive them (even if it is delayed). The portal reflects covid19 updates as of previous day – exactly similar to what is received nationally at https://www.mygov.in/covid-19 and the respective state government portals. There are many instances where the covid19 data at the national level at https://www.mygov.in/covid-19 reflects a different number for the state than what is received from the state government portal as district level updates. We have synchronized our portal updates daily post receiving the national level covid 19 updates on https://www.mygov.in/covid-19. Hence, our portal updates will be reflected largely by 12:00 noon daily unless there has been a technical glitch in consolidating individual updates from the state government portals.</item>
+        <item>We receive updates at the source – national level (https://www.mygov.in/covid-19) and the respective state government portals once daily for most of the states. Some states update their portal once in a few days. We update the portal once a day post receiving the national level update at https://www.mygov.in/covid-19. On some days, you will see discrepancy in district level updates for certain states vis-à-vis updates at the state level. This is because the respective district level updates have not been received from the state government portals.</item>
+        <item>Our list of sources for covid19 data at national, state and district level data can be found here(https://data.incovid19.org/). Please do reach out to us, if you can augment our current sources for a betterrepresentation of covid19 data at the state/district level.</item>
+        <item>We would like to acknowledge the contribution of the covid19india.org team of volunteers for their tireless efforts in creating and maintaining the site from the start of the pandemic and also in making their codebase open source and available for use by all. This website www.incovid19.org is largely built on top of the open-source codebase of covid19india.org</item>
+        <item>THE CONTENTS OF THIS PORTAL, INCLUDING DATA, MAPS, AND PLOTS, ARE PROVIDED "AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. THE AUTHORS OF THE PORTAL ASSUME NO RESPONSIBILITY OR LIABILITY FOR ANY ERRORS OR OMISSIONS IN THE CONTENT OF THIS SITE/PORTAL. IN NO EVENT SHALL THE AUTHORS OF THE PORTAL BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PORTAL OR THE USE OR OTHER DEALINGS WITH THE PORTAL. THIS PORTAL INCORPORATES DATA OR OTHER CONTENT BELONGING TO OR ORIGINATING FROM THIRD PARTIES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR THE ACCURACY OR RELIABILITY OF ANY THIRD-PARTY INFORMATION.</item>
     </string-array>
 
     <!--END About Covid19IndiaOrg Q&A-->

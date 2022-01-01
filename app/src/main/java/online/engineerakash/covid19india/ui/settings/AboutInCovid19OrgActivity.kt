@@ -1,7 +1,7 @@
 package online.engineerakash.covid19india.ui.settings
 
 import online.engineerakash.covid19india.R
-import online.engineerakash.covid19india.databinding.ActivityAboutCovid19OrgBinding
+import online.engineerakash.covid19india.databinding.ActivityAboutInCovid19OrgBinding
 import online.engineerakash.covid19india.pojo.QAndA
 import online.engineerakash.covid19india.util.Constant
 import android.os.Bundle
@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 
-class AboutCovid19OrgActivity : AppCompatActivity() {
+class AboutInCovid19OrgActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAboutCovid19OrgBinding
+    private lateinit var binding: ActivityAboutInCovid19OrgBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAboutCovid19OrgBinding.inflate(layoutInflater)
+        binding = ActivityAboutInCovid19OrgBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 
