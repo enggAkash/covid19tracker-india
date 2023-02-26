@@ -51,7 +51,7 @@ class CovidApplication : Application() {
 
         //todo implement it via jetpack's startup library
         MobileAds.initialize(this, object : OnInitializationCompleteListener {
-            override fun onInitializationComplete(initializationStatus: InitializationStatus?) {}
+            override fun onInitializationComplete(initializationStatus: InitializationStatus) {}
         })
 
     }
